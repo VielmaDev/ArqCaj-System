@@ -1,0 +1,93 @@
+
+body{
+    background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../img/Fondo.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#identificacion{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#identificacion h1{
+    font-size: 3.0em;
+    color: rgb(19, 116, 243);
+}
+
+#identificacion h2{
+    text-decoration: underline;
+    font-size: 1.3em;
+    color: rgb(236, 236, 245);
+    padding-bottom: 14px;
+}
+
+#formato{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
+    border:3px rgb(247, 243, 243) solid;
+    border-radius: 20px;
+    width: 380px;
+    height: 330px;
+    margin:80px auto;
+}
+
+#logouser figure{
+    position: relative;
+    left: 83px;
+    top: -35px;
+}
+
+#formulario{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: rgb(0, 7, 14);
+    text-align: center;
+    margin-top: -75px;
+}
+
+input{
+    width: 280px;
+    height: 30px;
+}
+
+#acceso{
+    margin: 22px auto;
+}
+
+#ingresar{
+    border:2px rgb(242, 245, 248) solid;
+    border-radius: 10px;
+    background-color:#3498ca;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold; 
+    padding:8px 10px;
+    cursor: pointer;
+}
+
+#ingresar:hover{
+    background-color:rgb(10, 10, 0);
+    color: rgb(241, 247, 250);
+}
+
+#pie{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(213, 239, 247);
+    text-align: center;
+    margin-top: -14px;
+    /*margin-top:350px;*/
+}
+
+#pieprincipal{
+    font-size:1.1em;
+    padding-top: -1px;  
+}
+
+#piesecundario{
+    font-size:1.0em;
+    padding-top: 6px;
+    padding-bottom: 5px;
+}
+
