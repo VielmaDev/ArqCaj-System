@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autenticación</title>
+    <title>Login</title>
 
     {% load static %}
 
@@ -19,26 +19,55 @@
 </head>
 <body>
 
-   <!-- Contenido -->
+  <!--Heading-->
+  <div class="container my-5" id="titulo">
+    <h1 class="site-heading text-center text-white">
+      <span class="site-heading-lower">SISTEMA ARQCAJ</span>
+    </h1> 
+    <h2 class="site-heading text-center text-white">
+      <span class="site-heading-upper">La forma más segura de contabilizar tus ventas</span>
+    </h2>
+  </div>
 
+
+
+  <div class="container my-6" id="formato">
+    <div class="container my-2" id="logouser">
+        <figure><img class="rounded-circle img-thumbnail" src="{% static 'ProyectoWebAC/img/LogouserII.png' %}" style="width: 180px; height: 180px"></figure>
+     </div>
+
+     <div class="container my-2" id="formulario">
+        <form method="post" action=" ">
+            <label>Usuario</label>
+            <input type="text" id="usuario" required autofocus placeholder="user">
+            <label>Contraseña</label>
+            <input type="text" id="contrasena" required placeholder="password">
+            <input type="submit" value="Acceder" id="acceso">
+        </form>
+     </div>
+</div>
+
+
+
+   <!-- Contenido -->
    {% block content %}
 
      <!-- Contenido cambiante-->
 
    {% endblock %}
 
-    <!-- Footer -->
+    <!-- Footer --------------------------------------------->
     <footer>
-        <div id="pie">
-            <div id="pieprincipal">
-                <small><strong>Sistema ArqCaj Versión 1.0</strong></small>
-            </div>
-    
-            <div id="piesecundario">
-                <small id="piesecundario"><strong>Copyright 2023 / Power by Django /J.L Viema Desing</strong></small>
-            </div>
+        <div class="container text-white text-expanded" id="pie">
+          <div class="container text-center" id="pieprincipal">
+              <p><small>Sistema ArqCaj Versión 1.0</small></p>
+          </div>
+      
+          <div class="container text-center" id="piesecundario">
+              <p><small id="piesecundario">Copyright 2023 / Power by Django /J.L Viema Desing</small></p>
+          </div>
         </div>
-    </footer>
+      </footer>
     
 </body>
 </html>

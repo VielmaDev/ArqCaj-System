@@ -1,0 +1,25 @@
+
+{% extends "ProyectoWebAC/baseI.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <form method="post" action=" ">
+
+        {% csrf_token %}
+
+        {% if messages %}
+
+        {% for mensaje in messages %}
+
+            <span class="alert alert-{{mensaje.tags}}">{{mensaje}} </span>
+
+        {% endfor %}
+
+        {% endif %}
+
+
+    </form>
+
+{% endblock %}

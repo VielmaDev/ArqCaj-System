@@ -1,69 +1,111 @@
 
+body{
+    background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../img/Fondo.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#identificacion{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.3em;
+    color:rgb(244, 247, 249);
+} 
+
+#identificacion h1{
+    text-decoration: underline;
+} 
+
+#usuario span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(244, 247, 249);
+}
+
 .navbar{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
     border:2px rgb(248, 244, 244) solid;
-    /*border-radius: 20px;*/
-    /*width: 800px;*/
-    margin: 30px auto;
+    border-radius: 5px;
 }
 
-.nav-menu{
-    font-family: Arial, Helvetica, sans-serif;
+.nav-link{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
+    font-size: 0.9em;
+    color: rgb(243, 246, 247);
 }
 
-.nav-item{
-    display: inline;
-    padding: 10px 20px;
+.nav-link:hover{
+    color: black;
 }
 
-.contenedor{
-    border:2px rgb(251, 248, 248) solid;
-    border-radius: 20px;
-    width: 1350px;
-    margin: 20px auto;
+#contenedor{
+   border: 5px;
 }
 
-.cuadro-item{
+.row{
+    display: block;
+    float: right;
+}
+
+#titulo{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
-    border:2px rgb(10, 0, 0) solid;
-    border-radius: 20px;
-    width: 350px;
-    height: 250px;
-    margin: 15px 45px;
-    display:inline-table;
+    border-radius: 3px;
+    width: 400px;
 }
 
-.item{
+#titulo h6{
     font-family: Arial, Helvetica, sans-serif;
-    padding: 20px 25px;
-}
-
-.item h3{
-    color: rgb(0, 0, 0);
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.item p{
     font-weight: bold;
-    color: white;
+    text-decoration: underline;
+    font-size: 1.1em;
+    text-align: center;
+    color: rgb(243, 246, 247);
+    padding-top: 8px;
+    padding-bottom: 8px;
+
 }
 
-input{
-    width: 300px;
-    background-color: rgb(104, 200, 244);
-
+#contenido{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
+    width: 400px;
+    height: 295px;
+    border-radius: 3px;
+    color: rgb(243, 246, 247);
+    padding: auto;
+    margin: 10px 70px 10px 2px;
 }
 
-    
+#contenido p{
+    text-align: justify;
+    font-size: 1.1em;
+    padding-top:5px;
+    padding-left:20px;
+    padding-bottom: 2px;
+}
 
+#contenido span{
+    text-align:justify;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    padding-top: 10px;
+    padding-left:10px;
+}*/
 
+#pie{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(213, 239, 247);
+    text-align: center;
+    font-size:1.0em;
+}
 
+#pieprincipal p{
+    margin-top:405px;
+}
 
-
-
+#piesecundario small{
+    padding-top: 5px;
+    padding-bottom: 6px;
+}
 
 

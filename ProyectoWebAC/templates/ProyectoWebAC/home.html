@@ -1,44 +1,72 @@
 
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+{% extends "ProyectoWebAC/baseII.html" %}
 
-    {% load static %}
+{% load static %}
 
-    <!--Bootstrap-->
+{% block content %}    
 
-    <!--styles-->
+<!--Heading-->
+<section>
+    <div class="container-fluid text-center my-4">
+        <article>
+            <div class="row align-items-center">
+                <header>
+                    <div class="col-3 col-sm border" id="titulo">
+                        <h6>DIVISAS</h6>
+                    </div>
+                    {% for Divisa in Divisas %}
+                    <div class="col-3 col-sm border" id="contenido">
+                        <p><strong>Fecha de hoy:</strong><span>{{Divisa.created}}</span></p>
+                        <p><strong>Dola $:</strong><span>{{Divisa.tasaDolar}}</span></p>
+                        <p><strong>Euro E:</strong><span>{{Divisa.tasaEuro}}</span></p>
+                    </div>
+                    {% endfor %}
+                </header>
+            </div>
+        </article>
 
-</head>
-<body>
+        <article>
+            <div class="row align-items-center">
+                <header>
+                    <div class="col-3 col-sm border" id="titulo">
+                        <h6>TIENDA</h6>
+                    </div>
+                    {% for Tienda in Tiendas %}
+                    <div class="col-3 col-sm border" id="contenido">
+                        <p><strong>Razón:</strong><span>{{Tienda.razon}}</span></p>
+                        <p><strong>RIF / NIF:</strong><span>{{Tienda.rif}}</span></p>
+                        <p><strong>Dirección:</strong><span>{{Tienda.direccion}}</span></p>
+                        <p><strong>Teléfono:</strong><span>{{Tienda.telf}}</span></p>
+                        <p><strong>Redes:</strong><span>{{Tienda.redes}}</span></p>
+                        <p><strong>N° de cajas:</strong><span>{{Tienda.n_caja}}</span></p>
+                    </div>
+                    {% endfor %}
+                </header>
+            </div>
+        </article>
 
-    <!--Titulo principal-->
-    <div>
-        <h1>Sistema Web ArqCaj</h1>
-        <span>La mejor forma de contabilizar tus ventas</span>
+        <article>
+            <div class="row align-items-center">
+                <header>
+                    <div class="col-3 col-sm border" id="titulo">
+                        <h6>USUARIO</h6>
+                    </div>
+                    {% for Usuario in Usuarios %}
+                    <div class="col-3 col-sm border" id="contenido">
+                        <p><strong>Nombre:</strong><span>{{Usuario.nombre}}</span></p>
+                        <p><strong>Apellido:</strong><span>{{Usuario.apellido}}</span></p>
+                        <p><strong>Cedula de identidad:</strong><span>{{Usuario.ci}}</span></p>
+                        <p><strong>Cargo:</strong><span>{{Usuario.cargo}}</span></p>
+                    </div>
+                    {% endfor %}
+                </header>
+            </div>
+        </article>
+
     </div>
+</header>
+</section>
 
-   <nav>
-    <div>
+{% endblock %}
 
-    </div>
-   </nav>
-
-   <!--contenido-->
-
-   {% block content %}
-
-   Contenido cambiante
-
-   {% endblock %}
-
-   <!--footer-->
-
-   <footer>
-    Pie de pagina
-   </footer>
-</body>
-</html>
+  
