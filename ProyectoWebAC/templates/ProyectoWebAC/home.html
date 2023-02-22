@@ -3,7 +3,10 @@
 
 {% load static %}
 
-{% block content %}    
+{% block content %}
+
+<!--Head-->
+<title>Home</title>
 
 <!--Heading-->
 <section>
@@ -14,13 +17,11 @@
                     <div class="col-3 col-sm border" id="titulo">
                         <h6>DIVISAS</h6>
                     </div>
-                    {% for Divisa in Divisas %}
                     <div class="col-3 col-sm border" id="contenido">
-                        <p><strong>Fecha de hoy:</strong><span>{{Divisa.created}}</span></p>
-                        <p><strong>Dola $:</strong><span>{{Divisa.tasaDolar}}</span></p>
-                        <p><strong>Euro E:</strong><span>{{Divisa.tasaEuro}}</span></p>
+                        <form method="get" action="">
+                            {{form}}
+                        </form>
                     </div>
-                    {% endfor %}
                 </header>
             </div>
         </article>
@@ -62,7 +63,6 @@
                 </header>
             </div>
         </article>
-
     </div>
 </header>
 </section>

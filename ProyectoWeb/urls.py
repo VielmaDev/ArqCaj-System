@@ -23,4 +23,7 @@ from ProyectoWebAC import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ProyectoWebAC.urls')),
+    path('Cierre/', include('ArqueoCaja.urls')),
+    path('Inventario/', include('Inventario.urls')),
+    path('Reportes/', include('Reportes.urls')),
 ]

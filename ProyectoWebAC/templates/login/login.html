@@ -3,23 +3,32 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-    <form method="post" action=" ">
+<!--Heading-->
 
-        {% csrf_token %}
+<div class="container my-6" id="formato">
+    
+    <div class="container my-3" id="usuario">
+        
+        <figure><img class="rounded-circle img-thumbnail" src="{% static 'ProyectoWebAC/img/LogouserII.png' %}" style="width: 180px; height: 180px"></figure>
 
-        {% if messages %}
+    </div>
 
-        {% for mensaje in messages %}
+    <div class="container my-2" >
+        
+        <form method="POST" action=" " autocomplete="off" style="color: white;" id="formulario">
 
-            <span class="alert alert-{{mensaje.tags}}">{{mensaje}} </span>
+            {% csrf_token %}
+                
+            {{form|crispy}}
 
-        {% endfor %}
-
-        {% endif %}
-
-
-    </form>
-
+            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+            
+        </form>
+    </div>
+</div>
+         
 {% endblock %}

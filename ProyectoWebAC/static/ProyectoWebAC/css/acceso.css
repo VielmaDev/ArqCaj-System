@@ -25,48 +25,29 @@ body{
     border:3px rgb(247, 243, 243) solid;
     border-radius: 20px;
     width: 380px;
-    height: 360px;
-    margin:80px auto;
+    height: 405px;
+    margin:70px auto;
 }
 
-#logouser figure{
+#usuario figure{
     position: relative;
-    left: 80px;
-    top: -40px;
+    left: 70px;
+    top: -50px;
 }
 
-#formulario form{
+#formulario{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color: rgb(0, 7, 14);
     text-align: center;
-    margin-top: -45px;
+    margin: -46px auto;
 }
 
-#formulario label{
-    padding-top: 6px;
-}
-
-#formulario input{
-    width: 280px;
-    height: 33px;
-    padding-top: 3px;
-}
-
-#acceso{
-    margin-top: 15px;
-    border:2px rgb(242, 245, 248) solid;
-    border-radius: 10px;
-    background-color:#3498ca;
+#formulario button:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold; 
-    padding:2px 10px;
+    font-weight: bold;
+    color: rgb(0, 9, 13);
     cursor: pointer;
-}
-
-#acceso:hover{
-    background-color:rgb(10, 10, 0);
-    color: rgb(241, 247, 250);
 }
 
 #pie{
@@ -74,15 +55,15 @@ body{
     font-size:1.0em;
     color: rgb(213, 239, 247);
     text-align: center;
-    margin-top: -14px;
+    margin-top: -22px;
 }
 
 #pieprincipal p{
-    padding-top: -1px;  
+    padding-top: -5px;  
 }
 
 #piesecundario small{
-    padding-top: 6px;
+    padding-top: 10px;
     padding-bottom: 5px;
 }
 

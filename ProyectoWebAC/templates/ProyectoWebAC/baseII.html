@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
 
     {% load static %}
 
@@ -27,7 +26,7 @@
 
     <div class="container my-2" style="text-align:right; margin-right:100px" id="usuario">
 
-      <span>Hola {{usuario.nombre}} &nbsp; &nbsp;<a href="{% url 'Login' %}">Cerrar</a></span>
+      <span>Hola &nbsp; &nbsp;<a href="{% url 'Cerrar_sesion' %}">Cerrar</a></span>
     </div>
 
 
@@ -46,10 +45,7 @@
                   <a class="nav-link text-uppercase" href="{% url 'Inventario' %}">Inventario de ventas</a>
                 </li>
                 <li class="nav-item px-lg-4">
-                  <a class="nav-link text-uppercase" href="{% url 'Tasa' %}">Tasa de cambio</a>
-                </li>
-                <li class="nav-item px-lg-4">
-                  <a class="nav-link text-uppercase" href="{% url 'Reporte' %}">Reportes de tiendas</a>
+                  <a class="nav-link text-uppercase" href="{% url 'Reporte' %}">Reporte de tienda</a>
                 </li>
               </ul>
         </div>

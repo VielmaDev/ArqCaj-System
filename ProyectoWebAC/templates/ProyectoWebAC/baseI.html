@@ -9,54 +9,32 @@
     {% load static %}
 
     <!--Bootstrap-->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'ProyectoWebAC/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
 
     <!-- Styles -->
-        <link href= "{% static 'ProyectoWebAC/css/acceso.css' %}" rel="stylesheet">
-
+    <link href= "{% static 'ProyectoWebAC/css/acceso.css' %}" rel="stylesheet">
 
 </head>
+
 <body>
-
   <!--Heading-->
-  <div class="container my-5" id="titulo">
-    <h1 class="site-heading text-center text-white">
-      <span class="site-heading-lower">SISTEMA ARQCAJ</span>
-    </h1> 
-    <h2 class="site-heading text-center text-white">
-      <span class="site-heading-upper">La forma más segura de contabilizar tus ventas</span>
-    </h2>
-  </div>
+    <div class="container my-5" id="titulo">
+      <h1 class="site-heading text-center text-white">
+        <span class="site-heading-lower">SISTEMA ARQCAJ</span>
+      </h1> 
+      <h2 class="site-heading text-center text-white">
+        <span class="site-heading-upper">La forma más segura de contabilizar tus ventas</span>
+      </h2>
+    </div>
 
-
-
-  <div class="container my-6" id="formato">
-    <div class="container my-2" id="logouser">
-        <figure><img class="rounded-circle img-thumbnail" src="{% static 'ProyectoWebAC/img/LogouserII.png' %}" style="width: 180px; height: 180px"></figure>
-     </div>
-
-     <div class="container my-2" id="formulario">
-        <form method="post" action=" ">
-            <label>Usuario</label>
-            <input type="text" id="usuario" required autofocus placeholder="user">
-            <label>Contraseña</label>
-            <input type="text" id="contrasena" required placeholder="password">
-            <input type="submit" value="Acceder" id="acceso">
-        </form>
-     </div>
-</div>
-
-
-
-   <!-- Contenido -->
+  <!-- Contenido -->
    {% block content %}
 
      <!-- Contenido cambiante-->
 
    {% endblock %}
 
-    <!-- Footer --------------------------------------------->
+  <!-- Footer --------------------------------------------->
     <footer>
         <div class="container text-white text-expanded" id="pie">
           <div class="container text-center" id="pieprincipal">
