@@ -1,0 +1,25 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Reportes inventario /actualizar</title>
+
+<section>
+  <header>
+   
+
+    <div align="center" class="btn_crear my-3">
+      <button type="submit" class="btn btn-success">Guardar cambios</button>
+        
+      <a href="{% url 'Inventario' %}" type="submit" class="btn btn-primary">Cancelar</a>
+    </div>
+
+  </header>
+</section>
+
+
+{% endblock %}

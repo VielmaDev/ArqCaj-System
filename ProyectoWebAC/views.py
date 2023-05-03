@@ -9,10 +9,17 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
-from .models import tienda, usuario, divisas
+from django.views.generic import ListView, DetailView 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse
+from django.contrib.messages.views import SuccessMessageMixin 
+from django import forms
+
+from .models import tienda, divisas
 
 # Create your views here.
 
+#Para obtener todos los campos de un registro de la tabla Inventario_ventas 
 
 #Función iniciar sesión
 def logear(request):
@@ -31,7 +38,7 @@ def logear(request):
             else:
                 messages.error(request, "Usuario no validado")
         else:
-            messages.error(request, "Información incorrecta")
+            messages.error(request, "Información no valida")
 
     form=AuthenticationForm()
     return render (request, "login/login.html",{"form": form})
@@ -42,33 +49,13 @@ def cerrar_sesion(request):
     logout (request)
     return redirect('Logear')
 
+class HomeDetalle(DetailView): 
+    model = tienda
+
 def home(request):
-    #return HttpResponse("Home")
     Tienda= tienda.objects.all()
-    Usuario= usuario.objects.all()
     Divisa= divisas.objects.all()
-    return render(request, "ProyectoWebAC/home.html", {"Tiendas": Tienda, "Usuarios": Usuario, "Divisas": Divisa})
-    
-def tasa(request):
-    #return HttpResponse("Tasa_cambio")
-    return render(request, "ProyectoWebAC/tasa.html")
+    return render(request, "ProyectoWebAC/home.html", {"Tiendas": Tienda, "Divisas": Divisa})
 
 
 
-#En construcción-----------------------------------------
-
-#class Acceso(View):
-
-    #def get(self, request):
-        #form=UserCreationForm()
-        #return render (request, "login/login.html", {"form": form})
-
-    #def post(self, request):
-        #pass
-
-
-#-------------------------------------------
-
-#def login(request):
-    #return HttpResponse("Autenticacion")
-    #return render(request, "login/login.html")

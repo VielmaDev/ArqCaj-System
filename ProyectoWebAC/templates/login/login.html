@@ -9,24 +9,17 @@
 
 <!--Heading-->
 
-<div class="container my-6" id="formato">
+<div class="container my-5" id="formato">
     
     <div class="container my-3" id="usuario">
-        
         <figure><img class="rounded-circle img-thumbnail" src="{% static 'ProyectoWebAC/img/LogouserII.png' %}" style="width: 180px; height: 180px"></figure>
-
     </div>
 
-    <div class="container my-2" >
-        
+    <div class="container my-2">
         <form method="POST" action=" " autocomplete="off" style="color: white;" id="formulario">
-
-            {% csrf_token %}
-                
+            {% csrf_token %}  
             {{form|crispy}}
-
             <button type="submit" class="btn btn-success">Iniciar sesión</button>
-            
         </form>
     </div>
 </div>

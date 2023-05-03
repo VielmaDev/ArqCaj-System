@@ -43,7 +43,7 @@ body{
     margin: -46px auto;
 }
 
-#formulario button:hover{
+.btn:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color: rgb(0, 9, 13);

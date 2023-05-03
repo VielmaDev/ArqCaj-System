@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Paquetes del proyecto
+    #Paquetes instalados para los formularios
     'crispy_forms',
 
     #Aplicaciones

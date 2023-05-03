@@ -10,61 +10,118 @@
 
 <!--Heading-->
 <section>
-    <div class="container-fluid text-center my-4">
-        <article>
-            <div class="row align-items-center">
-                <header>
-                    <div class="col-3 col-sm border" id="titulo">
-                        <h6>DIVISAS</h6>
-                    </div>
-                    <div class="col-3 col-sm border" id="contenido">
-                        <form method="get" action="">
-                            {{form}}
-                        </form>
-                    </div>
-                </header>
-            </div>
-        </article>
+    <header>
+        <div class="container-sm  text-center my-4">
+            <table class="table" id="tabla-fecha">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-primary">FECHA DE HOY</th>
+                    </tr>
+                    <tr>
+                        {% for Divisa in Divisas %}
+                            <th scope="col"><span>{{Divisa.created}}</span></th>
+                        {% endfor %}
+                    </tr>        
+                </thead>
+            </table>
+        </div>
 
-        <article>
-            <div class="row align-items-center">
-                <header>
-                    <div class="col-3 col-sm border" id="titulo">
-                        <h6>TIENDA</h6>
-                    </div>
+        <div class="container-md text-center my-3">
+            <table class="table table-bordered border-info my-5" id="tabla-tienda">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>Código tienda</span></th>
+                        <th scope="col"><span>Razón social</span></th>
+                        <th scope="col"><span>Rif / Nif</span></th>  
+                        <th scope="col"><span>Gerente</span></th>
+                        <th scope="col"><span>Subgerente</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
                     {% for Tienda in Tiendas %}
-                    <div class="col-3 col-sm border" id="contenido">
-                        <p><strong>Razón:</strong><span>{{Tienda.razon}}</span></p>
-                        <p><strong>RIF / NIF:</strong><span>{{Tienda.rif}}</span></p>
-                        <p><strong>Dirección:</strong><span>{{Tienda.direccion}}</span></p>
-                        <p><strong>Teléfono:</strong><span>{{Tienda.telf}}</span></p>
-                        <p><strong>Redes:</strong><span>{{Tienda.redes}}</span></p>
-                        <p><strong>N° de cajas:</strong><span>{{Tienda.n_caja}}</span></p>
-                    </div>
-                    {% endfor %}
-                </header>
-            </div>
-        </article>
+                        <tr>
+                            <td>{{ Tienda.id }}</td>
+                            <td>{{ Tienda.razon}}</td>
+                            <td>{{ Tienda.rif}}</td>
+                            <td>{{ Tienda.created}}</td>
+                            <td>{{ Tienda.created}}</td>
+                    {% endfor%}
+                        </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <article>
-            <div class="row align-items-center">
-                <header>
-                    <div class="col-3 col-sm border" id="titulo">
-                        <h6>USUARIO</h6>
-                    </div>
-                    {% for Usuario in Usuarios %}
-                    <div class="col-3 col-sm border" id="contenido">
-                        <p><strong>Nombre:</strong><span>{{Usuario.nombre}}</span></p>
-                        <p><strong>Apellido:</strong><span>{{Usuario.apellido}}</span></p>
-                        <p><strong>Cedula de identidad:</strong><span>{{Usuario.ci}}</span></p>
-                        <p><strong>Cargo:</strong><span>{{Usuario.cargo}}</span></p>
-                    </div>
-                    {% endfor %}
-                </header>
-            </div>
-        </article>
-    </div>
-</header>
+        <div class="container-sm  text-center my-4">
+            <table class="table" id="tabla-tasa">
+                <thead>
+                    <tr>
+                        <th scope="col" class="table-success">BCV</th>
+                    </tr>
+                    <tr>
+                        {% for Divisa in Divisas %}
+                            <th scope="col">USD $:<span>{{Divisa.tasaDolar}}</span></th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% for Divisa in Divisas %}
+                            <th scope="col">Euros E:<span>{{Divisa.tasaDolar}}</span></th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% for Divisa in Divisas %}
+                            <td>{{Divisa.created}}</td>
+                        {% endfor %}
+                    </tr>                   
+                </thead>
+            </table>
+        </div>
+
+
+        <div class="container-md text-center my-3">
+            <table class="table table-bordered border-info my-5" id="tabla-tienda">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>Teléfonos</span></th>
+                        <th scope="col"><span>Redes</span></th>
+                        <th scope="col"><span>Dirección</span></th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
+                    {% for Tienda in Tiendas %}
+                        <tr>
+                            <td>{{ Tienda.telf }}</td>
+                            <td>{{ Tienda.redes}}</td>
+                            <td>{{ Tienda.direccion}}</td>
+                    {% endfor%}
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container-md text-center my-3">
+            <table class="table table-bordered border-info my-5" id="tabla-aviso">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>AVISOS</span></th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
+                    {% for Tienda in Tiendas %}
+                        <tr>
+                            <td>{{ Tienda.telf }}</td>
+                    {% endfor%}
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        
+        
+    </header>
 </section>
 
 {% endblock %}

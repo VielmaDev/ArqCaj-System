@@ -1,0 +1,58 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Inventario de ventas</title>
+
+<section>
+  <header>
+    <div class="container-lg my-5">
+        
+        <div class="container-fluid text-center my-2" id="subtitulo">
+          <span>CONTROL DE INVENTARIOS DE VENTAS</span>
+        </div>
+        
+        <table class="table table-bordered border-info my-3" id="tabla-inventario">
+          <thead>
+            <tr style="width: 600px;">
+                <th scope="col"><span>Código cierre:</span></th>
+                <th scope="col"><span>Código inventario:</span></th>
+                <th scope="col"><span>Fecha creación:</span></th>
+                <th scope="col"><span>Fecha modificación:</span></th>
+                <th scope="col"><span>N° Calzados:</span></th>
+                <th scope="col"><span>N° Prendas de vestir:</span></th>
+                <th scope="col"><span>N° Accesorios:</span></th>
+                <th scope="col"><span></span></th> 
+            </tr>
+          </thead>
+          
+          <tbody>
+            <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
+            {% for Inventario in object_list %}
+              <tr style="width: 500px;">
+                <td>{{ Inventario.id }}</td>
+                <td>{{ Inventario.id }}</td>
+                <td>{{ Inventario.created}}</td>
+                <td>{{ Inventario.update}}</td>
+                <td>{{ Inventario.calzados}}</td>
+                <td>{{ Inventario.ropa}}</td>
+                <td>{{ Inventario.accesorios}}</td>
+                  <td>
+                    <div class="btn-group">
+                      <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
+                      <a href="editar/{{Inventario.id}}" title="Editar" type="button" class="btn btn-danger">Editar </a>
+                    </div>
+                  </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+          
+      </div>
+    </header>
+  </section>
+{% endblock %}
