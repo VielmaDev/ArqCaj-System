@@ -1,0 +1,113 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Cierre de caja</title>
+<section>
+    <header>
+      <div class="container-lg mt-3">
+          <table class="table mt-3">
+            <thead>
+              <tr id="subtitulo">
+                  <th scope="col"><span>INGRESOS DE VENTAS</span></th>
+              </tr>
+            </thead>
+          </table>
+      </div>
+
+      <div class="container-lg mt-3">
+        <table class="table table-bordered border-info my-3" id="tabla-contenido">
+          <thead>
+            <tr>
+              <th>Código ingreso</th>
+              <th>Fecha</th>
+              <th>Caja n°</th>
+              <th>Total venta neta (Bs:)</th>
+              <th></th>
+            </tr>
+          </thead>
+          
+          <tbody>
+          <!-- Recorremos los registros de la tabla 'arqueo' y los mostramos -->
+            <tr>
+              {% for ingresos in object_list %}  
+             
+                <td>{{ingresos.id}}</td>
+                <td>{{ingresos.created}}</td>
+                <td>{{ingresos.caja_id}}</td>
+                <td>{{ingresos.tif}}</td>
+                <td>
+                <!-- Formulario para ver y editar un registro desde la misma tabla HTML -->                        
+                  <div class="btn-group">
+                    <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
+                    <a href="editar/{{ingresos.id}}" title="Editar" type="button" class="btn btn-danger">Editar </a>
+                    <a href="detalle/{{ingresos.id}}" title="Detalle" type="button" class="btn btn-success">Procesar arqueo </a>
+                  </div>
+                </td>
+              {% endfor %}
+            </tr>
+          </tbody>
+      </table>
+
+      <div align="left" class="btn_crear mb-2">
+        <a href="nuevo" type="button" class="btn btn-primary">Registrar ventas</a>
+      </div> 
+
+      <table class="table my-3">
+        <thead>
+          <tr id="subtitulo">
+            <th><span>ARQUEO DE CAJA</span></th>
+
+            <th style="text-align: right;">
+              <span>Código Arqueo:</span>
+              <input type="search">
+              <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Buscar</button>
+            </th>
+
+          </tr>
+        </thead>
+      </table>
+
+      <div class="container-lg mt-2">
+          <table class="table table-bordered border-info my-3" id="tabla-contenido"">
+            <thead>
+              <tr>
+                <th>Código arqueo</th>
+                <th>Fecha</th>
+                <th>Caja n°</th>
+                <th>Total cierre contable</th>
+                <th>Procesado</th>
+                <th></th>
+              </tr>
+            </thead>
+            
+            <tbody>
+            <!-- Recorremos los registros de la tabla 'arqueo' y los mostramos -->
+              {% for arqueo in object_list %}  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                  <!-- Formulario para ver y editar un registro desde la misma tabla HTML -->                        
+                    <div class="btn-group">
+                      <!-- Creamos 3 botones Detalle, Editar y Eliminar -->
+                      <a href="detalle/{{contacto.id}}" title="Detalle" type="button" class="btn btn-success">Ver </a>
+                      <a href="editar/{{contacto.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+            
+      </div>
+    </header>
+</section>
+  {% endblock %}

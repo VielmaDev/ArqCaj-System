@@ -10,12 +10,16 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
 from django.views.generic import ListView, DetailView 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from django.urls import reverse
 from django.contrib.messages.views import SuccessMessageMixin 
 from django import forms
 
-from .models import tienda, divisas
+from .models import tienda,tasa
+
+from Inventario.models import inventario_ventas # Importando tabla inventario_ventas de la app Inventario
+
+from ArqueoCaja.models import arqueo # Importando tabla arqueo de la app ArqueoCaja
 
 # Create your views here.
 
@@ -53,9 +57,10 @@ class HomeDetalle(DetailView):
     model = tienda
 
 def home(request):
+    Divisa= tasa.objects.all()
     Tienda= tienda.objects.all()
-    Divisa= divisas.objects.all()
-    return render(request, "ProyectoWebAC/home.html", {"Tiendas": Tienda, "Divisas": Divisa})
-
+    Arqueo= arqueo.objects.all()
+    Inventario= inventario_ventas.objects.all()
+    return render(request, "ProyectoWebAC/home.html", {"Tiendas": Tienda, "Divisas": Divisa, "Inventarios": Inventario, "Arqueos": Arqueo})
 
 

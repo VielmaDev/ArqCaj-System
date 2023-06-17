@@ -1,25 +1,32 @@
 
 from django.db import models
 from tabnanny import verbose
-from django import forms
-from django.contrib.auth.models import User
+from ProyectoWebAC.models import tienda # importando tabla tienda
+from ArqueoCaja.models import arqueo # importando tabla arqueo
+from django.utils import timezone
 
 # Create your models here.
 
 class inventario_ventas(models.Model):
 
-    calzados=models.IntegerField(max_length=4)
-    ropa=models.IntegerField(max_length=4)
-    accesorios=models.IntegerField(max_length=4)
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
-    usuario=models.ForeignKey(User, on_delete=models.CASCADE)
+    tienda=models.ForeignKey(tienda, on_delete=models.CASCADE)
+    arqueo=models.ForeignKey(arqueo, on_delete=models.CASCADE)
 
-class Meta:
+    calzados=models.CharField(max_length=5, null=False)
+    ropa=models.CharField(max_length=5, null=False)
+    accesorios=models.CharField(max_length=5, null=False)
+    piezas=models.CharField(max_length=10, null=False)
+    procesado=models.BooleanField(default=False)
 
-    verbose_name= "Inventario"
-    verbose_name_plural="Inventarios"
+    created=models.DateField()
+    update=models.DateField(auto_now_add=True)
+    
+
+    class Meta:
+
+        verbose_name= "Inventario"
+        verbose_name_plural="Inventarios"
 
     def __str__(self):
 
-        return self.calzados
+         return self.tienda_id

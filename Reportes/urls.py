@@ -8,15 +8,5 @@ from Inventario.views import InventarioListar, InventarioNuevo, InventarioActual
 
 urlpatterns = [
 
-    #path('reporte', views.reporte, name="Reporte")
-
-    #Mostrar todos los registros en una tabla
-    path('Reportes/', InventarioListar.as_view(template_name = "Reportes/inventario.html"), name='Inventario'),
- 
-    #Mostrar formulario de alta de nuevo registro
-    path('Reportes/nuevo', InventarioNuevo.as_view(template_name = "Reportes/crear.html"), name='Nuevo'),
- 
-    #Mostrar formulario de modificación de registro
-    path('Reportes/editar/<int:pk>', InventarioActualizar.as_view(template_name = "Reportes/actualizar.html"), name='Actualizar'), 
-    
+    #path('reporte', views.reporte, name="Reporte") 
 ]

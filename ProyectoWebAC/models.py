@@ -1,50 +1,62 @@
 
-from tabnanny import verbose
 from django.db import models
-
-#from django.contrib.auth.models import User
+from tabnanny import verbose
+from django import forms
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
 class tienda(models.Model):
 
-    razon=models.CharField(max_length=20)
-    rif= models.CharField(max_length=12)
-    direccion= models.CharField(max_length=30)
-    telf=models.CharField(max_length=30)
-    redes=models.CharField(max_length=30)
-    n_caja=models.CharField(max_length=2)
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
+    razon=models.CharField(max_length=30, null=False)
+    rif= models.CharField(max_length=12, null=False)
+    direccion= models.CharField(max_length=25, null=False)
+    telf=models.CharField(max_length=30, null=True)
+    redes=models.CharField(max_length=25, null=True)
     
-        
-class Meta:
+    created=models.DateTimeField(auto_now_add=True)
+    update=models.DateTimeField(auto_now_add=True)   
+      
+    class Meta:
 
-    verbose_name= "Tienda"
-    verbose_name_plural="Tiendas"
+        verbose_name="Tienda"
+        verbose_name_plural="Tiendas"
 
     def __str__(self):
 
         return self.razon
-    
-class divisas(models.Model):
 
-    tasaDolar=models.FloatField()
-    tasaEuro=models.FloatField()
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
+class caja(models.Model):
 
-class Meta:
+    tienda_id=models.ForeignKey(tienda, on_delete=models.CASCADE)
+    codigo_caja=models.CharField(max_length=4, null=False)
 
-    verbose_name= "Divisa"
-    verbose_name_plural="Divisas"
+    created=models.DateField(auto_now_add=True)
+    update=models.DateField(auto_now_add=True)
+
+    class Meta:
+
+        verbose_name= "Caja"
+        verbose_name_plural="Cajas"
 
     def __str__(self):
 
-        return self.tasa_dolar
+        return self.codigo_caja
 
+class tasa(models.Model):
 
+    Dolar=models.CharField(max_length=4, null=False)
+    Euro=models.CharField(max_length=4, null=False)
+    
+    created=models.DateTimeField(auto_now_add=True)
+    update=models.DateTimeField(auto_now_add=True)
 
+    class Meta:
 
+        verbose_name="Divisa"
+        verbose_name_plural="Divisas"
 
+    def __str__(self):
 
+        return self.Dolar

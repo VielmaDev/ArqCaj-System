@@ -18,7 +18,7 @@ class InventarioListar(ListView):
 class InventarioDetalle(DetailView): 
     model = inventario_ventas
  
-#Para insertar un nuevo contacto en la tabla Inventario_ventas 
+#Para insertar un nuevo registro en la tabla Inventario_ventas 
 class InventarioNuevo(SuccessMessageMixin, CreateView): 
     model = inventario_ventas
     form = inventario_ventas
@@ -28,9 +28,9 @@ class InventarioNuevo(SuccessMessageMixin, CreateView):
  
     # Redirigimos a la página principal tras insertar el registro
     def get_success_url(self):        
-        return reverse('listar')
+        return reverse('Inventario')
  
-#Para modificar un contacto existente de la tabla Inventario_ventas
+#Para modificar un registro existente de la tabla Inventario_ventas
 class InventarioActualizar(SuccessMessageMixin, UpdateView): 
     model = inventario_ventas
     form = inventario_ventas

@@ -3,6 +3,8 @@
 
 {% load static %}
 
+{% load widget_tweaks %} <!--Biblioteca django-->
+
 {% block content %}
 
 <!--Head-->
@@ -11,116 +13,104 @@
 <!--Heading-->
 <section>
     <header>
-        <div class="container-sm  text-center my-4">
-            <table class="table" id="tabla-fecha">
+        <div class="container my-4">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" class="table-primary">FECHA DE HOY</th>
+                        <th style="text-align: start;"><span>TIENDA:</span></th>
                     </tr>
-                    <tr>
-                        {% for Divisa in Divisas %}
-                            <th scope="col"><span>{{Divisa.created}}</span></th>
-                        {% endfor %}
-                    </tr>        
                 </thead>
             </table>
         </div>
 
-        <div class="container-md text-center my-3">
-            <table class="table table-bordered border-info my-5" id="tabla-tienda">
+        <div class="container-lg text-center my-3">
+            <table class="table table-bordered border-info my-2" id="tabla-contenido">
                 <thead>
                     <tr>
-                        <th scope="col"><span>Código tienda</span></th>
+                        <th scope="col"><span>Código</span></th>
                         <th scope="col"><span>Razón social</span></th>
-                        <th scope="col"><span>Rif / Nif</span></th>  
-                        <th scope="col"><span>Gerente</span></th>
-                        <th scope="col"><span>Subgerente</span></th>
+                        <th scope="col"><span>Rif </span></th>  
+                        <th scope="col"><span>Dirección</span></th>
+                        <th scope="col"><span>telefóno</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
                     {% for Tienda in Tiendas %}
                         <tr>
-                            <td>{{ Tienda.id }}</td>
-                            <td>{{ Tienda.razon}}</td>
-                            <td>{{ Tienda.rif}}</td>
-                            <td>{{ Tienda.created}}</td>
-                            <td>{{ Tienda.created}}</td>
-                    {% endfor%}
+                            <td>{{Tienda.id }}</td>
+                            <td>{{Tienda.razon}}</td>
+                            <td>{{Tienda.rif}}</td>
+                            <td>{{Tienda.direccion}}</td>
+                            <td>{{Tienda.telf}}</td>
                         </tr>
+                    {% endfor %}   
                 </tbody>
             </table>
         </div>
 
-        <div class="container-sm  text-center my-4">
-            <table class="table" id="tabla-tasa">
+        <div class="container my-4">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" class="table-success">BCV</th>
-                    </tr>
-                    <tr>
-                        {% for Divisa in Divisas %}
-                            <th scope="col">USD $:<span>{{Divisa.tasaDolar}}</span></th>
-                        {% endfor %}
-                    </tr>
-                    <tr>
-                        {% for Divisa in Divisas %}
-                            <th scope="col">Euros E:<span>{{Divisa.tasaDolar}}</span></th>
-                        {% endfor %}
-                    </tr>
-                    <tr>
-                        {% for Divisa in Divisas %}
-                            <td>{{Divisa.created}}</td>
-                        {% endfor %}
-                    </tr>                   
-                </thead>
-            </table>
-        </div>
-
-
-        <div class="container-md text-center my-3">
-            <table class="table table-bordered border-info my-5" id="tabla-tienda">
-                <thead>
-                    <tr>
-                        <th scope="col"><span>Teléfonos</span></th>
-                        <th scope="col"><span>Redes</span></th>
-                        <th scope="col"><span>Dirección</span></th>  
+                        <th style="text-align: start;"><span>ÚLTIMOS CIERRES PROCESADOS:</span></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Tienda in Tiendas %}
-                        <tr>
-                            <td>{{ Tienda.telf }}</td>
-                            <td>{{ Tienda.redes}}</td>
-                            <td>{{ Tienda.direccion}}</td>
-                    {% endfor%}
-                        </tr>
-                </tbody>
             </table>
         </div>
 
         <div class="container-md text-center my-3">
-            <table class="table table-bordered border-info my-5" id="tabla-aviso">
+            <table class="table table-bordered border-info my-2" id="tabla-contenido">
                 <thead>
                     <tr>
-                        <th scope="col"><span>AVISOS</span></th> 
+                        <th scope="col-2"><span>Fecha</span></th>
+                        <th scope="col-3"><span>Código Arqueo</span></th>
+                        <th scope="col-3"><span>Total Ventas</span></th>   
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Tienda in Tiendas %}
+                    {% for Arq in Arqs %}   
                         <tr>
-                            <td>{{ Tienda.telf }}</td>
-                    {% endfor%}
+                            <td>{{Arq.created}}</td>
+                            <td>{{Arq.id}}</td>
+                            <td>{{Arq.vd}}</td>
                         </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-info my-2" id="tabla-contenido">
+                <thead>
+                    <tr>
+                        <th scope="col-2"><span>Fecha</span></th>
+                        <th scope="col-3"><span>Código Inventario</span></th>
+                        <th scope="col-3"><span>Piezas vendidas</span></th>   
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
+                    {% for Inventario in Inventarios %}
+                        <tr>
+                            <td>{{Inventario.created}}</td>
+                            <td>{{Inventario.id}}</td>
+                            <td>{{Inventario.piezas}}</td>
+                        </tr>
+                    {% endfor %} 
                 </tbody>
             </table>
         </div>
 
-
-        
-        
+        <div class="container my-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align: start;"><span>COMUNICADOS:</span></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+  
     </header>
 </section>
 

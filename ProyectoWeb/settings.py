@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #Paquetes instalados para los formularios
     'crispy_forms',
+    'widget_tweaks',
 
     #Aplicaciones
     'ProyectoWebAC',
@@ -138,3 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK= 'bootstrap4'
 
+# Activar 'CookieStorage' para enviar los mensajes de respuesta al Crear, Eliminar y Actualizar un registro
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

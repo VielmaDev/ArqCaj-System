@@ -1,0 +1,123 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %} <!-- formato CSS -->
+
+{% load widget_tweaks %} <!--Biblioteca django-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Actualización de inventario</title>
+
+<section>
+  <header>
+    <div class="container-lg mt-3">
+      <table class="table mt-3">
+        <tr id="subtitulo">
+          <th scope="col">
+            <span>ACTUALIZACIÓN DE INVENTARIO</span>
+          </th>
+        </tr>
+      </table>
+
+      <table class="table mt-2 table-bordered border-info">
+        <tr>
+          <th>
+            <div align="center">
+              <label>Código arqueo:</label>
+              <input type="search">
+              <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Cambiar</button>
+            </div>
+          </th>
+        </tr>
+      </table>
+
+      <form method="post" enctype="multipart/form-data" autocomplete="off">
+        <!-- Token de seguridad para poder crear un nuevo registro -->
+      {% csrf_token %}
+
+        <table class="table my-2 table-bordered border-info">
+          <thead>
+            <tr>
+              <th>
+                <div class="form-group">
+                  <label for="arqueo" class="txt_negrita">Código arqueo:</label>&nbsp;
+                  <input type="text" disabled value="{{object.arqueo_id}}">
+                </div>
+              </th>
+
+              <th>
+                <div class="form-group">
+                  <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
+                  <input type="text" disabled value="{{object.created}}">
+                </div>
+              </th>
+
+              <th>
+                <div class="form-group">
+                  <label for="tienda" class="txt_negrita">Tienda:</label>&nbsp;
+                  <input type="text" disabled value="{{object.tienda}}">
+                </div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+
+        <table class="table my-2 table-bordered border-info" id="tabla-contenido">
+          <thead>
+            <tr id="subtitulo">
+              <th>
+                <span>DESCRIPCIÓN:</span>
+              </th>
+            </tr>
+          </thead>
+        </table>
+
+        <table class="table my-1 table-bordered border-info">
+          <tr>
+            <th>
+              <div class="form-group">
+                <label for="calzados" class="txt_negrita">Pares de calzados:</label>
+                <label>{{ form.calzados|add_class:"form-control" }}</label>
+              </div>
+            </th>
+
+            <th>
+              <div class="form-group">
+                <label for="ropa" class="txt_negrita">Prendas de vestir:</label>
+                <label>{{ form.ropa|add_class:"form-control" }}</label>
+              </div>
+            </th>
+
+            <th>
+              <div class="form-group">
+                <label for="accesorios" class="txt_negrita">Accesorios:</label>
+                <label>{{ form.accesorios|add_class:"form-control" }}</label>
+              </div>
+            </th>    
+        </table>
+        
+        <table class="table mt-3 table-bordered border-info">
+            <tr>
+              <th>
+                <div class="form-group">
+                  <label for="piezas" class="txt_negrita">Total piezas vendidas:</label>
+                  <input type="text" disabled value="{{object.piezas}}">
+                  
+                </div>
+              </th>
+            </tr>
+          </table>
+  
+        <div align="center" class="btn_crear my-3">
+          <button type="submit" class="btn btn-success">Guardar Cambios</button>
+          <a href="{% url 'Inventario' %}" type="submit" class="btn btn-primary">Volver</a>
+        </div>
+      </form>
+
+  </header>
+</section>
+
+
+{% endblock %}

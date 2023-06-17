@@ -1,0 +1,216 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Cierre de caja</title>
+<section>
+    <header>
+        <div class="container-lg mt-1">
+            <table class="table mt-2">
+              <thead>
+                <tr id="subtitulo">
+                    <th scope="col"><span>  ACTUALIZACIÓN DE REGISTRO DE VENTAS</span>
+                    </th>
+                </tr>
+              </thead>
+            </table>
+    
+            <form method="post" enctype="multipart/form-data" autocomplete="off">
+                <!-- Token de seguridad para poder crear un nuevo registro -->
+              {% csrf_token %}
+    
+              <table class="table my-3">
+                <thead>
+                  <tr>
+
+                    <div class="form-group">
+                      <th>
+                        <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
+                        <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                      </th>
+                    </div>
+
+                    <div class="form-group">
+                      <th>
+                        <label for="caja_id" class="txt_negrita">N° Caja:</label>&nbsp;
+                        <label>{{form.caja_id|add_class:"form-control"}}</label>
+                      </th>
+                    </div>
+
+                    <div class="form-group">
+                      <th>
+                        <label for="tasa_id" class="txt_negrita">Tasa:</label>&nbsp;
+                        <label>{{form.tasa_id|add_class:"form-control"}}</label>
+                      </th>
+                    </div>
+
+                    <div class="form-group">
+                      <th>
+                        <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
+                        <label>{{form.created|add_class:"form-control"}}</label>
+                      </th>
+                    </div>
+                  </tr>
+                </thead>
+              </table>
+
+            
+              <table class="table my-1">
+                <thead>
+                  <tr style="text-align: start;">
+                    <th scope="col"><span>Efectivo y transacciones percibidas:</span></th>
+                  </tr>
+                </thead>
+              </table>
+    
+              <table class="table table-bordered border-info my-3" id="tabla-contenido">
+                  <thead>
+                    <tr style="width: 600px;">
+                      <th><label class="txt_negrita">Moneda</label></th>
+                      <th><label class="txt_negrita">Efectivo</label></th>
+                      <th><label class="txt_negrita">T. Crédito</label></th>
+                      <th><label class="txt_negrita">T. Débito</label></th>
+                      <th><label class="txt_negrita">Pago Movil</label></th>
+                      <th><label class="txt_negrita">N.Crédito</label></th> 
+                      <th><label class="txt_negrita">Subtotal</label></th> 
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <!-- Ingresamos los valores de los ingresos en bolívares -->
+                   <tr style="width: 500px;">
+                      <td><span>Bolívares:</span></td>
+                      <td>
+                        <div class="form-group">
+                          <label for="ef_bs">{{form.ef_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="td_bs">{{form.td_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="tc_bs">{{form.tc_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="pm_bs">{{form.pm_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="nc_bs">{{form.nc_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="ti_bs">{{form.ti_bs|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  
+                  <tbody>
+                    <!-- Ingresamos los valores de los ingresos en dólares -->
+                    <tr style="width: 500px;">
+                      <td><span>Dólares:</span></td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="ef_usd">{{form.ef_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="td_usd">{{form.td_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="tc_usd">{{form.tc_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="pm_usd">{{form.pm_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="nc_usd">{{form.nc_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+
+                      <td>
+                        <div class="form-group">
+                          <label for="ti_usd">{{form.ti_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+
+              <div class="container-lg my-3">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        <div class="form-group">
+                           <label for="conversion_usd" class="txt_negrita">Notas de referencias:</label>&nbsp;
+                          <label>{{form.nota|add_class:"form-control"}}</label>
+                        </div>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="container-lg my-3">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        <div class="form-group">
+                          <label for="conversion_usd" class="txt_negrita">Conversión Dólares (Bs):</label>&nbsp;
+                          <label>{{form.conversion_usd|add_class:"form-control"}}</label>
+                        </div>
+                      </th>
+
+                      <th>
+                        <div class="form-group">
+                          <label for="cif" class="txt_negrita">Total Ingresos (Bs):</label>&nbsp;
+                          <label>{{form.tif|add_class:"form-control"}}</label>
+                        </div>
+                      </th>
+                     </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div align="center" class="btn_crear my-3">
+                <button type="submit" class="btn btn-success">Guardar registro</button>
+                <a href="{% url 'Caja' %}" type="submit" class="btn btn-primary">Cancelar</a>
+              </div> 
+            </form>
+          </div>
+    </header>
+</section>
+{% endblock %}

@@ -1,0 +1,167 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Arqueo de caja</title>
+<section>
+    <header>
+        <div class="container-lg my-3">
+            <table class="table mt-2">
+              <thead>
+                <tr id="subtitulo">
+                    <th scope="col">
+                      <span>ARQUEO DE CAJA:</span>&nbsp;<span>/ Caja n°:</span>
+                      <label>{{object.caja_id}}</label>
+                    </th>
+                </tr>
+              </thead>
+            </table>
+    
+            <form method="post" enctype="multipart/form-data" autocomplete="off">
+                <!-- Token de seguridad para poder crear un nuevo registro -->
+              {% csrf_token %}
+    
+              <table class="table my-2 table-bordered border-info" id="tabla-contenido">
+                <thead>
+                  <tr>
+                    <th>
+                      <div class="form-group">
+                        <label class="txt_negrita">Fecha:</label>&nbsp;
+                        <input type="text" disabled value="{{object.created}}">
+                      </div>
+                    </th>
+
+                    <th>
+                      <div class="form-group">
+                        <label class="txt_negrita">Tienda:</label>&nbsp;
+                        <label>{{object.tienda_id}}</label>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+
+              <table class="table my-2 table-bordered border-info">
+                <body>
+                  <tr style="text-align: center";>
+                    <th>
+                      <div class="form-group">
+                        <label for="cii" class="txt_negrita">Fondo inicial de caja:</label>&nbsp;
+                        <input type="text">{{form.cii|add_class:"form-control"}}
+                      </div>
+                    </th>
+                  </tr>
+                </body>
+              </table>
+
+              <table class="table my-1 table-bordered border-info" id="tabla-contenido">
+                <thead>
+                  <tr style="text-align: center;">
+                    <th>
+                      <label>Código ingreso:</label>&nbsp;
+                      <input type="text" disabled value="{{object.id}}">
+                    </th>
+
+                    <th>
+                      <label class="txt_negrita">Total Dólares:</label>&nbsp;
+                      <input type="text" disabled value="{{object.ti_usd}}">&nbsp;
+                      <label class="txt_negrita">/ Conversion (Bs):</label>&nbsp;
+                      <input type="text" disabled value="{{object.conversion_usd}}">
+                    </th>
+
+                    <th>
+                      <label class="txt_negrita">Total Bolivares:</label>&nbsp;
+                      <input type="text" disabled value="{{object.ti_bs}}">
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+    
+              <table class="table table-bordered border-info" id="tabla-contenido">
+                <tbody>
+                  <tr>
+                    <th>
+                      <div class="form-group">
+                        <label class="txt_negrita">Total ventas netas (Bs):</label>&nbsp;
+                        <input type="text" disabled value="{{object.tif}}">
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table my-2 table-bordered border-info">
+                <body>
+                  <tr>
+                    <div class="form-group">
+                      <th>
+                        <label for="sg" class="txt_negrita">Gastos:</label>&nbsp;
+                        <input type="text">{{form.sg|add_class:"form-control"}}
+                      </th>
+                    </div>
+
+                    <div class="form-group">
+                      <th>
+                        <label for="dt" class="txt_negrita">Descuentos / Devoluciones:</label>&nbsp;
+                        <input type="text">{{form.dt|add_class:"form-control"}}
+                      </th>
+                    </div>
+                  </tr>
+                </body>
+              </table>
+
+              <table class="table my-2 table-bordered border-info">
+                <body>
+                  <tr>
+                    <th>
+                      <div class="form-group">
+                        <label for="vd" class="txt_negrita">Total cierre contable:</label>&nbsp;
+                        <input type="text">{{form.vd|add_class:"form-control"}}
+                      </div>
+                    </th>
+
+                    <th>
+                      <div class="form-group">
+                        <label for="ft" class="txt_negrita">Faltante en caja:</label>&nbsp;
+                        <input type="text">{{form.ft|add_class:"form-control"}}
+                      </div>
+                    </th>
+
+                    <th>
+                      <div class="form-group">
+                        <label for="st" class="txt_negrita">Sobrante en caja:</label>&nbsp;
+                        <input type="text">{{form.st|add_class:"form-control"}}
+                      </div>
+                    </th>
+                  </tr>
+                </body>
+              </table>
+
+              <table class="table my-1 table-bordered border-info">
+                <body>
+                  <tr>
+                    <div class="form-group">
+                      <th>
+                        <label for="nota" class="txt_negrita">Observaciones:</label>&nbsp;
+                        <input type="text">{{form.nota|add_class:"form-control"}}
+                      </th>
+                    </div>
+                  </tr>
+                </body>
+              </table>
+
+              <div align="center" class="btn_crear my-3">
+                <button type="submit" class="btn btn-success">Guardar registro</button>
+                <a href="{% url 'Caja' %}" type="submit" class="btn btn-primary">Cancelar</a>
+              </div> 
+            </form>
+          </div>
+    </header>
+</section>
+{% endblock %}

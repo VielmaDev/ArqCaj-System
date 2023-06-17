@@ -1,0 +1,75 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %} <!-- formato CSS -->
+
+{% load widget_tweaks %} <!--Biblioteca django-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Inventario detalle</title>
+
+<section>
+  <header>
+
+    <div class="container-lg mt-3">
+
+      <table class="table mt-4">
+        <thead>
+          <tr id="subtitulo">
+              <th scope="col"><span>INVENTARIO DETALLE</span>
+              </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    
+    <div class="container-lg mt-5">
+      <form method="post" enctype="multipart/form-data">
+        <!-- Token de seguridad para poder crear un nuevo registro -->
+        {% csrf_token %}
+
+        <div class="form-group">
+          <table class="table table-bordered border-info my-3" id="tabla-contenido">
+            <thead>
+              <tr style="width: 500px;">
+                <th scope="col"><label for="calzados" class="txt_negrita">Código Inventario</label></th>
+                <th scope="col"><label for="calzados" class="txt_negrita">Fecha creación</label></th>
+                <th scope="col"><label for="calzados" class="txt_negrita">Fecha modificación</label></th>
+                <th scope="col"><label for="calzados" class="txt_negrita">Código Arqueo</label></th>
+                <th scope="col"><label for="calzados" class="txt_negrita">Pares de calzados</label></th>
+                <th scope="col"><label for="ropa" class="txt_negrita">Unidad de prendas</label></th>
+                <th scope="col"><label for="accesorios" class="txt_negrita">Unidad de accesorios</label></th>
+                <th scope="col"><label for="accesorios" class="txt_negrita">Piezas vendidas</label></th>
+                <th scope="col"><label for="calzados" class="txt_negrita">Procesado</label></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Ingresamos los valores de los ingresos en bolívares -->
+                <tr style="width: 500px;">
+                  <td>{{object.id}}</td>
+                  <td>{{object.created}}</td>
+                  <td>{{object.update}}</td>
+                  <td>{{object.arqueo_id}}</td>
+                  <td>{{object.calzados}}</td>
+                  <td>{{object.ropa}}</td>
+                  <td>{{object.accesorios}}</td>
+                  <td>{{object.piezas}}</td>
+                  <td>{{object.procesado}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+   
+    <div align="center" class="btn_crear my-3">
+      <a href="#" title="Editar" type="button" class="btn btn-danger">Editar </a>
+      <a href="{% url 'Inventario' %}" type="submit" class="btn btn-info">Volver</a>
+    </div>
+
+  </header>
+</section>
+
+
+{% endblock %}
