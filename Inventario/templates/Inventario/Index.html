@@ -14,35 +14,40 @@
         <table class="table mt-4">
           <thead>
             <tr id="subtitulo">
-                <th scope="col"><span>INVENTARIO DE VENTAS</span></th>
+                <th scope="col"><span>CONTROL DE INVENTARIOS</span></th>
             </tr>
           </thead>
         </table>
 
-        <table class="table my-3">
-          <thead>
-            <tr>
-              <th style="text-align: left;">
-                <span>Código Inventario:</span>
-                <input type="search">
-                <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Buscar</button>
-              </th>
-            </tr>
-          </thead>
-        </table>
+        <form action="buscar" method="get" autocomplete="off">
+          {% csrf_token %}
+          <div class="container-lg mt-3">
+            <table class="table my-3">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">
+  
+                    <label>Código Inventario N°:</label>
+                    <input type="text" name="registro" placeholder="Ingrese código" autofocus>
+                    <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
+  
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </form>
     </div>
 
     <div class="container-lg mt-4">
-        <table class="table table-bordered border-info my-3" id="tabla-contenido"">
+        <table class="table table-bordered border-info my-3">
           <thead>
-            <tr>
-              <th>Código Inventario</th>
-              <th>Código Arqueo</th>
-              <th>Fecha Creación</th>
-              <th>Fecha Modificación</th>
-              <th>Piezas vendidas</th>
-              <th>Procesados</th>
-              <th></th>
+            <tr id="tabla-identificador">
+              <th>Código inventario N°:</th>
+              <th>Fecha creación:</th>
+              <th>Fecha modificación:</th>
+              <th>Piezas vendidas:</th>
+              <th>Procesados:</th>
             </tr>
           </thead>
           
@@ -51,26 +56,17 @@
           {% for inventario_ventas in object_list %}  
             <tr>
               <td>{{inventario_ventas.id}}</td>
-              <td>{{inventario_ventas.arqueo_id}}</td>
               <td>{{inventario_ventas.created}}</td>
               <td>{{inventario_ventas.update}}</td>
               <td>{{inventario_ventas.piezas}}</td>
               <td>{{inventario_ventas.procesado}}</td>
-              <td>
-                <!-- Formulario para editar un registro desde la misma tabla HTML -->                        
-                  <div class="btn-group">
-                    <!-- Creamos 2 botones Detalle y Editar -->
-                    <a href="detalle/{{inventario_ventas.id}}" title="Detalle" type="button" class="btn btn-info">Ver </a>
-                    <a href="editar/{{inventario_ventas.id}}" title="Editar" type="button" class="btn btn-danger">Editar </a>
-                  </div>
-              </td>
             </tr>
           {% endfor %}
           </tbody>
       </table>
          
         <div align="left" class="btn_crear mb-3">
-          <a href="nuevo" type="button" class="btn btn-primary">Crear registro</a>
+          <a href="nuevo" type="button" class="btn btn-success">Nuevo Inventario</a>
         </div>  
     </div>
         </header>

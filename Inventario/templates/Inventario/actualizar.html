@@ -8,114 +8,132 @@
 {% block content %} 
 
 <!--Head-->
-<title>Actualización de inventario</title>
-
+<title>Inventario nuevo</title>
 <section>
   <header>
-    <div class="container-lg mt-3">
-      <table class="table mt-3">
+    <div class="container-lg mt-2">
+      <table class="table my-2">
         <tr id="subtitulo">
           <th scope="col">
-            <span>ACTUALIZACIÓN DE INVENTARIO</span>
+            <span>NUEVO INVENTARIO DE VENTA</span>
           </th>
         </tr>
       </table>
 
-      <table class="table mt-2 table-bordered border-info">
+      <table class="table my-2">
         <tr>
           <th>
-            <div align="center">
-              <label>Código arqueo:</label>
-              <input type="search">
-              <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Cambiar</button>
+            <div align="left">
+              <label>Código venta:</label>
+              <input type="search" placeholder="Código">
+              <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Ingresar</button>
             </div>
           </th>
         </tr>
       </table>
 
       <form method="post" enctype="multipart/form-data" autocomplete="off">
-        <!-- Token de seguridad para poder crear un nuevo registro -->
+      <!-- Token de seguridad para poder crear un nuevo registro -->
       {% csrf_token %}
 
         <table class="table my-2 table-bordered border-info">
           <thead>
-            <tr>
-              <th>
-                <div class="form-group">
-                  <label for="arqueo" class="txt_negrita">Código arqueo:</label>&nbsp;
-                  <input type="text" disabled value="{{object.arqueo_id}}">
-                </div>
-              </th>
-
-              <th>
-                <div class="form-group">
+            <tr id="tabla-formulario">
+              <div class="form-group">
+                <th>
+                   <!--Falta crear en la BD el campo veta_id-->
+                  <label class="txt_negrita">Codígo venta:</label>&nbsp;
+                </th>
+                <th>
                   <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
-                  <input type="text" disabled value="{{object.created}}">
-                </div>
-              </th>
+                </th>
+                <th>
+                  <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
+                </th>
+              </div>
+            </tr>
 
-              <th>
-                <div class="form-group">
-                  <label for="tienda" class="txt_negrita">Tienda:</label>&nbsp;
-                  <input type="text" disabled value="{{object.tienda}}">
-                </div>
-              </th>
+            <tr>
+              <div class="form-group">
+                <th>
+                   <!--Falta crear en la BD el campo veta_id-->
+                  <label></label>
+                </th>
+              </div>
+              <div class="form-group">
+                <th>
+                  <label>{{form.created|add_class:"form-control"}}</label>
+                </th>
+              </div>
+              <div class="form-group">
+                <th>
+                  <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                </th>
+              </div>
             </tr>
           </thead>
         </table>
 
-        <table class="table my-2 table-bordered border-info" id="tabla-contenido">
+        <table class="table my-2">
           <thead>
             <tr id="subtitulo">
               <th>
-                <span>DESCRIPCIÓN:</span>
+                <span>DETALLES DEL INVENTARIO</span>
               </th>
             </tr>
           </thead>
         </table>
 
-        <table class="table my-1 table-bordered border-info">
-          <tr>
-            <th>
-              <div class="form-group">
+        <table class="table my-2 table-bordered border-info">
+          <tr id="tabla-formulario">
+            <div class="form-group">
+              <th>
                 <label for="calzados" class="txt_negrita">Pares de calzados:</label>
-                <label>{{ form.calzados|add_class:"form-control" }}</label>
-              </div>
-            </th>
-
-            <th>
-              <div class="form-group">
+              </th>
+              <th>
                 <label for="ropa" class="txt_negrita">Prendas de vestir:</label>
-                <label>{{ form.ropa|add_class:"form-control" }}</label>
-              </div>
-            </th>
-
-            <th>
-              <div class="form-group">
+              </th>
+              <th>
                 <label for="accesorios" class="txt_negrita">Accesorios:</label>
-                <label>{{ form.accesorios|add_class:"form-control" }}</label>
-              </div>
-            </th>    
+              </th>
+            </div>
+          </tr>
+
+          <tr>
+            <div class="form-group">
+              <th>
+                <label>{{form.calzados|add_class:"form-control" }}</label>
+              </th>
+            </div>
+            <div class="form-group">
+              <th>
+                <label>{{form.ropa|add_class:"form-control" }}</label>
+              </th>
+            </div>
+            <div class="form-group">
+              <th>
+                <label>{{form.accesorios|add_class:"form-control" }}</label>
+              </th>
+            </div>  
         </table>
         
-        <table class="table mt-3 table-bordered border-info">
-            <tr>
-              <th>
-                <div class="form-group">
-                  <label for="piezas" class="txt_negrita">Total piezas vendidas:</label>
-                  <input type="text" disabled value="{{object.piezas}}">
-                  
-                </div>
+        <table class="table my-2 table-bordered border-info">
+          <tr  id="tabla-formulario">
+            <div class="form-group">
+              <th style="text-align: right;">
+                <label for="piezas" class="txt_negrita">Total piezas vendidas:</label>&nbsp;
+                <label>{{form.piezas|add_class:"form-control" }}</label>
               </th>
-            </tr>
-          </table>
-  
+            </div>
+           </tr>
+        </table>
+      
         <div align="center" class="btn_crear my-3">
-          <button type="submit" class="btn btn-success">Guardar Cambios</button>
-          <a href="{% url 'Inventario' %}" type="submit" class="btn btn-primary">Volver</a>
+          <button type="submit" class="btn btn-success">Actualizar</button>
+          <a href="{% url 'Inventario' %}" type="submit" class="btn btn-primary">Cancelar</a>
         </div>
-      </form>
 
+      </form>
   </header>
 </section>
 

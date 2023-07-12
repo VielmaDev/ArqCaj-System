@@ -1,0 +1,213 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Arqueo de caja</title>
+<section>
+    <header>
+      <div class="container-lg my-2">
+        <table class="table mt-2">
+          <thead>
+            <tr id="subtitulo">
+              <th scope="col">
+                <label>NUEVO REGISTRO DE ARQUEO DE CAJA</label>  
+              </th>
+             </tr>
+          </thead>
+        </table>
+
+        <form method="post" enctype="multipart/form-data" autocomplete="off">
+        <!-- Token de seguridad para poder crear un nuevo registro -->
+        {% csrf_token %}
+
+        <table class="table my-2 table-bordered border-info">
+            <thead>
+              <tr id="tabla-formulario">
+                <th>
+                  <div class="form-group">
+                    <!--Falta cread en la BD el campo venta_id-->
+                    <label>Código venta N°:</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="caja_id" class="txt_negrita">Caja n°:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="cif" class="txt_negrita">Total ventas (Bs):</label>&nbsp;
+                  </div>
+                </th>
+              </tr>
+
+              <tr>
+                <th>
+                  <div class="form-group">
+                    <!--Falta cread en la BD el campo venta_id-->
+                    <form action="buscar" method="get" autocomplete="off">
+                      {% csrf_token %}
+                      <input type="text" name="registro" placeholder="Ingrese código" autofocus required>
+                      <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Ingresar</button>
+                    </form>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.caja_id|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.created|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.cif|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+    
+          <table class="table my-2 table-bordered border-info">
+            <body>
+              <tr id="tabla-formulario">
+                <th>
+                  <div class="form-group">
+                    <label for="cii" class="txt_negrita">Fondo inicial de caja:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="sg" class="txt_negrita">Gastos:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="dt" class="txt_negrita">Descuentos / Devoluciones:</label>&nbsp;
+                  </div>
+                </th>
+              </tr>
+
+              <tr>
+                <th>
+                  <div class="form-group">
+                    <label>{{form.cii|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.cii|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label>{{form.cii|add_class:"form-control"}}</label>
+                  </div>
+                </th>
+              </tr>
+            </body>
+          </table>
+
+          <table class="table my-2 table-bordered border-info">
+            <body>
+              <tr id="tabla-formulario">
+                <th>
+                  <div class="form-group">
+                    <label for="vd" class="txt_negrita">Total cierre contable:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="ft" class="txt_negrita">Faltante en caja:</label>&nbsp;
+                  </div>
+                </th>
+
+                <th>
+                  <div class="form-group">
+                    <label for="st" class="txt_negrita">Sobrante en caja:</label>&nbsp;
+                  </div>
+                </th>
+              </tr>
+
+
+                </th>
+                <div class="form-group">
+                  <th>
+                    <label>{{form.vd|add_class:"form-control"}}</label>
+                  </th>
+                </div>
+
+                <div class="form-group">
+                  <th>
+                    <label>{{form.ft|add_class:"form-control"}}</label>
+                  </th>
+                </div>
+
+                <div class="form-group">
+                  <th>
+                    <label>{{form.st|add_class:"form-control"}}</label>
+                  </th>
+                </div>
+              </tr>
+            </body>
+          </table>
+
+          <table class="table my-2 table-bordered border-info">
+            <body>
+              <tr id="tabla-formulario">
+                <div class="form-group">
+                  <th style="text-align: left;">
+                    <label for="nota" class="txt_negrita">Observaciones:</label>&nbsp;
+                    <label>{{form.nota|add_class:"form-control"}}</label>
+                  </th>
+                </div>
+              </tr>
+            </body>
+          </table>
+
+          <div align="left" class="btn_crear my-3">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'Cierres' %}" type="submit" class="btn btn-danger">Cancelar</a>
+          </div> 
+        </form>
+      </div>
+    </header>
+</section>
+{% endblock %}

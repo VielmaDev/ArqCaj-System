@@ -18,7 +18,7 @@
       <table class="table mt-4">
         <thead>
           <tr id="subtitulo">
-              <th scope="col"><span>INVENTARIO DETALLE</span>
+              <th scope="col"><span>DETALLE DE INVETARIO POR VENTAS</span>
               </th>
           </tr>
         </thead>
@@ -26,46 +26,44 @@
     </div>
     
     <div class="container-lg mt-5">
-      <form method="post" enctype="multipart/form-data">
-        <!-- Token de seguridad para poder crear un nuevo registro -->
-        {% csrf_token %}
-
         <div class="form-group">
-          <table class="table table-bordered border-info my-3" id="tabla-contenido">
+          <table class="table table-bordered border-info my-3">
             <thead>
-              <tr style="width: 500px;">
-                <th scope="col"><label for="calzados" class="txt_negrita">Código Inventario</label></th>
-                <th scope="col"><label for="calzados" class="txt_negrita">Fecha creación</label></th>
-                <th scope="col"><label for="calzados" class="txt_negrita">Fecha modificación</label></th>
-                <th scope="col"><label for="calzados" class="txt_negrita">Código Arqueo</label></th>
-                <th scope="col"><label for="calzados" class="txt_negrita">Pares de calzados</label></th>
-                <th scope="col"><label for="ropa" class="txt_negrita">Unidad de prendas</label></th>
-                <th scope="col"><label for="accesorios" class="txt_negrita">Unidad de accesorios</label></th>
-                <th scope="col"><label for="accesorios" class="txt_negrita">Piezas vendidas</label></th>
-                <th scope="col"><label for="calzados" class="txt_negrita">Procesado</label></th>
+              <tr id="tabla-identificador">
+                <th><label for="calzados" class="txt_negrita">Código inventario N°</label></th>
+                <th><label for="calzados" class="txt_negrita">Código venta N°</label></th>
+                <th><label for="calzados" class="txt_negrita">Fecha creación</label></th>
+                <th><label for="calzados" class="txt_negrita">Fecha modificación</label></th>
+                <th><label for="calzados" class="txt_negrita">Calzados (Pares)</label></th>
+                <th><label for="ropa" class="txt_negrita">Prendas (Unidades)</label></th>
+                <th><label for="accesorios" class="txt_negrita">Accesorios (Unidades)</label></th>
+                <th><label for="accesorios" class="txt_negrita">Total piezas</label></th>
+                <th><label for="calzados" class="txt_negrita">Procesado</label></th>
               </tr>
             </thead>
             <tbody>
               <!-- Ingresamos los valores de los ingresos en bolívares -->
+              {% for Inventario in Inventarios %}
                 <tr style="width: 500px;">
-                  <td>{{object.id}}</td>
-                  <td>{{object.created}}</td>
-                  <td>{{object.update}}</td>
-                  <td>{{object.arqueo_id}}</td>
-                  <td>{{object.calzados}}</td>
-                  <td>{{object.ropa}}</td>
-                  <td>{{object.accesorios}}</td>
-                  <td>{{object.piezas}}</td>
-                  <td>{{object.procesado}}</td>
+                  <td>{{Inventario.id}}</td>
+                  <td></td>
+                  <td>{{Inventario.created}}</td>
+                  <td>{{Inventario.update}}</td>
+                  <td>{{Inventario.calzados}}</td>
+                  <td>{{Inventario.ropa}}</td>
+                  <td>{{Inventario.accesorios}}</td>
+                  <td>{{Inventario.piezas}}</td>
+                  <td>{{Inventario.procesado}}</td>
                 </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
       </form>
    
-    <div align="center" class="btn_crear my-3">
-      <a href="#" title="Editar" type="button" class="btn btn-danger">Editar </a>
+    <div align="left" class="btn_crear my-3">
       <a href="{% url 'Inventario' %}" type="submit" class="btn btn-info">Volver</a>
+      <a href="editar/{{inventario_ventas.id}}" title="Editar" type="button" class="btn btn-success">Editar </a>
     </div>
 
   </header>

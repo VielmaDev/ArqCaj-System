@@ -3,27 +3,32 @@ from django.shortcuts import redirect
 
 from django.views.generic import View
 
-from django.contrib.auth.forms import UserCreationForm
+#from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 
-from django.views.generic import ListView, DetailView 
 
 from django.urls import reverse
 from django.contrib.messages.views import SuccessMessageMixin 
-from django import forms
+#from django import forms
 
+#Consulta de registro
+from django.views.generic import ListView, DetailView 
+
+
+#Importación de tabla tienda y tasa
 from .models import tienda,tasa
 
-from Inventario.models import inventario_ventas # Importando tabla inventario_ventas de la app Inventario
+# Importando tabla inventario_ventas de la app Inventario
+from Inventario.models import inventario_ventas 
 
-from ArqueoCaja.models import arqueo # Importando tabla arqueo de la app ArqueoCaja
+# Importando tabla arqueo de la app ArqueoCaja
+from ArqueoCaja.models import arqueo 
 
 # Create your views here.
 
-#Para obtener todos los campos de un registro de la tabla Inventario_ventas 
 
 #Función iniciar sesión
 def logear(request):
@@ -53,14 +58,12 @@ def cerrar_sesion(request):
     logout (request)
     return redirect('Logear')
 
-class HomeDetalle(DetailView): 
-    model = tienda
-
 def home(request):
     Divisa= tasa.objects.all()
     Tienda= tienda.objects.all()
     Arqueo= arqueo.objects.all()
     Inventario= inventario_ventas.objects.all()
-    return render(request, "ProyectoWebAC/home.html", {"Tiendas": Tienda, "Divisas": Divisa, "Inventarios": Inventario, "Arqueos": Arqueo})
+    return render(request, "ProyectoWebAC/home.html", {"Divisas": Divisa, "Tiendas": Tienda, "Inventarios": Inventario, "Arqueos": Arqueo})
+
 
 

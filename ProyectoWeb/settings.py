@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'ArqueoCaja',
     'Inventario',
     'Reportes',
-
+    'Ingresos',
+    'Contactos',
     
 ]
 

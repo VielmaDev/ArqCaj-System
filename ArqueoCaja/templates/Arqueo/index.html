@@ -1,0 +1,74 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Cierre de caja</title>
+<section>
+    <header>
+      <div class="container-lg mt-3">
+        <table class="table mt-3">
+          <thead>
+            <tr id="subtitulo">
+              <th scope="col"><span>CONTROL DE ARQUEO DE CAJA</span></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <form action="buscar" method="get" autocomplete="off">
+        {% csrf_token %}
+        <div class="container-lg mt-3">
+          <table class="table my-3">
+            <thead>
+              <tr>
+                <th style="text-align: left;">
+
+                  <label>Código Arqueo N°:</label>
+                  <input type="text" name="registro" placeholder="Ingrese código" autofocus>
+                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
+
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </form>
+
+
+      <div class="container-lg mt-2">
+          <table class="table table-bordered border-info my-3">
+            <thead>
+              <tr id="tabla-identificador">
+                <th>Código arqueo N°:</th>
+                <th>Fecha:</th>
+                <th>Caja N°:</th>
+                <th>Total arqueo Bs:</th>
+                <th>Procesado:</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+            <!-- Recorremos los registros de la tabla 'arqueo' y los mostramos -->
+            {% for arqueo in object_list %}  
+                <tr>
+                  <td>{{arqueo.id}}</td>
+                  <td>{{arqueo.created}}</td>
+                  <td>{{arqueo.caja_id}}</td>
+                  <td>{{arqueo.vd}}</td>
+                  <td>{{arqueo.procesado}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+
+        <div align="left" class="btn_crear mb-2">
+          <a href="nuevo" type="button" class="btn btn-success">Nuevo Arqueo</a>
+        </div>   
+      </div>
+    </header>
+</section>
+  {% endblock %}

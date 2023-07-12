@@ -1,0 +1,70 @@
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Cierre de caja</title>
+<section>
+    <header>
+      <div class="container-lg mt-3">
+        <table class="table mt-3">
+          <thead>
+            <tr id="subtitulo">
+                <th scope="col"><span>REPORTES POR CIERRE CONTABLE</span></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <form action="buscar" method="get" autocomplete="off">
+        {% csrf_token %}
+
+        <div class="container-lg mt-3">
+          <table class="table my-3">
+            <thead>
+              <tr>
+                <th style="text-align: center;">
+                  <label>Seleccione la categoría:</label>&nbsp;&nbsp;
+                  <input type="text" name="tienda" autofocus required>&nbsp;
+                  <input type="text" name="tienda" required disabled>&nbsp;
+                  <label>Desde:</label>
+                  <input type="date" name="fecha">&nbsp;
+                  <label>Hasta:</label>
+                  <input type="date" name="fecha">&nbsp;&nbsp;
+                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </form>
+
+      <div class="container-lg mt-3">
+        <table class="table mt-3">
+          <thead>
+            <tr id="subtitulo">
+                <th scope="col"><span>RESULTADOS:</span></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="container-lg mt-4">
+        <table class="table table-bordered border-info my-3">
+          <thead>
+            <tr id="tabla-identificador">
+              <th>Código arqueo N°:</th>
+              <th>Total cierre contable:</th>
+              <th>Procesado:</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+          
+          </tbody>
+      </table>
+    </header>
+</section>
+{% endblock %}

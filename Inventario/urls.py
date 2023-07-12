@@ -4,11 +4,10 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from Inventario.views import InventarioListar, InventarioDetalle, InventarioNuevo, InventarioActualizar
-#from .import views
+
+from .import views
 
 urlpatterns = [
-    
-    #path('inventario', views.inventario, name="Inventario"),
 
     #Mostrar todos los registros en una tabla
     path('Inventario/', InventarioListar.as_view(template_name = "Inventario/index.html"), name='Inventario'),
@@ -21,5 +20,7 @@ urlpatterns = [
  
     #Mostrar formulario de modificación de registro
     path('Inventario/editar/<int:pk>', InventarioActualizar.as_view(template_name = "Inventario/actualizar.html"), name='Actualizar'), 
+
+    path('Inventario/buscar/', views.buscar)
     
 ]

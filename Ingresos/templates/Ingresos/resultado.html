@@ -1,0 +1,234 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Resultados de busqueda</title>
+<section>
+    <header>
+      <div class="container-lg mt-2">
+        <table class="table mt-2">
+          <thead>
+            <tr id="subtitulo">
+                <th scope="col"><span>DETALLE DE INGRESOS Y VENTAS</span>
+                </th>
+            </tr>
+          </thead>
+        </table>
+
+        <table class="table my-3 table-bordered border-info">
+          <thead>
+            <tr id="tabla-identificador">
+              <th>
+                <label class="txt_negrita">Código venta N°</label>&nbsp;
+              </th>
+              <th>
+                <label class="txt_negrita">Tienda</label>&nbsp;
+              </th>
+              <th>
+                <label class="txt_negrita">Caja N°</label>&nbsp;
+              </th>
+              <th>
+                <label class="txt_negrita">Tasa</label>&nbsp;
+              </th>
+              <th>
+                <label class="txt_negrita">Fecha</label>&nbsp;
+              </th>
+            </tr>
+  
+            {% for Venta in Ventas %}
+              <tr>
+                <th>
+                  <label>{{Venta.id}}</label>
+                </th>
+                <th>
+                  <label>{{Venta.tienda_id}}</label>
+                </th>
+                <th>
+                  <label>{{Venta.caja_id}}</label>
+                </th>
+                <th>
+                  <label>{{Venta.tasa_id}}</label>
+                </th>
+                <th>
+                  <label>{{Venta.created}}</label>
+                </th> 
+              </tr>
+            {% endfor %}
+          </thead>
+        </table>
+
+        <table class="table my-1">
+          <thead>
+            <tr style="text-align: start;">
+              <th scope="col"><span>Efectivo y transacciones percibidas:</span></th>
+            </tr>
+          </thead>
+        </table>
+
+          <table class="table table-bordered border-info my-3">
+              <thead>
+                <tr id="tabla-identificador">
+                  <th><label class="txt_negrita">Moneda</label></th>
+                  <th><label class="txt_negrita">Efectivo</label></th>
+                  <th><label class="txt_negrita">T. Crédito</label></th>
+                  <th><label class="txt_negrita">T. Débito</label></th>
+                  <th><label class="txt_negrita">Pago Movil</label></th>
+                  <th><label class="txt_negrita">N.Crédito</label></th> 
+                  <th><label class="txt_negrita">Total moneda</label></th> 
+                </tr>
+              </thead>
+
+              <tbody>
+                <!-- Ingresamos los valores de los ingresos en bolívares -->
+              {% for Venta in Ventas %}
+                <tr style="width: 500px;">
+                    <td><span>Bolívares:</span></td>
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.ef_bs}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.td_bs}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.tc_bs}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.pm_bs}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.nc_bs}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.ti_bs}}</label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              
+                <tbody>
+                  <!-- Ingresamos los valores de los ingresos en dólares -->
+                  {% for Venta in Ventas %}
+                  <tr style="width: 500px;">
+                    <td><span>Dólares:</span></td>
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.ef_usd}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.td_usd}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.tc_usd}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.pm_usd}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.nc_usd}}</label>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="form-group">
+                        <label>{{Venta.ti_usd}}</label>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+          </table>
+
+          <div class="container-lg my-2">
+            <table class="table table-bordered border-info">
+              <tbody>
+                {% for Venta in Ventas %}
+                <tr>
+                  <th id="tabla-identificador">
+                    <label class="txt_negrita">Conversión Dólares (Bs)</label>
+                  </th>
+                  <th>
+                    <label>{{Venta.conversion_usd}}</label>
+                  </th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="container-lg my-2">
+            <table class="table table-bordered border-info">
+              <tbody>
+                {% for Venta in Ventas %}
+                <tr>
+                  <th id="tabla-identificador">
+                    <label class="txt_negrita">Total venta del día (Bs)</label>
+                  </th>
+                  <th>
+                    <label>{{Venta.tif}}</label>
+                  </th>
+                 </tr>
+                 {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="container-lg my-2">
+            <table class="table table-bordered border-info">
+              <tbody>
+                {% for Venta in Ventas %}
+                <tr>
+                  <th id="tabla-identificador">
+                    <label class="txt_negrita">Notas de referncias bancarias</label>
+                  </th>
+                  <th>
+                    <label>{{Venta.nota}}</label>
+                  </th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div align="left" class="btn_crear my-3">
+            <a href="{% url 'Caja' %}" type="submit" class="btn btn-primary">Volver</a>
+            <a href="editar/{{ventas.id}}" title="Editar" type="button" class="btn btn-success">Editar </a>
+          </div> 
+      </div>
+    </header>
+</section>
+{% endblock %}

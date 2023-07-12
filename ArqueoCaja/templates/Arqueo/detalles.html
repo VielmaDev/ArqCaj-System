@@ -1,0 +1,179 @@
+
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
+{% block content %} 
+
+<!--Head-->
+<title>Arqueo de caja</title>
+<section>
+    <header>
+      <div class="container-lg my-3">
+        <table class="table mt-2">
+          <thead>
+            <tr id="subtitulo">
+              <th scope="col">
+                <label>DETALLE DE ARQUEO DE CAJA</label>  
+              </th>
+             </tr>
+          </thead>
+        </table>
+
+    
+            <table class="table my-2 table-bordered border-info">
+              <thead>
+                <tr id="tabla-identificador">
+                  <th>
+                    <label class="txt_negrita">Código arqueo N°:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Tienda:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Caja:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Fecha:</label>&nbsp;
+                  </th>
+                </tr>
+
+                <tr>
+                  {% for Arqueo in Arqueos %}
+                  <th>
+                    <label>{{Arqueo.id}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.tienda_id}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.caja_id}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.created}}</label>
+                  </th>
+                  {% endfor %}
+                </tr>
+              </thead>
+            </table>
+
+            <table class="table my-1 table-bordered border-info">
+              <thead>
+                <tr id="tabla-identificador">
+                  <th>
+                    <label class="txt_negrita">Total ventas Bs:</label>&nbsp;
+                  </th>
+                    
+                  <th>
+                    <label class="txt_negrita">Fondo inicial de caja:</label>&nbsp;
+                  </th>
+                </tr>
+
+                <tr>
+                  {% for Arqueo in Arqueos %}
+                  <th>
+                    <label>{{Arqueo.cif}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.cii}}</label>
+                  </th>
+                  {% endfor %}
+                </tr>
+
+
+              </thead>
+            </table>
+
+            <table class="table my-2 table-bordered border-info">
+              <thead>
+                <tr id="tabla-identificador">
+                  <th>
+                    <label class="txt_negrita">Gastos:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Descuentos / Devoluciones:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Total cierre contable:</label>&nbsp;
+                  </th>
+                </tr>
+
+                <tr>
+                  {% for Arqueo in Arqueos %}
+                  <th>
+                    <label>{{Arqueo.sg}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.dt}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.vd}}</label>
+                  </th>
+                  {% endfor %}
+                </tr>
+              </thead>
+            </table>
+
+            <table class="table my-2 table-bordered border-info">
+              <thead>
+                <tr id="tabla-identificador">
+                  <th>
+                    <label class="txt_negrita">Faltante en caja:</label>&nbsp;
+                  </th>
+
+                  <th>
+                    <label class="txt_negrita">Sobrante en caja:</label>&nbsp;
+                  </th>
+                </tr>
+
+                <tr>
+                  {% for Arqueo in Arqueos %}
+                  <th>
+                    <label>{{Arqueo.ft}}</label>
+                  </th>
+
+                  <th>
+                    <label>{{Arqueo.st}}</label>
+                  </th>
+                  {% endfor %}
+                </tr>
+              </thead>
+            </table>
+
+            <table class="table my-1 table-bordered border-info">
+              <body>
+                <tr id="tabla-aviso">
+                   <div class="form-group">
+                    <th>
+                      {% for Arqueo in Arqueos %}
+                      <label class="txt_negrita">Observaciones:</label>&nbsp;
+                      <label>{{object.nota}}</label>
+                      {% endfor %}
+                    </th>
+                  </div>
+                </tr>
+              </body>
+            </table>
+
+            <div align="left" class="btn_crear my-3">
+              <a href="{% url 'Cierres' %}" type="submit" class="btn btn-primary">Volver</a>
+              <a href="editar/{{arqueo.id}}" title="Editar" type="button" class="btn btn-success">Editar </a>
+            </div> 
+          </form>
+        </div>
+    </header>
+</section>
+{% endblock %}

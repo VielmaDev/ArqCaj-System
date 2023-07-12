@@ -15,7 +15,7 @@
             <table class="table mt-2">
               <thead>
                 <tr id="subtitulo">
-                    <th scope="col"><span>REGISTRO DE VENTAS</span>
+                    <th scope="col"><span>NUEVO REGISTRO DE VENTA</span>
                     </th>
                 </tr>
               </thead>
@@ -25,38 +25,42 @@
                 <!-- Token de seguridad para poder crear un nuevo registro -->
               {% csrf_token %}
     
-              <table class="table my-3 table-bordered border-info">
+              <table class="table table-bordered border-info" my-3>
                 <thead>
-                  <tr>
-
-                    <div class="form-group">
+                  <div class="form-group">
+                    <tr id="tabla-formulario">
                       <th>
                         <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
-                        <label>{{form.tienda_id|add_class:"form-control"}}</label>
                       </th>
-                    </div>
-
-                    <div class="form-group">
                       <th>
-                        <label for="caja_id" class="txt_negrita">N° Caja:</label>&nbsp;
-                        <label>{{form.caja_id|add_class:"form-control"}}</label>
+                        <label for="caja_id" class="txt_negrita">Caja N°:</label>&nbsp;
                       </th>
-                    </div>
-
-                    <div class="form-group">
                       <th>
                         <label for="tasa_id" class="txt_negrita">Tasa:</label>&nbsp;
-                        <label>{{form.tasa_id|add_class:"form-control"}}</label>
                       </th>
-                    </div>
-
-                    <div class="form-group">
                       <th>
                         <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
+                      </th>
+                    </tr>
+
+                    <tr>
+                      <th>
+                        <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                      </th>
+
+                      <th>
+                        <label>{{form.caja_id|add_class:"form-control"}}</label>
+                      </th>
+
+                      <th>
+                        <label>{{form.tasa_id|add_class:"form-control"}}</label>
+                      </th>
+
+                      <th>
                         <label>{{form.created|add_class:"form-control"}}</label>
                       </th>
-                    </div>
-                  </tr>
+                    </tr>
+                  </div>
                 </thead>
               </table>
 
@@ -69,7 +73,7 @@
                 </thead>
               </table>
     
-              <table class="table table-bordered border-info my-3" id="tabla-contenido">
+              <table class="table table-bordered border-info my-3" id="tabla-formulario">
                   <thead>
                     <tr style="width: 600px;">
                       <th><label class="txt_negrita">Moneda</label></th>
@@ -168,47 +172,51 @@
                   </tbody>
               </table>
 
-              <div class="container-lg my-3">
+              <div class="container-lg my-3" id="tabla-formulario">
                 <table class="table table-bordered border-info">
                   <tbody>
                     <tr>
-                      <th>
-                        <div class="form-group">
-                          <label for="conversion_usd" class="txt_negrita">Notas de referncias:</label>&nbsp;
+                      <div class="form-group">
+                        <th>
+                          <label for="conversion_usd" class="txt_negrita">Total conversión Dólares (Bs):</label>
+                        </th>
+                        <th>
+                          <label>{{form.conversion_usd|add_class:"form-control"}}</label>
+                        </th>
+                      </div>
+
+                      <div class="form-group">
+                        <th>
+                          <label for="cif" class="txt_negrita">Total ventas del día (Bs):</label>
+                        </th>
+                        <th>
+                          <label>{{form.tif|add_class:"form-control"}}</label>
+                        </th>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="container-lg my-3">
+                <table class="table table-bordered border-info" id="tabla-formulario">
+                  <tbody>
+                    <tr>
+                      <div class="form-group">
+                        <th id="tabla-formulario">
+                          <label for="conversion_usd" class="txt_negrita">Notas de referncias bancarias:</label>
+                        </th>
+                        <th>
                           <label>{{form.nota|add_class:"form-control"}}</label>
-                        </div>
-                      </th>
+                        </th>
+                      </div>
                     </tr>
                   </tbody>
                 </table>
               </div>
               
-              <div class="container-lg my-3">
-                <table class="table table-bordered border-info">
-                  <tbody>
-                    <tr>
-                      <th>
-                        <div class="form-group">
-                          <label for="conversion_usd" class="txt_negrita">Conversión Dólares (Bs):</label>&nbsp;
-                          <label>{{form.conversion_usd|add_class:"form-control"}}</label>
-                        </div>
-                      </th>
-
-                      <th>
-                        <div class="form-group">
-                          <label for="cif" class="txt_negrita">Total Ingresos (Bs):</label>&nbsp;
-                          <label>{{form.tif|add_class:"form-control"}}</label>
-                        </div>
-                      </th>
-                     </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              
-
-              <div align="center" class="btn_crear my-3">
-                <button type="submit" class="btn btn-success">Guardar registro</button>
+              <div align="left" class="btn_crear my-3">
+                <button type="submit" class="btn btn-success">Guardar</button>
                 <a href="./" type="submit" class="btn btn-danger">Cancelar</a>
               </div> 
             </form>

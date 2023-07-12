@@ -26,4 +26,6 @@ urlpatterns = [
     path('Cierre/', include('ArqueoCaja.urls')),
     path('Inventario/', include('Inventario.urls')),
     path('Reportes/', include('Reportes.urls')),
+    path('Ingresos/', include('Ingresos.urls')),
+    path('Contactos/', include('Contactos.urls')),
 ]

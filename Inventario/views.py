@@ -1,11 +1,23 @@
 
-from django.shortcuts import render
+#Consulta de registro
 from django.views.generic import ListView, DetailView 
+
+#Creacín y actualización de registro
 from django.views.generic.edit import CreateView, UpdateView
-from .models import inventario_ventas
+
+#Libreria de retorno
 from django.urls import reverse
+from django.shortcuts import render
+from django.http import HttpResponse
+
+#Libreria para mensajes
 from django.contrib import messages 
 from django.contrib.messages.views import SuccessMessageMixin 
+
+ # Importando la BD
+from .models import inventario_ventas
+
+#Formularios
 from django import forms
 
 # Create your views here.
@@ -43,4 +55,25 @@ class InventarioActualizar(SuccessMessageMixin, UpdateView):
         return reverse('Inventario')
    
 
- 
+
+def buscar(request):
+
+    if request.GET["registro"]:
+
+        Codigo= request.GET["registro"]
+
+        if len(Codigo)>5:
+
+            mensaje="Código de ingreso no existe"
+        
+        else:
+
+            Inventarios= inventario_ventas.objects.filter(id__icontains= Codigo)
+
+            return render(request, "Inventario/detalles.html", {"Inventarios": Inventarios})
+        
+    else:
+
+        mensaje="No has introducido nada"
+
+    return HttpResponse(mensaje)

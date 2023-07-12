@@ -13,7 +13,7 @@
 <!--Heading-->
 <section>
     <header>
-        <div class="container my-4">
+        <div class="container mt-4">
             <table class="table">
                 <thead>
                     <tr>
@@ -23,15 +23,15 @@
             </table>
         </div>
 
-        <div class="container-lg text-center my-3">
-            <table class="table table-bordered border-info my-2" id="tabla-contenido">
+        <div class="container-lg text-center mt-1">
+            <table class="table table-bordered border-info my-1">
                 <thead>
-                    <tr>
-                        <th scope="col"><span>Código</span></th>
-                        <th scope="col"><span>Razón social</span></th>
-                        <th scope="col"><span>Rif </span></th>  
-                        <th scope="col"><span>Dirección</span></th>
-                        <th scope="col"><span>telefóno</span></th>
+                    <tr id="tabla-identificador">
+                        <th><span>Código</span></th>
+                        <th><span>Razón social</span></th>
+                        <th><span>Rif </span></th>  
+                        <th><span>Dirección</span></th>
+                        <th><span>telefóno</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,43 +49,55 @@
             </table>
         </div>
 
-        <div class="container my-4">
+        <div class="container mt-2">
             <table class="table">
                 <thead>
                     <tr>
-                        <th style="text-align: start;"><span>ÚLTIMOS CIERRES PROCESADOS:</span></th>
+                        <th style="text-align: start;"><span>ÚLTIMO ARQUEO DE CAJA PROCESADO:</span></th>
                     </tr>
                 </thead>
             </table>
         </div>
 
-        <div class="container-md text-center my-3">
-            <table class="table table-bordered border-info my-2" id="tabla-contenido">
+        <div class="container-md text-center">
+            <table class="table table-bordered border-info mt-1">
                 <thead>
-                    <tr>
-                        <th scope="col-2"><span>Fecha</span></th>
-                        <th scope="col-3"><span>Código Arqueo</span></th>
-                        <th scope="col-3"><span>Total Ventas</span></th>   
+                    <tr id="tabla-identificador">
+                        <th scope="col-6"><span>Fecha:</span></th>
+                        <th scope="col-1"><span>Código arqueo N°:</span></th>
+                        <th scope="col-5"><span>Total cierre contable:</span></th>   
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Arq in Arqs %}   
+                    {% for Arqueo in Arqueos %}   
                         <tr>
-                            <td>{{Arq.created}}</td>
-                            <td>{{Arq.id}}</td>
-                            <td>{{Arq.vd}}</td>
+                            <td>{{Arqueo.created}}</td>
+                            <td>{{Arqueo.id}}</td>
+                            <td>{{Arqueo.vd}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
 
-            <table class="table table-bordered border-info my-2" id="tabla-contenido">
+        <div class="container mt-2">
+            <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col-2"><span>Fecha</span></th>
-                        <th scope="col-3"><span>Código Inventario</span></th>
-                        <th scope="col-3"><span>Piezas vendidas</span></th>   
+                        <th style="text-align: start;"><span>ÚLTIMOS INVENTARIO PROCESADO:</span></th>
+                     </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="container-md text-center">
+            <table class="table table-bordered border-info mt-1">
+                <thead>
+                    <tr id="tabla-identificador">
+                        <th scope="col-6"<span>Fecha:</span></th>
+                        <th scope="col-1"<span>Código inventario N°:</span></th>
+                        <th scope="col-5"><span>Piezas vendidas:</span></th>   
                     </tr>
                 </thead>
                 <tbody>
@@ -101,8 +113,8 @@
             </table>
         </div>
 
-        <div class="container my-4">
-            <table class="table">
+        <div class="container my-3">
+            <table class="table" id="tabla-aviso">
                 <thead>
                     <tr>
                         <th style="text-align: start;"><span>COMUNICADOS:</span></th>

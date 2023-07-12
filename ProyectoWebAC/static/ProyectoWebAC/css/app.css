@@ -71,13 +71,23 @@ body{
     float: right;
 }
 
-#tabla-contenido th{
+#tabla-identificador{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
     color: rgb(247, 242, 242);
 }
 
+#tabla-formulario th{
+    background: linear-gradient(rgba(2, 131, 103, 0.65), rgba(2, 131, 103, 0.65));
+    color: rgb(247, 242, 242);
+}
+
+#tabla-aviso th{
+    background: linear-gradient(rgba(240, 93, 44, 0.785), rgba(240, 93, 44, 0.785));
+    color: rgb(247, 242, 242);
+}
+
 .table th span{
-     padding-right: 10px;
+    padding-right: 10px;
 }
 
 .table th input{
@@ -102,6 +112,13 @@ body{
     color: rgb(247, 242, 242);
 }
 
+#contactoFormulario{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
+    border:1px rgb(247, 243, 243) solid;
+    width: 530px;
+    height: 420px;
+}
+
 
 .btn:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -123,7 +140,7 @@ body{
 }
 
 #piesecundario small{
-    padding-top: 5px;
+    padding-top: 4px;
     padding-bottom: 6px;
 }
 
