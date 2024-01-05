@@ -5,66 +5,63 @@
 {% block content %} 
 
 <!--Head-->
-<title>Cierre de caja</title>
+<title>Informes</title>
 <section>
     <header>
-      <div class="container-lg mt-3">
-        <table class="table mt-3">
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Cierres contables</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ingresos percibidos</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container-lg mt-2">
+        <table class="table my-1">
           <thead>
-            <tr id="subtitulo">
-                <th scope="col"><span>REPORTES POR CIERRE CONTABLE</span></th>
+            <tr>
+              <th style="text-align:start;">
+                <form action="buscar_fecha" method="get" autocomplete="off">
+                  {% csrf_token %}
+                  <label>Fecha:</label>
+                  <input type="date" name="fecha" required>&nbsp;
+                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Generar informe</button>
+                </form>
+              </th>
             </tr>
           </thead>
         </table>
       </div>
 
-      <form action="buscar" method="get" autocomplete="off">
-        {% csrf_token %}
-
-        <div class="container-lg mt-3">
-          <table class="table my-3">
-            <thead>
-              <tr>
-                <th style="text-align: center;">
-                  <label>Seleccione la categoría:</label>&nbsp;&nbsp;
-                  <input type="text" name="tienda" autofocus required>&nbsp;
-                  <input type="text" name="tienda" required disabled>&nbsp;
-                  <label>Desde:</label>
-                  <input type="date" name="fecha">&nbsp;
-                  <label>Hasta:</label>
-                  <input type="date" name="fecha">&nbsp;&nbsp;
-                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
-                </th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </form>
-
-      <div class="container-lg mt-3">
+      <div class="container-lg">
         <table class="table mt-3">
           <thead>
             <tr id="subtitulo">
-                <th scope="col"><span>RESULTADOS:</span></th>
+              <th scope="col">
+                <label>Resultados:</label>
+              </th>
             </tr>
           </thead>
         </table>
       </div>
 
-      <div class="container-lg mt-4">
-        <table class="table table-bordered border-info my-3">
+      <div class="container-lg">
+        <table class="table table-bordered my-3">
           <thead>
-            <tr id="tabla-identificador">
-              <th>Código arqueo N°:</th>
-              <th>Total cierre contable:</th>
-              <th>Procesado:</th>
+            <tr class="bg-success">
+              <th width="20%">Tiendas</th>
+              <th width="10%">Fecha</th>
+              <th width="10%">N° Arqueo</th>
+              <th width="10%">N° Caja</th>
+              <th width="15%">Tasa ($)</th>
+              <th width="15%">Tasa (E)</th>
+              <th width="20%">Total cierre (Bs)</th>
             </tr>
           </thead>
-          
-          <tbody>
-          
-          </tbody>
       </table>
     </header>
-</section>
+</section>  
 {% endblock %}

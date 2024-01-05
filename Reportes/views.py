@@ -16,12 +16,8 @@ from Ingresos.models import ventas
 from ArqueoCaja.models import arqueo
 
 
-#Para obtener todos los campos de un registro de la tabla arqueo
-class ListaIngresos(DetailView): 
-    model = ventas
-
-# Realizar busqueda por parametros        
-def buscar(request):
+# Realizar reporte por fecha      
+def buscar_fecha(request):
 
     if request.GET["fecha"]:
         Fecha= request.GET["fecha"]

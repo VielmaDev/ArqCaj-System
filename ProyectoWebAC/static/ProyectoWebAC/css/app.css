@@ -1,55 +1,95 @@
 
 body{
-    background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../img/Fondo.jpg");
+    background: linear-gradient(rgba(14, 6, 4, 0.82), rgba(14, 6, 4, 0.82)), url("../img/Fondo.jpg");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
 }
 
 #logo{
-    padding-left: 40px;
+    padding-left: 45px;
 }
 
 #usuario span{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1em;
+    font-size: 0.95em;
     font-weight: bold;
     color: rgb(244, 247, 249);
 }
 
-.navbar{
+#tabla{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
     border:2px rgb(248, 244, 244) solid;
-    border-radius: 5px;
+}
+
+.navbar{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
 }
 
 .dropdown-menu{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
 }
 
-.nav-link,
-.dropdown-item{
+.nav-link{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 0.85em;
-    color: rgb(243, 246, 247);
+    font-size: 0.9em;
+    color: rgb(242, 242, 242);
 }
 
 .nav-link:hover{
     color: black;
 }
 
-#subtitulo{
+#identificador{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.90em;
+    color: rgb(242, 242, 242);
+}
+
+#etiqueta{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.98em;
-    text-align: left;
     font-weight: bold;
-    color: rgb(247, 242, 242);
+    color: rgb(242, 242, 242);
 }
+
+#texto{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+#aviso{
+    background: linear-gradient(rgba(242, 245, 73, 0.785), rgba(242, 245, 73, 0.785));
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    width: 1600px;
+    align-items: center;
+}
+
+#pie{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1.0em;
+    text-align: center;
+    color: rgb(242, 242, 242);  
+}
+
+
+
+
 
 #busqueda{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.95em;
+    font-size: 0.9em;
     font-weight: bold;
     color: rgb(247, 242, 242);
 }
@@ -58,33 +98,11 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     font-weight: bold;
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: rgb(247, 242, 242);
 } 
 
-#tasa{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    font-size: 0.93em;
-    color: rgb(247, 242, 242);
-    width: 500px;
-    float: right;
-}
 
-#tabla-identificador{
-    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
-    color: rgb(247, 242, 242);
-}
-
-#tabla-formulario th{
-    background: linear-gradient(rgba(2, 131, 103, 0.65), rgba(2, 131, 103, 0.65));
-    color: rgb(247, 242, 242);
-}
-
-#tabla-aviso th{
-    background: linear-gradient(rgba(240, 93, 44, 0.785), rgba(240, 93, 44, 0.785));
-    color: rgb(247, 242, 242);
-}
 
 .table th span{
     padding-right: 10px;
@@ -109,12 +127,15 @@ body{
 }
 
 .label{
-    color: rgb(247, 242, 242);
+    color: rgb(242, 242, 242);
 }
+
+
+
 
 #contactoFormulario{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
-    border:1px rgb(247, 243, 243) solid;
+    border:1px rgb(242, 242, 242) solid;
     width: 530px;
     height: 420px;
 }
@@ -128,20 +149,6 @@ body{
 }
 
 
-#pie{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(213, 239, 247);
-    text-align: center;
-    font-size:1.0em;
-}
 
-#pieprincipal p{
-    margin-top:auto;
-}
-
-#piesecundario small{
-    padding-top: 4px;
-    padding-bottom: 6px;
-}
 
 

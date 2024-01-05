@@ -55,25 +55,43 @@ class InventarioActualizar(SuccessMessageMixin, UpdateView):
         return reverse('Inventario')
    
 
-
-def buscar(request):
+# Realizar busqueda por parametros    
+def buscar_codigo(request):
 
     if request.GET["registro"]:
 
         Codigo= request.GET["registro"]
 
-        if len(Codigo)>5:
-
-            mensaje="Código de ingreso no existe"
+        if Codigo==None:
+            mensaje="Código no esta asociado a ningun registro"
         
         else:
 
             Inventarios= inventario_ventas.objects.filter(id__icontains= Codigo)
-
             return render(request, "Inventario/detalles.html", {"Inventarios": Inventarios})
         
     else:
 
-        mensaje="No has introducido nada"
+        mensaje="No se encontraron registros asociados"
+    return render(request, "Inventario/detalles.html")
 
-    return HttpResponse(mensaje)
+
+
+def buscar_fecha(request):
+
+    if request.GET["registro"]:
+
+        Fecha= request.GET["registro"]
+
+        if Fecha==None:
+            mensaje="Fecha no esta asociado a ningun registro"
+        
+        else:
+
+            Inventarios= inventario_ventas.objects.filter(created__icontains= Fecha)
+            return render(request, "Inventario/detalles.html", {"Inventarios": Inventarios})
+        
+    else:
+
+        mensaje="No se encontraron registros asociados"
+    return render(request, "Inventario/detalles.html")

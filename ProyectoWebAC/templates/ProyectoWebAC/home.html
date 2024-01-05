@@ -11,121 +11,87 @@
 <title>Home</title>
 
 <!--Heading-->
+
 <section>
-    <header>
-        <div class="container mt-4">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="text-align: start;"><span>TIENDA:</span></th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
 
-        <div class="container-lg text-center mt-1">
-            <table class="table table-bordered border-info my-1">
-                <thead>
-                    <tr id="tabla-identificador">
-                        <th><span>Código</span></th>
-                        <th><span>Razón social</span></th>
-                        <th><span>Rif </span></th>  
-                        <th><span>Dirección</span></th>
-                        <th><span>telefóno</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Tienda in Tiendas %}
-                        <tr>
-                            <td>{{Tienda.id }}</td>
-                            <td>{{Tienda.razon}}</td>
-                            <td>{{Tienda.rif}}</td>
-                            <td>{{Tienda.direccion}}</td>
-                            <td>{{Tienda.telf}}</td>
-                        </tr>
-                    {% endfor %}   
-                </tbody>
-            </table>
-        </div>
+    <div class="container">
+        <ul class="nav nav-tabs my-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Mesa de cambio BCV:</a>
+            </li>
+        </ul>
 
-        <div class="container mt-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="text-align: start;"><span>ÚLTIMO ARQUEO DE CAJA PROCESADO:</span></th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-
-        <div class="container-md text-center">
-            <table class="table table-bordered border-info mt-1">
-                <thead>
-                    <tr id="tabla-identificador">
-                        <th scope="col-6"><span>Fecha:</span></th>
-                        <th scope="col-1"><span>Código arqueo N°:</span></th>
-                        <th scope="col-5"><span>Total cierre contable:</span></th>   
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Arqueo in Arqueos %}   
-                        <tr>
-                            <td>{{Arqueo.created}}</td>
-                            <td>{{Arqueo.id}}</td>
-                            <td>{{Arqueo.vd}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="container mt-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="text-align: start;"><span>ÚLTIMOS INVENTARIO PROCESADO:</span></th>
-                     </tr>
-                </thead>
-            </table>
-        </div>
-
-        <div class="container-md text-center">
-            <table class="table table-bordered border-info mt-1">
-                <thead>
-                    <tr id="tabla-identificador">
-                        <th scope="col-6"<span>Fecha:</span></th>
-                        <th scope="col-1"<span>Código inventario N°:</span></th>
-                        <th scope="col-5"><span>Piezas vendidas:</span></th>   
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Recorremos los registros de la tabla 'inventario_ventas' y los mostramos -->
-                    {% for Inventario in Inventarios %}
-                        <tr>
-                            <td>{{Inventario.created}}</td>
-                            <td>{{Inventario.id}}</td>
-                            <td>{{Inventario.piezas}}</td>
-                        </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
-        </div>
-
-        <div class="container my-3">
-            <table class="table" id="tabla-aviso">
-                <thead>
-                    <tr>
-                        <th style="text-align: start;"><span>COMUNICADOS:</span></th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+        <div class="form-group row my-3" style="text-align: end;">
+            <label for="tasa_usd" class="col-lg-4 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+            <div class="col-sm-2">
+                {% for Dolar in Dolars %}
+                    <input type="text" class="form-control" value="{{Dolar.tasa_usd}}" readonly>
+                {% endfor %}
+            </div>
   
-    </header>
-</section>
+            <label for="tasa_eur" class="col-lg-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
+            <div class="col-sm-2">
+                {% for Euro in Euros %}
+                    <input type="text" class="form-control" value=" {{Euro.tasa_eur}}" readonly>
+                {% endfor %}
+            </div>
+          </div>
+    </div>
 
+    <div class="container">
+        <ul class="nav nav-tabs my-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Comunicado:</a>
+            </li>
+        </ul>
+    
+       
+        <div id="avisos" class="form-group row my-4">
+            <!-- Recorremos los registros de la tabla 'comunicado'-->
+            {% for Nota in Notas %}
+
+                <textarea name="nota" rows="2" cols="2" readonly id="aviso">{{Nota.nota}}</textarea>
+                                
+            {% endfor %} 
+        </div>
+      
+    </div>
+
+    <div class="container">
+        <ul class="nav nav-tabs my-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Último balance:</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <table class="table table-responsive table-bordered my-4">
+          <thead>
+            <tr id="identificador">
+              <th width="20%">Fecha</th>
+              <th width="15%">N° Arqueo</th>
+              <th width="15%">N° Caja</th>
+              <th width="15%">Tasa Dólar</th>
+              <th width="15%">Tasa Euro</th>
+              <th width="20%">Total cierre contable ($)</th>
+            </tr>
+          </thead>
+          
+          <!-- Recorremos los registros de la tabla arqueo -->
+          {% for Arqueo in Arqueos %}  
+              <tr>
+                <td>{{Arqueo.created}}</td>
+                <td>{{Arqueo.id}}</td>
+                <td>{{Arqueo.caja}}</td>
+                <td>{{Arqueo.tasaDolar}}</td>
+                <td>{{Arqueo.tasaEuro}}</td>
+                <td>{{Arqueo.cierre}}</td>
+              </tr>
+          {% endfor %}
+        </table>
+    </div>
+</section>
 {% endblock %}
 
   

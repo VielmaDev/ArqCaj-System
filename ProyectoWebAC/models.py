@@ -11,6 +11,7 @@ class tienda(models.Model):
 
     razon=models.CharField(max_length=30, null=False)
     rif= models.CharField(max_length=12, null=False)
+    nif= models.CharField(max_length=12, null=False)
     direccion= models.CharField(max_length=25, null=False)
     telf=models.CharField(max_length=30, null=True)
     redes=models.CharField(max_length=25, null=True)
@@ -29,7 +30,7 @@ class tienda(models.Model):
 
 class caja(models.Model):
 
-    tienda_id=models.ForeignKey(tienda, on_delete=models.CASCADE)
+    tienda=models.ForeignKey(tienda, on_delete=models.CASCADE)
     codigo_caja=models.CharField(max_length=4, null=False)
 
     created=models.DateField(auto_now_add=True)
@@ -44,19 +45,47 @@ class caja(models.Model):
 
         return self.codigo_caja
 
-class tasa(models.Model):
+class tasaDolar(models.Model):
 
-    Dolar=models.CharField(max_length=4, null=False)
-    Euro=models.CharField(max_length=4, null=False)
-    
+    tasa_usd=models.CharField(max_length=4, null=False)
     created=models.DateTimeField(auto_now_add=True)
     update=models.DateTimeField(auto_now_add=True)
 
     class Meta:
 
-        verbose_name="Divisa"
-        verbose_name_plural="Divisas"
+        verbose_name="Dolar"
+        verbose_name_plural="Dolars"
 
     def __str__(self):
 
-        return self.Dolar
+        return self.tasa_usd
+    
+class tasaEuro(models.Model):
+
+    tasa_eur=models.CharField(max_length=4, null=False)
+    created=models.DateTimeField(auto_now_add=True)
+    update=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+
+        verbose_name="Euro"
+        verbose_name_plural="Eurs"
+
+    def __str__(self):
+
+        return self.tasa_eur
+    
+class comunicado(models.Model):
+
+    nota= models.CharField(max_length=200, null=False)
+    created=models.DateTimeField(auto_now_add=True)
+    update=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+
+        verbose_name="Nota"
+        verbose_name_plural="Notas"
+
+    def __str__(self):
+
+        return self.nota

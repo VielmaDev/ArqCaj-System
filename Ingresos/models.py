@@ -1,7 +1,7 @@
 
 from django.db import models
 from tabnanny import verbose
-from ProyectoWebAC.models import tienda, tasa, caja #Importando tabla de la App ProyectoWebAC
+from ProyectoWebAC.models import tienda, tasaDolar, caja #Importando tabla de la App ProyectoWebAC
 from django.utils import timezone
 
 # Create your models here.
@@ -10,7 +10,7 @@ class ventas(models.Model):
 
     tienda_id=models.ForeignKey(tienda, on_delete=models.CASCADE)
     caja_id=models.ForeignKey(caja, on_delete=models.CASCADE)
-    tasa_id=models.ForeignKey(tasa, on_delete=models.CASCADE)
+    tasaDolar=models.ForeignKey(tasaDolar, on_delete=models.CASCADE)
 
     ef_bs=models.CharField(max_length=10, null=False)
     td_bs=models.CharField(max_length=10, null=False)

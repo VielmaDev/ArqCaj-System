@@ -19,13 +19,13 @@ from django.views.generic import ListView, DetailView
 
 
 #Importación de tabla tienda y tasa
-from .models import tienda,tasa
-
-# Importando tabla inventario_ventas de la app Inventario
-from Inventario.models import inventario_ventas 
+from .models import tienda,tasaDolar, tasaEuro, comunicado
 
 # Importando tabla arqueo de la app ArqueoCaja
 from ArqueoCaja.models import arqueo 
+
+# Importando tabla inventario_ventas de la app Inventario
+from Inventario.models import inventario_ventas 
 
 # Create your views here.
 
@@ -54,16 +54,21 @@ def logear(request):
 
 #Función cerrar sesión
 def cerrar_sesion(request):
-    
     logout (request)
     return redirect('Logear')
 
-def home(request):
-    Divisa= tasa.objects.all()
+def baseII(request):
     Tienda= tienda.objects.all()
+    dolar= tasaDolar.objects.all()
+    euro= tasaEuro.objects.all()
+    return render(request, "ProyectoWebAC/baseII.html", {"Tiendas": Tienda, "dolars": dolar, "euros": euro,})
+
+def home(request):
+    Dolar= tasaDolar.objects.all()
+    Euro= tasaEuro.objects.all()
     Arqueo= arqueo.objects.all()
-    Inventario= inventario_ventas.objects.all()
-    return render(request, "ProyectoWebAC/home.html", {"Divisas": Divisa, "Tiendas": Tienda, "Inventarios": Inventario, "Arqueos": Arqueo})
+    Nota= comunicado.objects.all()
+    return render(request, "ProyectoWebAC/home.html", {"Dolars": Dolar,"Euros": Euro,"Arqueos": Arqueo, "Notas": Nota,})
 
 
 

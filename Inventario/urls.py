@@ -21,6 +21,9 @@ urlpatterns = [
     #Mostrar formulario de modificación de registro
     path('Inventario/editar/<int:pk>', InventarioActualizar.as_view(template_name = "Inventario/actualizar.html"), name='Actualizar'), 
 
-    path('Inventario/buscar/', views.buscar)
+    path('Inventario/buscar_codigo/', views.buscar_codigo),
+
+    path('Inventario/buscar_fecha/', views.buscar_fecha),
+
     
 ]

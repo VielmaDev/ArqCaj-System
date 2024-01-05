@@ -18,24 +18,28 @@ from django import forms
 
 #Importación de las BD
 from .models import arqueo
-from ProyectoWebAC.models import caja, tasa
-from Ingresos.models import ventas
+from ProyectoWebAC.models import caja, tasaDolar, tasaEuro
 
 # Create your views here.
-# ------------------Ingresos de ventas----------------------------
 
-#Para obtener todos los registros de la tabla arqueo
+# ------------------Cierre contable----------------------------
+
+#Lista (indice) de los registros del cierre
 class ListaArqueo(ListView): 
     model =arqueo
- 
-#Para obtener todos los campos de un registro de la tabla arqueo
-class DetalleArqueo(DetailView): 
-    model = arqueo
 
-#Para registrar los ingresos 
+#Buscar registros del cierre
+class BuscarArqueo(ListView): 
+    model =arqueo
+ 
+#Detalles del registro del cierre
+class DetalleArqueo(DetailView): 
+    model =arqueo
+
+#Nuevo registro de cierre  
 class NuevoArqueo(SuccessMessageMixin, CreateView): 
-    model = arqueo
-    form = arqueo
+    model =arqueo
+    form =arqueo
     fields = "__all__" 
     # Mensaje que se mostrará cuando se inserte el registro
     success_message = 'Ingreso de venta registrado correctamente.'
@@ -44,7 +48,7 @@ class NuevoArqueo(SuccessMessageMixin, CreateView):
     def get_success_url(self):        
         return reverse('Cierres')
     
-#Para modificar datos en la tabla arqueo
+#Modificar datos del cierre 
 class ActualizarArqueo(SuccessMessageMixin, UpdateView): 
     model =arqueo
     form = arqueo
@@ -56,45 +60,53 @@ class ActualizarArqueo(SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         return reverse('Cierres')
     
-#----------------------------------------------------------
 
-def buscar(request):
+#------------------Busqueda--------------------------
+
+#Busqueda por fecha       
+def buscar_fecha(request):
+
+    if request.GET["registro"]:
+
+        Fecha= request.GET["registro"]
+
+        if Fecha==None:
+            mensaje="Fecha no esta asociado a ningun registro"
+        
+        else:
+            Arqueos= arqueo.objects.filter(created__icontains= Fecha)
+            return render(request, "Arqueo/index.html", {"Arqueos": Arqueos})
+    else:
+        mensaje="No se encontraron registros asociados"
+    return render(request, "Arqueo/buscar.html")
+
+#Busqueda por código      
+def buscar_codigo(request):
 
     if request.GET["registro"]:
 
         Codigo= request.GET["registro"]
 
-        if len(Codigo)>5:
-
-            mensaje="Código de ingreso no existe"
-        
+        if Codigo==None:
+            mensaje="Código no esta asociado a ningun registro"
         else:
-
             Arqueos= arqueo.objects.filter(id__icontains= Codigo)
-
-            return render(request, "Arqueo/detalles.html", {"Arqueos": Arqueos})
-        
+            return render(request, "Arqueo/index.html", {"Arqueos": Arqueos})
     else:
-
-        mensaje="No has introducido nada"
-
-    return HttpResponse(mensaje) 
+        mensaje="No se encontraron registros asociados"
+    return render(request, "Arqueo/buscar.html")
 
 
+#------Datos precargados en sistema--------
 
-class ListaCaja(ListView):
-    model=caja
-    
-def cajas(request):
+def nuevo(request):
     Caja= caja.objects.all()
-    return render(request, "ArqueoCaja/nuevo.html", {"Cajas": Caja})
+    Dolar=tasaDolar.objects.all()
+    Euro=tasaEuro.objects.all()
+    
+    return render(request, "ArqueoCaja/nuevo.html", {"Cajas":Caja,"Dolas":Dolar,"Euro":Euro,})
 
-def divisa(request):
-    Divisa= tasa.objects.all()
-    return render(request, "ArqueoCaja/nuevo.html", {"Divisas": Divisa})
 
-def venta(request):
-    Ingreso= ventas.objects.all()
-    return render(request, "Ingresos/nuevo.html", {"Ingresos": Ingreso })
+
 
 

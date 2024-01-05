@@ -11,7 +11,7 @@
 <title>Inventario nuevo</title>
 <section>
   <header>
-    <div class="container-lg mt-2">
+    <div class="container-lg mt-3">
       <table class="table my-2">
         <tr id="subtitulo">
           <th scope="col">
@@ -26,42 +26,56 @@
 
         <table class="table my-3 table-bordered border-info">
           <thead>
-            <tr id="tabla-formulario">
+            <tr id="tabla-identificador">
               <div class="form-group">
                 <th>
                   <!--Falta crear en la BD el campo veta_id-->
-                  <label class="txt_negrita">Codígo venta N°:</label>&nbsp;
+                  <label class="txt_negrita">Ingrese código venta:</label>&nbsp;
                 </th>
                 <th>
-                  <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
+                  <label for="created" class="txt_negrita">Código venta N°:</label>&nbsp;
                 </th>
+                
                 <th>
                   <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
+                </th>
+
+                <th>
+                  <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
                 </th>
               </div>
             </tr>
 
             <tr>
               <div class="form-group">
-                <th>
+                <th style="width: 350px;">
                   <!--Falta crear en la BD el campo venta_id-->
                   <form action="buscar" method="get" autocomplete="off">
                     {% csrf_token %}
-                    <input type="text" name="registro" placeholder="Ingrese código" autofocus required>
+                    <input type="text" name="registro" placeholder="Ingrese código" autofocus required>&nbsp;
                     <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Ingresar</button>
                   </form>
                 </th>
               </div>
 
               <div class="form-group">
-                <th>
-                  <label>{{form.created|add_class:"form-control"}}</label>
+                <th style="width: 200px;">
+                  <!--<label>{{form.tienda_id|add_class:"form-control"}}</label>-->
+                  <input id="tienda_id" type="text" style="width: 100px; height: 30px;" disabled>
+                </th>
+              </div>
+
+              <div class="form-group">
+                <th style="width: 250px;">
+                  <!--<label>{{form.tienda_id|add_class:"form-control"}}</label>-->
+                  <input id="tienda_id" type="text" style="width: 450px;" disabled>
                 </th>
               </div>
 
               <div class="form-group">
                 <th>
-                  <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                  <!--<label>{{form.created|add_class:"form-control"}}</label>-->
+                  <input id="created_id" type="text" style="width: 200px;" disabled>
                 </th>
               </div>
               
@@ -80,7 +94,7 @@
         </table>
 
         <table class="table my-2 table-bordered border-info">
-          <tr id="tabla-formulario">
+          <tr id="tabla-identificador">
             <div class="form-group">
               <th>
                 <label for="calzados" class="txt_negrita">Pares de calzados:</label>
@@ -97,27 +111,31 @@
           <tr>
             <div class="form-group">
               <th>
-                <label>{{form.calzados|add_class:"form-control" }}</label>
+                <!--<label>{{form.calzados|add_class:"form-control" }}</label>-->
+                <input id="calzados" type="text" style="width: 200px;">
               </th>
             </div>
             <div class="form-group">
               <th>
-                <label>{{form.ropa|add_class:"form-control" }}</label>
+                <!--<label>{{form.ropa|add_class:"form-control" }}</label>-->
+                <input id="ropa" type="text" style="width: 200px;">
               </th>
             </div>
             <div class="form-group">
               <th>
-                <label>{{form.accesorios|add_class:"form-control" }}</label>
+                <!--<label>{{form.accesorios|add_class:"form-control" }}</label>-->
+                <input id="accesorios" type="text" style="width: 200px;">
               </th>
             </div>  
         </table>
         
         <table class="table my-2 table-bordered border-info">
-          <tr  id="tabla-formulario">
+          <tr  id="tabla-identificador">
             <div class="form-group">
               <th style="text-align: right;">
                 <label for="piezas" class="txt_negrita">Total piezas vendidas:</label>&nbsp;
-                <label>{{form.piezas|add_class:"form-control" }}</label>
+                <!--<label>{{form.piezas|add_class:"form-control" }}</label>-->
+                <input id="piezas" type="text" style="width: 200px;">
               </th>
             </div>
            </tr>

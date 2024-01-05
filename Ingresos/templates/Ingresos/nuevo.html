@@ -11,7 +11,7 @@
 <title>Ingreos de ventas</title>
 <section>
     <header>
-        <div class="container-lg mt-2">
+        <div class="container-lg mt-3">
             <table class="table mt-2">
               <thead>
                 <tr id="subtitulo">
@@ -28,7 +28,7 @@
               <table class="table table-bordered border-info" my-3>
                 <thead>
                   <div class="form-group">
-                    <tr id="tabla-formulario">
+                    <tr id="tabla-identificador">
                       <th>
                         <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
                       </th>
@@ -44,20 +44,28 @@
                     </tr>
 
                     <tr>
-                      <th>
-                        <label>{{form.tienda_id|add_class:"form-control"}}</label>
+                      <th style="width: 250px;">
+                        <!--
+                        <label style="width: 150px;">{{form.tienda_id|add_class:"form-control"}}</label>-->
+                        <input id="tienda_id" type="text" style="width: 450px;">
                       </th>
 
-                      <th>
-                        <label>{{form.caja_id|add_class:"form-control"}}</label>
+                      <th style="width: 80px;">
+                        <!--
+                        <label>{{form.caja_id|add_class:"form-control"}}</label>-->
+                        <input id="caja_id" type="text" style="width: 100px;">
                       </th>
 
-                      <th>
-                        <label>{{form.tasa_id|add_class:"form-control"}}</label>
+                      <th style="width: 80px;">
+                        <!--
+                        <label>{{form.tasa_id|add_class:"form-control"}}</label>-->
+                        <input id="tasa_id" type="text" style="width: 100px;">
                       </th>
 
-                      <th>
-                        <label>{{form.created|add_class:"form-control"}}</label>
+                      <th style="width: 100px;">
+                        <!--
+                        <label>{{form.created|add_class:"form-control"}}</label>-->
+                        <input id="created_id" type="text" style="width: 200px;">
                       </th>
                     </tr>
                   </div>
@@ -73,16 +81,16 @@
                 </thead>
               </table>
     
-              <table class="table table-bordered border-info my-3" id="tabla-formulario">
+              <table class="table table-bordered border-info my-3" id="tabla-identificador">
                   <thead>
-                    <tr style="width: 600px;">
+                    <tr style="width: 500px;">
                       <th><label class="txt_negrita">Moneda</label></th>
                       <th><label class="txt_negrita">Efectivo</label></th>
                       <th><label class="txt_negrita">T. Crédito</label></th>
                       <th><label class="txt_negrita">T. Débito</label></th>
                       <th><label class="txt_negrita">Pago Movil</label></th>
                       <th><label class="txt_negrita">N.Crédito</label></th> 
-                      <th><label class="txt_negrita">Subtotal</label></th> 
+                      <th><label class="txt_negrita">Total moneda</label></th> 
                     </tr>
                   </thead>
 
@@ -90,39 +98,45 @@
                     <!-- Ingresamos los valores de los ingresos en bolívares -->
                    <tr style="width: 500px;">
                       <td><span>Bolívares:</span></td>
-                      <td>
+                      <td style="width: 60px;">
                         <div class="form-group">
-                          <label for="ef_bs">{{form.ef_bs|add_class:"form-control"}}</label>
+                          <!--<label for="ef_bs">{{form.ef_bs|add_class:"form-control"}}</label>-->
+                          <input id="ef_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="td_bs">{{form.td_bs|add_class:"form-control"}}</label>
+                          <!--<label for="td_bs">{{form.td_bs|add_class:"form-control"}}</label>-->
+                          <input id="td_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="tc_bs">{{form.tc_bs|add_class:"form-control"}}</label>
+                          <!--<label for="tc_bs">{{form.tc_bs|add_class:"form-control"}}</label>-->
+                          <input id="tc_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="pm_bs">{{form.pm_bs|add_class:"form-control"}}</label>
+                          <!--<label for="pm_bs">{{form.pm_bs|add_class:"form-control"}}</label>-->
+                          <input id="pm_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="nc_bs">{{form.nc_bs|add_class:"form-control"}}</label>
+                          <!--<label for="nc_bs">{{form.nc_bs|add_class:"form-control"}}</label>-->
+                          <input id="nc_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="ti_bs">{{form.ti_bs|add_class:"form-control"}}</label>
+                          <!--<label for="ti_bs">{{form.ti_bs|add_class:"form-control"}}</label>-->
+                          <input id="ti_bs" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
                     </tr>
@@ -135,62 +149,66 @@
 
                       <td>
                         <div class="form-group">
-                          <label for="ef_usd">{{form.ef_usd|add_class:"form-control"}}</label>
+                          <!--<label for="ef_usd">{{form.ef_usd|add_class:"form-control"}}</label>-->
+                          <input id="ef_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="td_usd">{{form.td_usd|add_class:"form-control"}}</label>
+                          <!--<label for="td_usd">{{form.td_usd|add_class:"form-control"}}</label>-->
+                          <input id="td_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="tc_usd">{{form.tc_usd|add_class:"form-control"}}</label>
+                          <!--<label for="tc_usd">{{form.tc_usd|add_class:"form-control"}}</label>-->
+                          <input id="tc_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="pm_usd">{{form.pm_usd|add_class:"form-control"}}</label>
+                          <!--<label for="pm_usd">{{form.pm_usd|add_class:"form-control"}}</label>-->
+                          <input id="pm_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="nc_usd">{{form.nc_usd|add_class:"form-control"}}</label>
+                          <!--label for="nc_usd">{{form.nc_usd|add_class:"form-control"}}</label>-->
+                          <input id="nc_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
 
                       <td>
                         <div class="form-group">
-                          <label for="ti_usd">{{form.ti_usd|add_class:"form-control"}}</label>
+                          <!--<label for="ti_usd">{{form.ti_usd|add_class:"form-control"}}</label>-->
+                          <input id="ti_usd" type="text" style="width: 180px; height: 30px;">
                         </div>
                       </td>
                     </tr>
                   </tbody>
               </table>
 
-              <div class="container-lg my-3" id="tabla-formulario">
-                <table class="table table-bordered border-info">
+              <div class="container-lg my-3">
+                <table class="table table-bordered border-info" id="tabla-identificador">
                   <tbody>
                     <tr>
                       <div class="form-group">
-                        <th>
+                        <th style="width: 400px;">
                           <label for="conversion_usd" class="txt_negrita">Total conversión Dólares (Bs):</label>
-                        </th>
-                        <th>
-                          <label>{{form.conversion_usd|add_class:"form-control"}}</label>
+                          <!--<label>{{form.conversion_usd|add_class:"form-control"}}</label>-->
+                          <input id="conversion_usd" type="text" style="width: 220px; height: 30px;">
                         </th>
                       </div>
 
                       <div class="form-group">
-                        <th>
-                          <label for="cif" class="txt_negrita">Total ventas del día (Bs):</label>
-                        </th>
-                        <th>
-                          <label>{{form.tif|add_class:"form-control"}}</label>
+                        <th style="width: 400px;">
+                          <label for="tif" class="txt_negrita">Total ventas (Bs):</label>
+                          <!--<label>{{form.tif|add_class:"form-control"}}</label>-->
+                          <input id="ef_tif" type="text" style="width: 220px; height: 30px;">
                         </th>
                       </div>
                     </tr>
@@ -199,15 +217,14 @@
               </div>
 
               <div class="container-lg my-3">
-                <table class="table table-bordered border-info" id="tabla-formulario">
+                <table class="table table-bordered border-info" id="tabla-identificador">
                   <tbody>
                     <tr>
                       <div class="form-group">
                         <th id="tabla-formulario">
-                          <label for="conversion_usd" class="txt_negrita">Notas de referncias bancarias:</label>
-                        </th>
-                        <th>
-                          <label>{{form.nota|add_class:"form-control"}}</label>
+                          <label for="nota" class="txt_negrita">Referncias bancarias:</label>
+                          <!--<label>{{form.nota|add_class:"form-control"}}</label>-->
+                         <textarea id="nota" rows="2" cols="100"></textarea>
                         </th>
                       </div>
                     </tr>

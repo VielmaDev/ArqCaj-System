@@ -13,30 +13,63 @@
           <table class="table mt-3">
             <thead>
               <tr id="subtitulo">
-                  <th scope="col"><span>CONTROL DE INGRESOS Y VENTAS</span></th>
+                  <th scope="col">
+                   <label>CONTROL DE INGRESOS Y VENTAS</label>
+                  </th>
               </tr>
             </thead>
           </table>
       </div>
 
-      <form action="buscar" method="get" autocomplete="off">
-        {% csrf_token %}
-        <div class="container-lg mt-3">
-          <table class="table my-3">
-            <thead>
-              <tr>
-                <th style="text-align: left;">
-
-                  <label>Código Venta N°:</label>
-                  <input type="text" name="registro" placeholder="Ingrese código" autofocus>
-                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
-
+      <div class="container-lg mt-3">
+        <table class="table">
+          <thead>
+            <tr id="subtitulo">
+                <th>
+                  <label>BUSQUEDA POR:</label>
                 </th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </form>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      
+      <div class="container-lg mt-3">
+        <table class="table my-3">
+          <thead>
+            <tr>
+              <form action="buscar_codigo" method="get" autocomplete="off">
+                {% csrf_token %}
+                <th style="text-align: center;">
+                  <label>Código N°:</label>&nbsp;
+                  <input type="text" name="registro" placeholder="Ingrese código" autofocus style="width: 165px;">&nbsp;
+                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
+                </th>
+              </form>
+
+              <form action="buscar_fecha" method="get" autocomplete="off">
+                {% csrf_token %}
+                <th style="text-align: center;">
+                  <label>Fecha:</label>&nbsp;
+                  <input type="date" name="registro" placeholder="Ingrese fecha" autofocus style="width: 165px;">&nbsp;
+                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
+                </th>
+              </form>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="container-lg mt-3">
+        <table class="table mt-3">
+          <thead>
+            <tr id="subtitulo">
+                <th scope="col">
+                 <label>LISTADO INDICE:</label>
+                </th>
+            </tr>
+          </thead>
+        </table>
+    </div>
 
       <div class="container-lg mt-3">
         <table class="table table-bordered border-info my-3">
@@ -65,7 +98,7 @@
         </table>
 
         <div align="left" class="btn_crear mb-2">
-          <a href="nuevo" type="button" class="btn btn-success">Registrar Venta</a>
+          <a href="nuevo" type="button" class="btn btn-success">INGRESOS / VENTAS</a>
         </div>    
       </div>
     </header>

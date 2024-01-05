@@ -3,72 +3,66 @@
 
 {% load static %}
 
+{% load widget_tweaks %} <!--Biblioteca django formulario-->
+
 {% block content %} 
 
 <!--Head-->
 <title>Cierre de caja</title>
 <section>
     <header>
-      <div class="container-lg mt-3">
-        <table class="table mt-3">
-          <thead>
-            <tr id="subtitulo">
-              <th scope="col"><span>CONTROL DE ARQUEO DE CAJA</span></th>
-            </tr>
-          </thead>
-        </table>
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Cierres' %}">Arqueo de caja (+)</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Busqueda (#)</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Resultados:</a>
+          </li>
+        </ul>
       </div>
 
-      <form action="buscar" method="get" autocomplete="off">
-        {% csrf_token %}
-        <div class="container-lg mt-3">
-          <table class="table my-3">
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Indice:</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container-lg">
+          <table class="table table-responsive my-3">
             <thead>
-              <tr>
-                <th style="text-align: left;">
+              <tr id="identificador">
+                <th width="20%">Fecha de cierre</th>
+                <th width="15%">N° Arqueo</th>
+                <th width="15%">N° Caja</th>
+                <th width="20%">Total cierre contable ($)</th>
+                <th width="20%">Opciones</th>
 
-                  <label>Código Arqueo N°:</label>
-                  <input type="text" name="registro" placeholder="Ingrese código" autofocus>
-                  <button type="submit" class="btn btn-info" style="padding-left: 20px;">Buscar</button>
-
-                </th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </form>
-
-
-      <div class="container-lg mt-2">
-          <table class="table table-bordered border-info my-3">
-            <thead>
-              <tr id="tabla-identificador">
-                <th>Código arqueo N°:</th>
-                <th>Fecha:</th>
-                <th>Caja N°:</th>
-                <th>Total arqueo Bs:</th>
-                <th>Procesado:</th>
               </tr>
             </thead>
             
-            <tbody>
-            <!-- Recorremos los registros de la tabla 'arqueo' y los mostramos -->
-            {% for arqueo in object_list %}  
-                <tr>
-                  <td>{{arqueo.id}}</td>
-                  <td>{{arqueo.created}}</td>
-                  <td>{{arqueo.caja_id}}</td>
-                  <td>{{arqueo.vd}}</td>
-                  <td>{{arqueo.procesado}}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-        </table>
-
-        <div align="left" class="btn_crear mb-2">
-          <a href="nuevo" type="button" class="btn btn-success">Nuevo Arqueo</a>
-        </div>   
+            <!-- Recorremos los registros de la tabla arqueo -->
+            {% for Arqueo in Arqueos %}   
+            <tr>
+              <td>{{Arqueo.created}}</td>
+              <td>{{Arqueo.id}}</td>
+              <td>{{Arqueo.caja}}</td>
+              <td>{{Arqueo.cierre}}</td>
+              <td>
+                <a href="detalle/{{Arqueo.id}}" title="Detalle" type="button" class="btn btn-outline-info">Ver </a>
+                <a href="#" title="Editar" type="button" class="btn btn-primary">Editar </a>
+              </td>
+            </tr>
+        {% endfor %}
+          </table>
       </div>
     </header>
 </section>
-  {% endblock %}
+{% endblock %}

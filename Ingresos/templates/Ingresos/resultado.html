@@ -11,7 +11,7 @@
 <title>Resultados de busqueda</title>
 <section>
     <header>
-      <div class="container-lg mt-2">
+      <div class="container-lg mt-3">
         <table class="table mt-2">
           <thead>
             <tr id="subtitulo">
@@ -43,19 +43,19 @@
   
             {% for Venta in Ventas %}
               <tr>
-                <th>
+                <th style="width: 180px;">
                   <label>{{Venta.id}}</label>
                 </th>
                 <th>
                   <label>{{Venta.tienda_id}}</label>
                 </th>
-                <th>
+                <th style="width: 180px;">
                   <label>{{Venta.caja_id}}</label>
                 </th>
-                <th>
+                <th style="width: 180px;">
                   <label>{{Venta.tasa_id}}</label>
                 </th>
-                <th>
+                <th style="width: 200px;">
                   <label>{{Venta.created}}</label>
                 </th> 
               </tr>
@@ -177,12 +177,14 @@
             <table class="table table-bordered border-info">
               <tbody>
                 {% for Venta in Ventas %}
-                <tr>
-                  <th id="tabla-identificador">
-                    <label class="txt_negrita">Conversión Dólares (Bs)</label>
+                <tr id="tabla-identificador">
+                  <th>
+                    <label class="txt_negrita">Conversión Dólares (Bs):</label>&nbsp;
+                    <label>{{Venta.conversion_usd}}</label>
                   </th>
                   <th>
-                    <label>{{Venta.conversion_usd}}</label>
+                    <label class="txt_negrita">Total venta del día (Bs):</label>&nbsp;
+                    <label>{{Venta.tif}}</label>
                   </th>
                 </tr>
                 {% endfor %}
@@ -195,27 +197,10 @@
               <tbody>
                 {% for Venta in Ventas %}
                 <tr>
-                  <th id="tabla-identificador">
-                    <label class="txt_negrita">Total venta del día (Bs)</label>
-                  </th>
                   <th>
-                    <label>{{Venta.tif}}</label>
+                    <label class="txt_negrita" >Referencias bancarias:</label>
                   </th>
-                 </tr>
-                 {% endfor %}
-              </tbody>
-            </table>
-          </div>
-
-          <div class="container-lg my-2">
-            <table class="table table-bordered border-info">
-              <tbody>
-                {% for Venta in Ventas %}
-                <tr>
-                  <th id="tabla-identificador">
-                    <label class="txt_negrita">Notas de referncias bancarias</label>
-                  </th>
-                  <th>
+                  <th style="width: 1000px;">
                     <label>{{Venta.nota}}</label>
                   </th>
                 </tr>

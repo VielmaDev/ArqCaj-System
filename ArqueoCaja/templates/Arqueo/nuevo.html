@@ -10,204 +10,202 @@
 <!--Head-->
 <title>Arqueo de caja</title>
 <section>
-    <header>
-      <div class="container-lg my-2">
-        <table class="table mt-2">
-          <thead>
-            <tr id="subtitulo">
-              <th scope="col">
-                <label>NUEVO REGISTRO DE ARQUEO DE CAJA</label>  
-              </th>
-             </tr>
-          </thead>
-        </table>
+  <header>
+    <div class="container">
+      <ul class="nav nav-tabs my-3">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Arqueo de caja (+)</a>
+        </li>
 
-        <form method="post" enctype="multipart/form-data" autocomplete="off">
+        <li class="nav-item">
+          <a class="nav-link" href="buscar">Busqueda (#)</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container-lg">
+     <form method="post" enctype="multipart/form-data" autocomplete="off">
         <!-- Token de seguridad para poder crear un nuevo registro -->
         {% csrf_token %}
 
-        <table class="table my-2 table-bordered border-info">
-            <thead>
-              <tr id="tabla-formulario">
-                <th>
-                  <div class="form-group">
-                    <!--Falta cread en la BD el campo venta_id-->
-                    <label>Código venta N°:</label>
-                  </div>
-                </th>
+        <div class="form-group row my-3" style="text-align: end;">
+          <label for="created" class="col-sm-10 col-form-label" id="etiqueta" >Fecha:</label>
+          <div class="col-sm-2">
+              <input type="date" class="form-control" id="created" value="created" style="width: 150px"; required>
+          </div>
+        </div>
+      
+        <div class="container-lg" id="identificador">
+          <label>Caja y Tasas</label>
+        </div>
 
-                <th>
-                  <div class="form-group">
-                    <label for="caja_id" class="txt_negrita">Caja n°:</label>&nbsp;
-                  </div>
-                </th>
+        <div class="form-group row my-3" style="text-align: end;">
+          <label for="codigo_caja" class="col-sm-2 col-form-label" id="etiqueta" >Caja:</label>
+          <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.codigo_caja}}" required>
+          </div>
 
-                <th>
-                  <div class="form-group">
-                    <label for="created" class="txt_negrita">Fecha:</label>&nbsp;
-                  </div>
-                </th>
+          <label for="tasa_usd" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+          <div class="col-sm-2">
+              <input type="text" class="form-control" id="form.tasa_usd" readonly>
+          </div>
 
-                <th>
-                  <div class="form-group">
-                    <label for="tienda_id" class="txt_negrita">Tienda:</label>&nbsp;
-                  </div>
-                </th>
+          <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
+          <div class="col-sm-2">
+              <input type="text" class="form-control" id="form.tasa_eur" readonly>
+          </div>
+        </div>
+  
 
-                <th>
-                  <div class="form-group">
-                    <label for="cif" class="txt_negrita">Total ventas (Bs):</label>&nbsp;
-                  </div>
-                </th>
-              </tr>
-
-              <tr>
-                <th>
-                  <div class="form-group">
-                    <!--Falta cread en la BD el campo venta_id-->
-                    <form action="buscar" method="get" autocomplete="off">
-                      {% csrf_token %}
-                      <input type="text" name="registro" placeholder="Ingrese código" autofocus required>
-                      <button type="submit" class="btn btn-warning" style="padding-left: 20px;">Ingresar</button>
-                    </form>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.caja_id|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.created|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.tienda_id|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.cif|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-          </table>
-    
-          <table class="table my-2 table-bordered border-info">
-            <body>
-              <tr id="tabla-formulario">
-                <th>
-                  <div class="form-group">
-                    <label for="cii" class="txt_negrita">Fondo inicial de caja:</label>&nbsp;
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label for="sg" class="txt_negrita">Gastos:</label>&nbsp;
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label for="dt" class="txt_negrita">Descuentos / Devoluciones:</label>&nbsp;
-                  </div>
-                </th>
-              </tr>
-
-              <tr>
-                <th>
-                  <div class="form-group">
-                    <label>{{form.cii|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.cii|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label>{{form.cii|add_class:"form-control"}}</label>
-                  </div>
-                </th>
-              </tr>
-            </body>
-          </table>
-
-          <table class="table my-2 table-bordered border-info">
-            <body>
-              <tr id="tabla-formulario">
-                <th>
-                  <div class="form-group">
-                    <label for="vd" class="txt_negrita">Total cierre contable:</label>&nbsp;
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label for="ft" class="txt_negrita">Faltante en caja:</label>&nbsp;
-                  </div>
-                </th>
-
-                <th>
-                  <div class="form-group">
-                    <label for="st" class="txt_negrita">Sobrante en caja:</label>&nbsp;
-                  </div>
-                </th>
-              </tr>
-
-
-                </th>
-                <div class="form-group">
-                  <th>
-                    <label>{{form.vd|add_class:"form-control"}}</label>
-                  </th>
-                </div>
-
-                <div class="form-group">
-                  <th>
-                    <label>{{form.ft|add_class:"form-control"}}</label>
-                  </th>
-                </div>
-
-                <div class="form-group">
-                  <th>
-                    <label>{{form.st|add_class:"form-control"}}</label>
-                  </th>
-                </div>
-              </tr>
-            </body>
-          </table>
-
-          <table class="table my-2 table-bordered border-info">
-            <body>
-              <tr id="tabla-formulario">
-                <div class="form-group">
-                  <th style="text-align: left;">
-                    <label for="nota" class="txt_negrita">Observaciones:</label>&nbsp;
-                    <label>{{form.nota|add_class:"form-control"}}</label>
-                  </th>
-                </div>
-              </tr>
-            </body>
-          </table>
-
-          <div align="left" class="btn_crear my-3">
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <a href="{% url 'Cierres' %}" type="submit" class="btn btn-danger">Cancelar</a>
-          </div> 
-        </form>
+      <div class="container-lg" id="identificador">
+        <label>EFECTIVO Y TRANSACCIONES</label>
       </div>
-    </header>
+
+      <!--Formas de pagos-->
+
+      <table  class="table table-bordered table-hover my-3">
+        <thead>
+          <tr class="bg-secondary">
+            <th width="14%"><label class="txt_negrita">Monedas</label></th>
+            <th width="15%"><label class="txt_negrita">Efectivo</label></th>
+            <th width="15%"><label class="txt_negrita">Débito</label></th>
+            <th width="15%"><label class="txt_negrita">Crédito</label></th>
+            <th width="15%"><label class="txt_negrita">Transferencia</label></th>
+            <th width="15%"><label class="txt_negrita">Pago móvil</label></th>
+            <th width="15%"><label class="txt_negrita">Total</label></th>
+          </tr>
+        </thead>
+
+          <!-- Ingresos en Bolívares -->
+          <tr>
+            <th class="bg-secondary"><label>Bolívares (Bs):</label></th>
+            <td width="15%"><input type="text" class="form-control" id="form.ef_bs" required></td>
+            <td width="15%"><input type="text" class="form-control" id="form.td_bs" required></td>
+            <td width="15%"><input type="text" class="form-control" id="form.tc_bs" required></td>
+            <td width="15%"><input type="text" class="form-control" id="form.tr_bs" required></td>
+            <td width="15%"><input type="text" class="form-control" id="form.pm_bs" required></td>
+            <td class="bg-secondary" width="15%"><input type="text" class="form-control" id="form.ti_bs" readonly></td>
+          </tr>
+
+          <!-- Ingresos en Dólares -->
+          <tr>
+            <th class="bg-secondary"><label>Dólares ($):</label></th>
+            <td width="15%"><input type="text" class="form-control" id="form.ef_usd" required></td>
+            <td  width="15%"><input type="text" class="form-control" id="form.td_usd" required></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><input type="text" class="form-control" id="form.ti_usd" readonly></td>
+           </tr>
+
+          <!-- Ingresos en Euros -->
+          <tr>
+            <th class="bg-secondary"><label>Euros (E):</label></th>
+            <td width="15%"> <input type="text" class="form-control" id="form.ef_eur" required></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"> <input type="text" class="form-control" id="form.ti_eur" readonly></td>
+          </tr>
+
+          <!-- Ingresos en Zelle -->
+          <tr>
+            <th class="bg-secondary"><label>Zelle ($):</label></th>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td width="15%">  <input type="text" class="form-control" id="form.tr_zll" required></td>
+            <td class="bg-secondary" width="15%"><label></label></td>
+            <td class="bg-secondary" width="15%">  <input type="text" class="form-control" id="form.ti_zll" readonly></td>
+          </tr>
+      </table>
+
+        <div class="container-lg" id="identificador">
+          <label>Ventas Neta</label>
+        </div>
+
+        <div class="form-group row my-3" style="text-align: end;">
+          <label for="ti" class="col-sm-4 col-form-label" id="etiqueta">Total venta neta ($):</label>
+          <div class="col-sm-1">
+              <input type="text" class="form-control" id="form.ti" readonly>
+          </div>
+        
+          <label for="ti" class="col-sm-3 col-form-label" id="etiqueta" >Total venta neta (Bs):</label>
+          <div class="col-sm-1">
+            <input type="text" class="form-control" id="form.ti" readonly>
+          </div>
+        </div>
+
+        <div class="container-lg" id="identificador">
+          <label>Gestión Administrativa</label>
+        </div>
+
+        <div class="container-lg">
+          <div class="form-group row my-3" style="text-align:end;"> 
+            <label for="ti" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="form.ti" required>
+            </div>
+
+            <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="form.sg" required>
+            </div>
+
+            <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="form.dv" required>
+            </div>
+          </div>
+
+          <div class="form-group row my-3" style="text-align:end;">
+            <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos:</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="form.dt" required>
+            </div>
+            <label for="nota" class="col-sm-2 col-form-label" id="etiqueta">Nota:</label>
+            <div class="col-sm-2">
+                <input type="text" style="width: 330%;" class="form-control" id="form.nota">
+            </div>
+          </div>
+        </div>
+
+        <div class="container-lg" id="identificador">
+          <label>Resultados del cierre</label>
+        </div>
+
+        <div class="form-group row my-3" style="text-align: end;">
+          <label for="ft" class="col-sm-2 col-form-label" id="etiqueta">Faltante:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="form.ft" readonly>
+          </div>
+
+          <label for="st" class="col-sm-2 col-form-label" id="etiqueta">Sobrante:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="form.st" readonly>
+          </div>
+
+          <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre contable:</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="form.cierre" readonly>
+          </div>
+        </div>
+
+        <div class="container-lg" id="identificador">
+          <label>Opciones</label>
+        </div>
+
+        <div class="form-group row my-3" style="text-align: end;">
+          <div class="col">
+            <button type="submit" class="btn btn-outline-info">Guardar</button>
+            <a href="{% url 'Home' %}" type="submit" class="btn btn-outline-warning">Cancelar</a>
+          </div>
+        </div>
+
+      </div>
+     </form>    
+    </div>
+  </header>
 </section>
 {% endblock %}

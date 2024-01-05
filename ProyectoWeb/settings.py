@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #Paquetes instalados para los formularios
     'crispy_forms',
+    'crispy_bootstrap4',
     'widget_tweaks',
 
     #Aplicaciones

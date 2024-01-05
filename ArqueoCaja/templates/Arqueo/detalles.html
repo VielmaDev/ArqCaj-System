@@ -11,169 +11,195 @@
 <title>Arqueo de caja</title>
 <section>
     <header>
-      <div class="container-lg my-3">
-        <table class="table mt-2">
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Cierres' %}">Arqueo de caja (+)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Busqueda (#)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Detalles:</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container btn_crear my-1" align="end" >
+        <a href="{% url 'Buscar' %}" type="submit" class="btn btn-outline-info">Volver</a>
+        <a href="#" type="submit" class="btn btn-outline-warning">Imprimir</a>
+      </div>
+
+      <div class="container-lg">
+        <form>  
+           <div class="form-group row my-2" style="text-align:end;">
+             <label for="created" class="col-sm-1 col-form-label" id="etiqueta" >Fecha:</label>
+             <div class="col-sm-1">
+                 <input type="text" class="form-control" value="{{object.created}}" style="width: 150px"; readonly>
+             </div>
+
+             <label for="codigo_arqueo" class="col-sm-2 col-form-label" id="etiqueta" >N° Arqueo:</label>
+             <div class="col-sm-4">
+                 <input type="text" class="form-control" value="{{object.id}}" readonly>
+             </div>
+           </div>
+         
+           <div class="container-lg" id="identificador">
+             <label>Caja y Tasas</label>
+           </div>
+   
+           <div class="form-group row my-3" style="text-align: end;">
+             <label for="codigo_caja" class="col-sm-2 col-form-label" id="etiqueta" >Caja:</label>
+             <div class="col-sm-2">
+                 <input type="text" class="form-control" value="{{object.id}}" readonly>
+             </div>
+   
+             <label for="tasa_usd" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+             <div class="col-sm-2">
+                 <input type="text" class="form-control" value="{{object.tasaDolar}}" readonly>
+             </div>
+   
+             <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
+             <div class="col-sm-2">
+                 <input type="text" class="form-control" value="{{object.tasaEuro}}" readonly>
+             </div>
+           </div>
+
+        <div class="container-lg" id="identificador">
+          <label id="subtitulo">Efectivo y transacciones:</label>
+        </div>
+
+        <!--Formas de pagos-->
+
+        <table  class="table my-3">
           <thead>
-            <tr id="subtitulo">
-              <th scope="col">
-                <label>DETALLE DE ARQUEO DE CAJA</label>  
-              </th>
-             </tr>
+            <tr class="bg-secondary">
+              <th width="15%"><label class="txt_negrita">Monedas</label></th>
+              <th width="15%"><label class="txt_negrita">Efectivo</label></th>
+              <th width="15%"><label class="txt_negrita">Débito</label></th>
+              <th width="15%"><label class="txt_negrita">Crédito</label></th>
+              <th width="15%"><label class="txt_negrita">Transferencia</label></th>
+              <th width="15%"><label class="txt_negrita">Pago móvil</label></th>
+              <th width="15%"><label class="txt_negrita">Total</label></th>
+            </tr>
           </thead>
+
+          <!-- Ingresos en Bolívares -->
+          <tr>
+            <th class="bg-secondary"><label>Bolívares (Bs):</label></th>              
+            <td width="15%"><label for="ef_bs">{{object.ef_bs}}</label></td>
+            <td width="15%"><label for="ef_usd">{{object.td_bs}}</label></td>
+            <td width="15%"><label for="ef_eur">{{object.tc_bs}}</label></td>
+            <td width="15%"><label for="ef_eur">{{object.tr_bs}}</label></td>
+            <td width="15%"><label for="ef_eur">{{object.pm_bs}}</label></td>
+            <td width="15%"><label for="ef_eur">{{object.ti_bs}}</label></td>
+          </tr>
+
+          <!-- Ingresos en Dólares -->
+          <tr>
+            <th class="bg-secondary"><label>Dólares ($):</label></th>
+            <td width="15%"><label for="td_bs">{{object.td_usd}}</label></td>
+            <td width="20%"><label for="td_usd">{{object.td_usd}}</label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label for="td_bs">{{object.ti_usd}}</label></td>
+          </tr>
+
+          <!-- Ingresos en Euros -->
+          <tr>
+            <th class="bg-secondary"><label>Euros (E):</label></th>
+            <td width="15%"><label for="ef_eur">{{object.ef_eur}}</label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label for="ti_eur">{{object.ti_eur}}</label></td>
+          </tr>
+
+          <!-- Ingresos en Zelle -->
+          <tr>
+            <th class="bg-secondary"><label>Zelle ($):</label></th>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label for="tr_zll"></label>{{object.tr_zll}}</td>
+            <td width="15%"><label></label></td>
+            <td width="15%"><label for="ti_zll">{{object.ti_zll}}</label></td>
+          </tr>
         </table>
 
-    
-            <table class="table my-2 table-bordered border-info">
-              <thead>
-                <tr id="tabla-identificador">
-                  <th>
-                    <label class="txt_negrita">Código arqueo N°:</label>&nbsp;
-                  </th>
+          <div class="container-lg" id="identificador">
+            <label>Ventas Neta</label>
+          </div>
 
-                  <th>
-                    <label class="txt_negrita">Tienda:</label>&nbsp;
-                  </th>
+          <div class="form-group row my-3" style="text-align: end;">
+            <label for="ti" class="col-sm-4 col-form-label" id="etiqueta">Total venta neta ($):</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" value="{{object.ti}}" readonly>
+            </div>
+          
+            <label for="ti" class="col-sm-3 col-form-label" id="etiqueta" >Total venta neta (Bs):</label>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" value="{{object.ti}}" readonly>
+            </div>
+          </div>
 
-                  <th>
-                    <label class="txt_negrita">Caja:</label>&nbsp;
-                  </th>
+          <div class="container-lg" id="identificador">
+            <label>Gestión Administrativa</label>
+          </div>
 
-                  <th>
-                    <label class="txt_negrita">Fecha:</label>&nbsp;
-                  </th>
-                </tr>
+          <div class="container-lg">
+            <div class="form-group row my-3" style="text-align:end;"> 
+              <label for="ti" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial:</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.cii}}" readonly>
+              </div>
+  
+              <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos:</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.sg}}" readonly>
+              </div>
+  
+              <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución:</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.dv}}" readonly>
+              </div>
+            </div>
+  
+            <div class="form-group row my-3" style="text-align:end;">
+              <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos:</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.dt}}" readonly>
+              </div>
+              <label for="nota" class="col-sm-2 col-form-label" id="etiqueta">Nota:</label>
+              <div class="col-sm-2">
+                  <input type="text" style="width: 330%;" class="form-control" value="{{object.nota}}" readonly>
+              </div>
+            </div>
+          </div>
 
-                <tr>
-                  {% for Arqueo in Arqueos %}
-                  <th>
-                    <label>{{Arqueo.id}}</label>
-                  </th>
+          <div class="container-lg" id="identificador">
+            <label id="subtitulo">Resultados del cierre</label>
+          </div>
 
-                  <th>
-                    <label>{{Arqueo.tienda_id}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.caja_id}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.created}}</label>
-                  </th>
-                  {% endfor %}
-                </tr>
-              </thead>
-            </table>
-
-            <table class="table my-1 table-bordered border-info">
-              <thead>
-                <tr id="tabla-identificador">
-                  <th>
-                    <label class="txt_negrita">Total ventas Bs:</label>&nbsp;
-                  </th>
-                    
-                  <th>
-                    <label class="txt_negrita">Fondo inicial de caja:</label>&nbsp;
-                  </th>
-                </tr>
-
-                <tr>
-                  {% for Arqueo in Arqueos %}
-                  <th>
-                    <label>{{Arqueo.cif}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.cii}}</label>
-                  </th>
-                  {% endfor %}
-                </tr>
-
-
-              </thead>
-            </table>
-
-            <table class="table my-2 table-bordered border-info">
-              <thead>
-                <tr id="tabla-identificador">
-                  <th>
-                    <label class="txt_negrita">Gastos:</label>&nbsp;
-                  </th>
-
-                  <th>
-                    <label class="txt_negrita">Descuentos / Devoluciones:</label>&nbsp;
-                  </th>
-
-                  <th>
-                    <label class="txt_negrita">Total cierre contable:</label>&nbsp;
-                  </th>
-                </tr>
-
-                <tr>
-                  {% for Arqueo in Arqueos %}
-                  <th>
-                    <label>{{Arqueo.sg}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.dt}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.vd}}</label>
-                  </th>
-                  {% endfor %}
-                </tr>
-              </thead>
-            </table>
-
-            <table class="table my-2 table-bordered border-info">
-              <thead>
-                <tr id="tabla-identificador">
-                  <th>
-                    <label class="txt_negrita">Faltante en caja:</label>&nbsp;
-                  </th>
-
-                  <th>
-                    <label class="txt_negrita">Sobrante en caja:</label>&nbsp;
-                  </th>
-                </tr>
-
-                <tr>
-                  {% for Arqueo in Arqueos %}
-                  <th>
-                    <label>{{Arqueo.ft}}</label>
-                  </th>
-
-                  <th>
-                    <label>{{Arqueo.st}}</label>
-                  </th>
-                  {% endfor %}
-                </tr>
-              </thead>
-            </table>
-
-            <table class="table my-1 table-bordered border-info">
-              <body>
-                <tr id="tabla-aviso">
-                   <div class="form-group">
-                    <th>
-                      {% for Arqueo in Arqueos %}
-                      <label class="txt_negrita">Observaciones:</label>&nbsp;
-                      <label>{{object.nota}}</label>
-                      {% endfor %}
-                    </th>
-                  </div>
-                </tr>
-              </body>
-            </table>
-
-            <div align="left" class="btn_crear my-3">
-              <a href="{% url 'Cierres' %}" type="submit" class="btn btn-primary">Volver</a>
-              <a href="editar/{{arqueo.id}}" title="Editar" type="button" class="btn btn-success">Editar </a>
-            </div> 
-          </form>
-        </div>
+          <div class="form-group row my-3" style="text-align: end;">
+            <label for="ft" class="col-sm-2 col-form-label" id="etiqueta">Faltante:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.ft}}" readonly>
+            </div>
+  
+            <label for="st" class="col-sm-2 col-form-label" id="etiqueta">Sobrante:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.st}}" readonly>
+            </div>
+  
+            <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre contable:</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.cierre}}" readonly>
+            </div>
+          </div>      
+      </div>
     </header>
 </section>
 {% endblock %}
