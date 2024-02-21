@@ -1,10 +1,11 @@
 
 from django.contrib import admin
-from.models import tienda, caja, tasaDolar,tasaEuro, comunicado
 
 # Register your models here.
+from.models import tienda, caja, tasaDivisa,comunicado
 
-#------------------Tienda------------------
+
+#---------------Administrador de Tiendas------------------
 
 class TiendaAdmin(admin.ModelAdmin):
 
@@ -12,7 +13,7 @@ class TiendaAdmin(admin.ModelAdmin):
 
 admin.site.register(tienda, TiendaAdmin)
 
-#------------------Caja------------------
+#------------------Administrador de Caja------------------
 
 class CajaAdmin(admin.ModelAdmin):
     
@@ -20,23 +21,15 @@ class CajaAdmin(admin.ModelAdmin):
 
 admin.site.register(caja, CajaAdmin)
 
-#-----------------Tasa Dolar----------------
+#------------------Administrador Tasa Divisa----------------
 
-class DolarAdmin(admin.ModelAdmin):
-
-    readonly_fields=('created', 'update')
-
-admin.site.register(tasaDolar, DolarAdmin)
-
-#------------------Tasa Euro------------------
-
-class EuroAdmin(admin.ModelAdmin):
+class DivisaAdmin(admin.ModelAdmin):
 
     readonly_fields=('created', 'update')
 
-admin.site.register(tasaEuro, EuroAdmin)
+admin.site.register(tasaDivisa, DivisaAdmin)
 
-#------------------Comunicado------------------
+#----------------Administrador de Comunicado------------------
 
 class ComunicadoAdmin(admin.ModelAdmin):
     

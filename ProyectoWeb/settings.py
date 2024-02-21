@@ -76,6 +76,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                #Muestra datos de las variables de la DB en todos los templates
+                'ProyectoWebAC.context_processors.tiendaView',
+                'ProyectoWebAC.context_processors.cajaView',
+                'ProyectoWebAC.context_processors.divisaView',
+                'ProyectoWebAC.context_processors.notaView',
+                'ArqueoCaja.context_processors.arqueoView',
             ],
         },
     },

@@ -31,26 +31,29 @@
         </div>
 
         <div class="col mt-5 text-expanded">
-          <table class="table table-bordered">
+          <table class="table table-bordered table-responsive border-info">
             <thead>
+               {% for t in tiendaset %}
                 <tr>
-                  <th width="40%"><label>Razón:&nbsp;{{tienda.razon}}</label></th>
-                  <th width="30%"><label>Rif: &nbsp;{{tienda.rif}}</label></th>
-                  <th width="30%"><label>Status:&nbsp; Activo</label></th>
+                  <td width="40%">{{t.razon}}</td>
+                  <td width="30%">Rif:&nbsp;{{t.rif}}</td>
+                  <td width="30%">Nif:&nbsp;{{t.nif}}</td>
                 </tr>
+
                 <tr>
-                  <th></th>
-                  <th><label>Nif:&nbsp;{{tienda.nif}}</label></th>
-                  <th><label>Localidad:&nbsp;{{tienda.direccion}}</label></th>
-                </tr> 
+                  <td></td>
+                  <td>&nbsp;{{t.direccion}}</td>
+                  <td>{{t.codigo_tienda}}</td>
+                </tr>
+               {% endfor %}
             </thead>
           </table>
         </div>
 
         <div class="text-white" style="text-align:right; margin-right:80px">
-          <span>Hola &nbsp;{{user.last_name}} &nbsp;
+          <label name="usuario">Hola &nbsp;{{user.first_name}} &nbsp;
             <a href="{% url 'Cerrar_sesion' %}">Logout</a>
-          </span>
+          </label>
         </div>
       </div>
     </div>
@@ -71,25 +74,18 @@
                   <li class="nav-item dropdown px-lg-3">
                     <a class="dropdown-item text-uppercase" href="{% url 'Cierres' %}">Arqueo de Caja</a>
                   </li>
-                  <li class="nav-item dropdown px-lg-3">
-                    <a class="dropdown-item text-uppercase"  href="{% url 'Inventario' %}">Inventario</a>
-                  </li>
                 </ul>
             </li>
 
               <li class="nav-item dropdown px-lg-4">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Informe
+                    Reportes
                   </a>
                   <ul class="dropdown-menu">
                     <li class="nav-item dropdown px-lg-3">
-                      <a class="dropdown-item text-uppercase" href="{% url 'ReporteA' %}">Cierre contable</a>
+                      <a class="dropdown-item text-uppercase" href="{% url 'ReporteC' %}">Balance de cierres</a>
                     </li>
                   </ul>
-              </li>
-
-              <li class="nav-item px-lg-4">
-                  <a class="nav-link text-uppercase" href="{% url 'Contacto' %}">Contacto</a>
               </li>
           </ul>
       </nav>

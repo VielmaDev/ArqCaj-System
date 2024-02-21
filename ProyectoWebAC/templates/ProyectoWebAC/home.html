@@ -14,7 +14,7 @@
 
 <section>
 
-    <div class="container">
+    <div class="container lg">
         <ul class="nav nav-tabs my-3">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Mesa de cambio BCV:</a>
@@ -22,23 +22,28 @@
         </ul>
 
         <div class="form-group row my-3" style="text-align: end;">
-            <label for="tasa_usd" class="col-lg-4 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+
+            {% for d in divisaset %}
+                <label for="tasa_usd" class="col-lg-3 col-form-label" id="etiqueta" >{{d.created}}</label>
+            {% endfor %}
+
+            <label for="tasa_usd" class="col-lg-2 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
             <div class="col-sm-2">
-                {% for Dolar in Dolars %}
-                    <input type="text" class="form-control" value="{{Dolar.tasa_usd}}" readonly>
+                {% for d in divisaset %}
+                    <input type="text" class="form-control" value="{{d.tasa_usd}}" readonly>
                 {% endfor %}
             </div>
   
-            <label for="tasa_eur" class="col-lg-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
+            <label for="tasa_eur" class="col-lg-2 col-form-label" id="etiqueta" >Tasa Euro (€):</label>
             <div class="col-sm-2">
-                {% for Euro in Euros %}
-                    <input type="text" class="form-control" value=" {{Euro.tasa_eur}}" readonly>
+                {% for d in divisaset %}
+                    <input type="text" class="form-control" value=" {{d.tasa_eur}}" readonly>
                 {% endfor %}
             </div>
           </div>
     </div>
 
-    <div class="container">
+    <div class="container-lg">
         <ul class="nav nav-tabs my-3">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Comunicado:</a>
@@ -46,18 +51,18 @@
         </ul>
     
        
-        <div id="avisos" class="form-group row my-4">
+        <div class="container-lg">
             <!-- Recorremos los registros de la tabla 'comunicado'-->
-            {% for Nota in Notas %}
+            {% for n in notaset %}
 
-                <textarea name="nota" rows="2" cols="2" readonly id="aviso">{{Nota.nota}}</textarea>
+                <textarea name="nota" rows="2" cols="2" id="aviso" readonly>{{n.nota}}</textarea>
                                 
             {% endfor %} 
         </div>
       
     </div>
 
-    <div class="container">
+    <div class="container-lg">
         <ul class="nav nav-tabs my-3">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Último balance:</a>
@@ -65,30 +70,29 @@
         </ul>
     </div>
 
-    <div class="container">
-        <table class="table table-responsive table-bordered my-4">
+    <div class="container-lg">
+        <table class="table table-responsive table-bordered my-4" id="table">
           <thead>
-            <tr id="identificador">
-              <th width="20%">Fecha</th>
-              <th width="15%">N° Arqueo</th>
-              <th width="15%">N° Caja</th>
-              <th width="15%">Tasa Dólar</th>
-              <th width="15%">Tasa Euro</th>
-              <th width="20%">Total cierre contable ($)</th>
+            <tr>
+                <th width="10%">Fecha</th>
+                <th width="10%">Caja n°</th>
+                <th width="20%">T.Ingresos ($)</th>
+                <th width="20%">F. Inicial ($)</th>
+                <th width="20%">Diferencia ($)</th>
+                <th width="20%">Total cierre ($)</th>
             </tr>
           </thead>
-          
           <!-- Recorremos los registros de la tabla arqueo -->
-          {% for Arqueo in Arqueos %}  
-              <tr>
-                <td>{{Arqueo.created}}</td>
-                <td>{{Arqueo.id}}</td>
-                <td>{{Arqueo.caja}}</td>
-                <td>{{Arqueo.tasaDolar}}</td>
-                <td>{{Arqueo.tasaEuro}}</td>
-                <td>{{Arqueo.cierre}}</td>
-              </tr>
-          {% endfor %}
+            {% for a in arqueoset %}  
+            <tr>
+                <td>{{a.created}}</td>
+                <td>{{a.caja}}</td>
+                <td>{{a.vn_usd}}</td>
+                <td>{{a.fi}}</td>
+                <td>{{a.df}}</td>
+                <td>{{a.cierre}}</td>
+            </tr>
+            {% endfor %}
         </table>
     </div>
 </section>

@@ -9,15 +9,16 @@ from django.utils import timezone
 
 class tienda(models.Model):
 
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    codigo_tienda=models.CharField(max_length=6, null=False)
     razon=models.CharField(max_length=30, null=False)
     rif= models.CharField(max_length=12, null=False)
     nif= models.CharField(max_length=12, null=False)
     direccion= models.CharField(max_length=25, null=False)
     telf=models.CharField(max_length=30, null=True)
     redes=models.CharField(max_length=25, null=True)
-    
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)   
+    created=models.DateField(auto_now_add=True)
+    update=models.DateField(auto_now_add=True)   
       
     class Meta:
 
@@ -26,18 +27,16 @@ class tienda(models.Model):
 
     def __str__(self):
 
-        return self.razon
+        return self.codigo_tienda
 
 class caja(models.Model):
 
     tienda=models.ForeignKey(tienda, on_delete=models.CASCADE)
     codigo_caja=models.CharField(max_length=4, null=False)
-
     created=models.DateField(auto_now_add=True)
     update=models.DateField(auto_now_add=True)
 
     class Meta:
-
         verbose_name= "Caja"
         verbose_name_plural="Cajas"
 
@@ -45,44 +44,29 @@ class caja(models.Model):
 
         return self.codigo_caja
 
-class tasaDolar(models.Model):
+class tasaDivisa(models.Model):
 
-    tasa_usd=models.CharField(max_length=4, null=False)
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
+    tasa_usd=models.CharField(max_length=6, null=False)
+    tasa_eur=models.CharField(max_length=6, null=False)
+    created=models.DateField(auto_now_add=True)
+    update=models.DateField(auto_now_add=True)
 
     class Meta:
-
-        verbose_name="Dolar"
-        verbose_name_plural="Dolars"
+        verbose_name="Divisa"
+        verbose_name_plural="Divisas"
 
     def __str__(self):
 
-        return self.tasa_usd
-    
-class tasaEuro(models.Model):
+        return self.created
 
-    tasa_eur=models.CharField(max_length=4, null=False)
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-
-        verbose_name="Euro"
-        verbose_name_plural="Eurs"
-
-    def __str__(self):
-
-        return self.tasa_eur
     
 class comunicado(models.Model):
 
     nota= models.CharField(max_length=200, null=False)
-    created=models.DateTimeField(auto_now_add=True)
-    update=models.DateTimeField(auto_now_add=True)
+    created=models.DateField(auto_now_add=True)
+    update=models.DateField(auto_now_add=True)
 
     class Meta:
-
         verbose_name="Nota"
         verbose_name_plural="Notas"
 

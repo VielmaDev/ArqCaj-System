@@ -1,0 +1,122 @@
+{% extends "ProyectoWebAC/baseII.html" %}
+
+{% load static %}
+
+{% block content %} 
+
+<!--Head-->
+<title>Reportes</title>
+<section>
+    <header>
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'ReporteC' %}">Balance de cierres</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Balance por tienda</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container-lg my-3">
+        <table class="table table-borderless table-responsive" id="queryset">
+          <thead>
+            <tr>
+              <th>
+                <form action="buscar_tienda" method="get" autocomplete="off">
+                  {% csrf_token %}
+                  <div class="form-group row my-1" style="text-align:end;">
+                    
+                    <label class="col-lg-1 col-form-label" id="etiqueta">Tienda:</label>
+                    <div class="col-sm-2" style="text-align:start;">
+                        <select name="tienda" class="form-control" size="250px" style="width: 185px;" autofocus required>
+                          {% for t in tiendaall %}  
+                            <option value="{{t.id}}">{{t.codigo_tienda}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-sm-1" style="text-align:start;">
+                      <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Consultar</button>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align:start;">&nbsp;
+                      <a href="{% url 'ReporteT' %}" type="submit" class="btn btn-outline-warning">Cancelar</a>
+                    </div>
+                  </div>
+                </form>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Detalles del reporte</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container-lg my-3">
+        <!--Genera el reporte en Formato Excel-->
+        <form action="{% url 'DocExcelTiendas' %}" method="get">
+          {% if query %}
+            <div class="form-group row my-3" style="text-align:end;">
+              <label for="created" class="col-sm-2 col-form-label" id="etiqueta">Tienda:</label>
+             
+                <div class="col-sm-2">
+                  <select name="tienda" class="form-control" style="width: 140px; height: 33px;" readonly>
+                    {% for q in query %}
+                      <option value="{{q.tienda_id}}">{{q.tienda}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-outline-success">Formato Excel</button>
+                </div>
+            </div>
+            {% endif %}
+        </form>
+       
+        
+        <table class="table table-bordered my-3" id="table">
+          <thead>
+            <tr>
+              <th width="10%">Fecha</th>
+              <th width="10%">Caja</th>
+              <th width="10%">F.Inicial ($)</th>
+              <th width="10%">T.Bs</th>
+              <th width="10%">T.$</th>
+              <th width="10%">T.€</th>
+              <th width="10%">T.Zelle</th>
+              <th width="10%">Diferencia ($)</th>
+              <th width="15%">Total cierre ($)</th>
+            </tr>
+
+            <!-- Recorremos los registros de la tabla arqueo -->
+            {% for q in query %}   
+            <tr>
+              <td>{{q.created}}</td>
+              <td>{{q.caja}}</td>
+              <td>{{q.fi}}</td>
+              <td>{{q.ti_bs}}</td>
+              <td>{{q.ti_usd}}</td>
+              <td>{{q.ti_eur}}</td>
+              <td>{{q.ti_zll}}</td>
+              <td>{{q.df}}</td>
+              <td>{{q.cierre}}</td>
+            </tr>
+            {% endfor %}
+          </thead>
+        </table>
+      </div>
+    </header>
+</section>  
+{% endblock %}
+

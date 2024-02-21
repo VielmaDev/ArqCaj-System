@@ -8,211 +8,203 @@
 {% block content %} 
 
 <!--Head-->
+<!--Head-->
 <title>Arqueo de caja</title>
 <section>
-  <header>
-    <div class="container">
-      <ul class="nav nav-tabs my-3">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Arqueo de caja (+)</a>
-        </li>
+    <header>
+      <div class="container">
+        <ul class="nav nav-tabs my-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Cierres' %}">Arqueo de caja (+)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Buscar' %}">Buscar (#)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Editar</a>
+          </li>
+        </ul>
+      </div>
 
-        <li class="nav-item">
-          <a class="nav-link" href="buscar">Busqueda (#)</a>
-        </li>
-      </ul>
-    </div>
+      <div class="container-lg">
+        <form> 
+           <div class="form-group row my-3" style="text-align:end;">
+            <label for="codigo_caja" class="col-sm-2 col-form-label" id="etiqueta" >Arqueo n°:</label>
+             <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.id}}" readonly>
+             </div>
+   
+             <label for="tasa_usd" class="col-sm-2 col-form-label" id="etiqueta" >Fecha</label>
+             <div class="col-sm-2">
+              <input type="date" class="form-control" value="{{object.created}}" style="width: 150px"; required>
+             </div>
+   
+             <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Caja n°:</label>
+             <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.caja}}" required>
+             </div>
+           </div>
+         
+           <div class="container-lg" id="identificador">
+             <label>Tasa de cambio</label>
+           </div>
+   
+           <div class="form-group row my-3" style="text-align: end;">
+             <label for="tasa_usd" class="col-sm-4 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+             
+             <div class="col-sm-2">
+                <input type="text" class="form-control" value="{{object.tasaDivisa.tasa_usd}}" readonly>
+             </div>
+   
+             <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (€):</label>
+             <div class="col-sm-2">
+                <input type="text" class="form-control" value="{{object.tasaDivisa.tasa_eur}}" readonly>
+             </div>
+           </div>
 
-    <div class="container-lg">
-     <form method="post" enctype="multipart/form-data" autocomplete="off">
-        <!-- Token de seguridad para poder crear un nuevo registro -->
-        {% csrf_token %}
-
-        <div class="form-group row my-3" style="text-align: end;">
-          <label for="created" class="col-sm-10 col-form-label" id="etiqueta" >Fecha:</label>
-          <div class="col-sm-2">
-              <input type="date" class="form-control" id="created" value="created" style="width: 150px"; required>
-          </div>
-        </div>
-      
         <div class="container-lg" id="identificador">
-          <label>Caja y Tasas</label>
+          <label id="subtitulo">Ingresos y Transacciones</label>
         </div>
 
-        <div class="form-group row my-3" style="text-align: end;">
-          <label for="codigo_caja" class="col-sm-2 col-form-label" id="etiqueta" >Caja:</label>
-          <div class="col-sm-2">
-              <input type="text" class="form-control" value="{{object.codigo_caja}}" required>
-          </div>
+        <!--Formas de pagos-->
 
-          <label for="tasa_usd" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
-          <div class="col-sm-2">
-              <input type="text" class="form-control" id="form.tasa_usd" readonly>
-          </div>
-
-          <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
-          <div class="col-sm-2">
-              <input type="text" class="form-control" id="form.tasa_eur" readonly>
-          </div>
-        </div>
+        <table  class="table table-bordered my-3" id="table">
+          <thead>
+            <tr>
+              <th width="22%"><label>Monedas</label></th>
+              <th width="12%"><label>Efectivo</label></th>
+              <th width="12%"><label>Débito</label></th>
+              <th width="12%"><label>Crédito</label></th>
+              <th width="12%"><label>Transferencia</label></th>
+              <th width="12%"><label>Pago móvil</label></th>
+              <th width="18%"><label>Total</label></th>
+            </tr>
+          </thead>
   
+            <!-- Ingresos en Bolívares -->
+            <tr>
+              <th><label>Bolívares (Bs):</label></th>
+              <td><input type="text" class="form-control" value="{{object.ef_bs}}" required></td>
+              <td><input type="text" class="form-control" value="{{object.td_bs}}" required></td>
+              <td><input type="text" class="form-control" value="{{object.tc_bs}}" required></td>
+              <td><input type="text" class="form-control" value="{{object.tr_bs}}" required></td>
+              <td><input type="text" class="form-control" value="{{object.pm_bs}}" required></td>
+              <th><input type="text" class="form-control" value="{{object.ti_bs}}" readonly style="width: 200px;"></th>
+            </tr>
+  
+            <!-- Ingresos en Dólares -->
+            <tr>
+              <th><label>Dólares ($):</label></th>
+              <td><input type="text" class="form-control" value="{{object.ef_usd}}" required></td>
+              <td><label></label></td>
+              <td><input type="text" class="form-control" value="{{object.tc_usd}}" required></td>
+              <td><label></label></td>
+              <td><label></label></td>
+              <th><input type="text" class="form-control" value="{{object.ti_usd}}" readonly style="width: 200px;"></th>
+             </tr>
+  
+            <!-- Ingresos en Euros -->
+            <tr>
+              <th><label>Euros (E):</label></th>
+              <td> <input type="text" class="form-control" value="{{object.ef_eur}}" required></td>
+              <td><label></label></td>
+              <td><label></label></td>
+              <td><label></label></td>
+              <td><label></label></td>
+              <th> <input type="text" class="form-control" value="{{object.ti_eur}}" readonly style="width: 200px;"></th>
+            </tr>
+  
+            <!-- Ingresos en Zelle -->
+            <tr>
+              <th><label>Zelle ($):</label></th>
+              <td><label></label></td>
+              <td><label></label></td>
+              <td><label></label></td>
+              <td><input type="text" class="form-control" value="{{object.tr_zll}}" required></td>
+              <td><label></label></td>
+              <th><input type="text" class="form-control" value="{{object.ti_zll}}" readonly style="width: 200px;"></th>
+            </tr>
+        </table>
+
+          <div class="container-lg" id="identificador">
+            <label>Ingresos en Caja</label>
+          </div>
+
+          <div class="form-group row my-3" style="text-align: end;">
+            <label for="fi" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial ($):</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.fi}}" style="width: 180px;" required>
+              </div>
+
+              <label for="ti" class="col-sm-2 col-form-label" id="etiqueta">Total Ingresos ($):</label>
+              <div class="col-sm-1">
+                  <input type="text" class="form-control" value="{{object.vn_bs}}" style="width: 180px;" readonly>
+              </div>
+            
+              <label for="vn_usd" class="col-sm-2 col-form-label" id="etiqueta" >/ Usd ($):</label>
+              <div class="col-sm-1">
+                <input type="text" class="form-control" value="{{object.vn_usd}}"  style="width: 180px;" readonly>
+              </div>
+          </div>
+
+          <div class="container-lg" id="identificador">
+            <label>Gestión Administrativa</label>
+          </div>
+
+          <div class="container-lg">
+            <div class="form-group row my-3" style="text-align:end;"> 
+              <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos ($):</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.gt}}" required>
+              </div>
+  
+              <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución ($):</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.dv}}" required>
+              </div>
+
+              <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos ($):</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" value="{{object.dt}}" required>
+              </div>
+            </div>
+  
+            <div class="form-group row my-3" style="text-align:end;">
+              <label for="nota" class="col-sm-1 col-form-label" id="etiqueta">Nota:</label>
+              <div class="col-sm-2">
+                  <input type="text" style="width: 580%;" class="form-control" value="{{object.nota}}" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-lg" id="identificador">
+            <label>Resultados de la conciliación</label>
+          </div>
+
+          <div class="form-group row my-3" style="text-align: end;">
+  
+            <label for="df" class="col-sm-4 col-form-label" id="etiqueta">Diferencia (S):</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.df}}" readonly>
+            </div>
+  
+            <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre ($):</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" value="{{object.cierre}}" readonly>
+            </div>
+          </div>
+      </div>
 
       <div class="container-lg" id="identificador">
-        <label>EFECTIVO Y TRANSACCIONES</label>
+        <label>Opciones</label>
       </div>
 
-      <table class="table my-3">
-        <thead>
-          <tr class="bg-secondary">
-            <th width="13%"><label class="txt_negrita"></label></th>
-            <th width="20%"><label class="txt_negrita">Bolívares (Bs)</label></th>
-            <th width="20%"><label class="txt_negrita">Dólares ($)</label></th>
-            <th width="20%"><label class="txt_negrita">Euros (E)</label></th>
-            <th width="20%"><label class="txt_negrita">Zelle ($)</label></th>
-          </tr>
-        </thead>
-
-          <!-- Ingresos en efectivo -->
-          <tr>
-            <td class="bg-secondary"><label>Efectivo:</label></td>
-            <td width="20%"><label for="ef_bs">{{form.ef_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="ef_usd">{{form.ef_usd|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="ef_eur">{{form.ef_eur|add_class:"form-control"}}</label></td>
-            <td width="20%"><label></label></td>
-          </tr>
-
-          <!-- Ingresos en débito -->
-          <tr>
-            <td class="bg-secondary"><label>Débito:</label></td>
-            <td width="20%"><label for="td_bs">{{form.td_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="td_usd">{{form.td_usd|add_class:"form-control"}}</label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-           </tr>
-
-          <!-- Ingresos en crédito -->
-          <tr>
-            <td class="bg-secondary"><label>Crédito:</label></td>
-            <td width="20%"><label for="tc_bs">{{form.ef_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-          </tr>
-
-          <!-- Ingresos en transferencia -->
-          <tr>
-            <td class="bg-secondary"><label>Transferencia:</label></td>
-            <td width="20%"><label for="tr_bs">{{form.ef_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label for="tr_zll">{{form.tr_zll|add_class:"form-control"}}</label></td>
-          </tr>
-
-          <!-- Ingresos en pago móvil -->
-          <tr>
-            <td class="bg-secondary"><label>Pago móvil:</label></td>
-            <td width="20%"><label for="pm_bs">{{form.pm_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-            <td width="20%"><label></label></td>
-          </tr>
-
-          <!-- Ingresos en totales -->
-          <tr class="bg-secondary">
-            <td><label>Total ingresos:</label></td>
-            <td width="20%"><label for="ti_bs">{{form.ti_bs|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="ti_usb">{{form.ti_usd|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="ti_eur">{{form.ti_eur|add_class:"form-control"}}</label></td>
-            <td width="20%"><label for="ti_zll">{{form.ti_zll|add_class:"form-control"}}</label></td>
-          </tr>
-      </table>
-
-        <div class="container-lg" id="identificador">
-          <label>Ventas Neta</label>
+      <div class="form-group row my-3" style="text-align: end;">
+        <div class="col">
+          <button type="submit" class="btn btn-outline-info">Guardar</button>
+          <a href="{% url 'Buscar' %}" type="submit" class="btn btn-outline-warning">Cancelar</a>
         </div>
-
-        <div class="form-group row my-3" style="text-align: end;">
-          <label for="ti" class="col-sm-4 col-form-label" id="etiqueta">Total venta neta ($):</label>
-          <div class="col-sm-1">
-              <input type="text" class="form-control" id="form.ti" readonly>
-          </div>
-        
-          <label for="ti" class="col-sm-3 col-form-label" id="etiqueta" >Total venta neta (Bs):</label>
-          <div class="col-sm-1">
-            <input type="text" class="form-control" id="form.ti" readonly>
-          </div>
-        </div>
-
-        <div class="container-lg" id="identificador">
-          <label>Gestión Administrativa</label>
-        </div>
-
-        <div class="container-lg">
-          <div class="form-group row my-3" style="text-align:end;"> 
-            <label for="ti" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.ti" required>
-            </div>
-
-            <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.sg">
-            </div>
-
-            <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.dv">
-            </div>
-          </div>
-
-          <div class="form-group row my-3" style="text-align:end;">
-            <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.dt">
-            </div>
-            <label for="nota" class="col-sm-2 col-form-label" id="etiqueta">Nota:</label>
-            <div class="col-sm-2">
-                <input type="text" style="width: 330%;" class="form-control" id="form.nota">
-            </div>
-          </div>
-        </div>
-
-        <div class="container-lg" id="identificador">
-          <label>Resultados del cierre</label>
-        </div>
-
-        <div class="form-group row my-3" style="text-align: end;">
-          <label for="ft" class="col-sm-2 col-form-label" id="etiqueta">Faltante:</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="form.ft" readonly>
-          </div>
-
-          <label for="st" class="col-sm-2 col-form-label" id="etiqueta">Sobrante:</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="form.st" readonly>
-          </div>
-
-          <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre contable:</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="form.cierre" readonly>
-          </div>
-        </div>
-
-        <div class="container-lg" id="identificador">
-          <label>Opciones</label>
-        </div>
-
-        <div class="form-group row my-3" style="text-align: end;">
-          <div class="col">
-            <button type="submit" class="btn btn-outline-info">Guardar</button>
-            <a href="{% url 'Buscar' %}" type="submit" class="btn btn-outline-warning">Cancelar</a>
-          </div>
-        </div>
-
       </div>
-     </form>    
-    </div>
-  </header>
+    </header>
 </section>
-
 {% endblock %}

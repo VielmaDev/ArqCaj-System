@@ -16,7 +16,7 @@
     </div>
 
     <div class="container my-2">
-        <form method="POST" action=" " autocomplete="off" style="color: white;" id="formulario">
+        <form method="POST" action=" " autocomplete="off" style="color: rgb(242, 242, 242);" id="formulario">
             {% csrf_token %}  
             {{form|crispy}}
             <button type="submit" class="btn btn-success">Iniciar sesión</button>

@@ -18,7 +18,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="buscar">Busqueda (#)</a>
+          <a class="nav-link" href="buscar">Buscar (#)</a>
         </li>
       </ul>
     </div>
@@ -29,111 +29,125 @@
         {% csrf_token %}
 
         <div class="form-group row my-3" style="text-align: end;">
-          <label for="created" class="col-sm-10 col-form-label" id="etiqueta" >Fecha:</label>
+          <label for="created" class="col-sm-7 col-form-label" id="etiqueta" >Fecha:</label>
           <div class="col-sm-2">
-              <input type="date" class="form-control" id="created" value="created" style="width: 150px"; required>
+            <input type="date" class="form-control" id="created" value="created" style="width: 200px; height: 33px" required>
           </div>
+
+          <label for="caja" class="col-sm-1 col-form-label" id="etiqueta" >Caja n°:</label>
+          <div class="col-sm-1">
+            <select class="form-control" size="260px" style="width: 180px;" required>
+              {% for c in cajaset %}  
+              <option  id="form.caja" value="{{c.id}}">{{c.codigo_caja}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
         </div>
       
         <div class="container-lg" id="identificador">
-          <label>Caja y Tasas</label>
+          <label>Tasa de cambio</label>
         </div>
 
         <div class="form-group row my-3" style="text-align: end;">
-          <label for="codigo_caja" class="col-sm-2 col-form-label" id="etiqueta" >Caja:</label>
+          <label for="tasa_usd" class="col-sm-4 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
           <div class="col-sm-2">
-              <input type="text" class="form-control" value="{{object.codigo_caja}}" required>
+            {% for d in divisaset %}
+            <input type="text" class="form-control" id="form.tasa_usd" value="{{d.tasa_usd}}" readonly>
+            {% endfor %}
           </div>
 
-          <label for="tasa_usd" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Dolar ($):</label>
+          <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (€):</label>
           <div class="col-sm-2">
-              <input type="text" class="form-control" id="form.tasa_usd" readonly>
-          </div>
-
-          <label for="tasa_eur" class="col-sm-2 col-form-label" id="etiqueta" >Tasa Euro (E):</label>
-          <div class="col-sm-2">
-              <input type="text" class="form-control" id="form.tasa_eur" readonly>
+            {% for d in divisaset %}
+            <input type="text" class="form-control" id="form.tasa_eur" value="{{d.tasa_eur}}" readonly>
+            {% endfor %}
           </div>
         </div>
   
 
       <div class="container-lg" id="identificador">
-        <label>EFECTIVO Y TRANSACCIONES</label>
+        <label>Ingresos y Transacciones</label>
       </div>
 
       <!--Formas de pagos-->
 
-      <table  class="table table-bordered table-hover my-3">
+      <table  class="table table-bordered my-3" id="table">
         <thead>
-          <tr class="bg-secondary">
-            <th width="14%"><label class="txt_negrita">Monedas</label></th>
-            <th width="15%"><label class="txt_negrita">Efectivo</label></th>
-            <th width="15%"><label class="txt_negrita">Débito</label></th>
-            <th width="15%"><label class="txt_negrita">Crédito</label></th>
-            <th width="15%"><label class="txt_negrita">Transferencia</label></th>
-            <th width="15%"><label class="txt_negrita">Pago móvil</label></th>
-            <th width="15%"><label class="txt_negrita">Total</label></th>
+          <tr>
+            <th width="22%"><label>Monedas</label></th>
+            <th width="12%"><label>Efectivo</label></th>
+            <th width="12%"><label>Débito</label></th>
+            <th width="12%"><label>Crédito</label></th>
+            <th width="12%"><label>Transferencia</label></th>
+            <th width="12%"><label>Pago móvil</label></th>
+            <th width="18%"><label>Total</label></th>
           </tr>
         </thead>
 
           <!-- Ingresos en Bolívares -->
           <tr>
-            <th class="bg-secondary"><label>Bolívares (Bs):</label></th>
-            <td width="15%"><input type="text" class="form-control" id="form.ef_bs" required></td>
-            <td width="15%"><input type="text" class="form-control" id="form.td_bs" required></td>
-            <td width="15%"><input type="text" class="form-control" id="form.tc_bs" required></td>
-            <td width="15%"><input type="text" class="form-control" id="form.tr_bs" required></td>
-            <td width="15%"><input type="text" class="form-control" id="form.pm_bs" required></td>
-            <td class="bg-secondary" width="15%"><input type="text" class="form-control" id="form.ti_bs" readonly></td>
+            <th><label>Bolívares (Bs):</label></th>
+            <td><input type="text" class="form-control" id="form.ef_bs" required></td>
+            <td><input type="text" class="form-control" id="form.td_bs" required></td>
+            <td><input type="text" class="form-control" id="form.tc_bs" required></td>
+            <td><input type="text" class="form-control" id="form.tr_bs" required></td>
+            <td><input type="text" class="form-control" id="form.pm_bs" required></td>
+            <th><input type="text" class="form-control" id="form.ti_bs" readonly style="width: 200px;"></th>
           </tr>
 
           <!-- Ingresos en Dólares -->
           <tr>
-            <th class="bg-secondary"><label>Dólares ($):</label></th>
-            <td width="15%"><input type="text" class="form-control" id="form.ef_usd" required></td>
-            <td  width="15%"><input type="text" class="form-control" id="form.td_usd" required></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><input type="text" class="form-control" id="form.ti_usd" readonly></td>
+            <th><label>Dólares ($):</label></th>
+            <td><input type="text" class="form-control" id="form.ef_usd" required></td>
+            <td><label></label></td>
+            <td><input type="text" class="form-control" id="form.tc_usd" required></td>
+            <td><label></label></td>
+            <td><label></label></td>
+            <th><input type="text" class="form-control" id="form.ti_usd" readonly style="width: 200px;"></th>
            </tr>
 
           <!-- Ingresos en Euros -->
           <tr>
-            <th class="bg-secondary"><label>Euros (E):</label></th>
-            <td width="15%"> <input type="text" class="form-control" id="form.ef_eur" required></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"> <input type="text" class="form-control" id="form.ti_eur" readonly></td>
+            <th><label>Euros (€):</label></th>
+            <td> <input type="text" class="form-control" id="form.ef_eur" required></td>
+            <td><label></label></td>
+            <td><label></label></td>
+            <td><label></label></td>
+            <td><label></label></td>
+            <th> <input type="text" class="form-control" id="form.ti_eur" readonly style="width: 200px;"></th>
           </tr>
 
           <!-- Ingresos en Zelle -->
           <tr>
-            <th class="bg-secondary"><label>Zelle ($):</label></th>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td width="15%">  <input type="text" class="form-control" id="form.tr_zll" required></td>
-            <td class="bg-secondary" width="15%"><label></label></td>
-            <td class="bg-secondary" width="15%">  <input type="text" class="form-control" id="form.ti_zll" readonly></td>
+            <th><label>Zelle ($):</label></th>
+            <td><label></label></td>
+            <td><label></label></td>
+            <td><label></label></td>
+            <td><input type="text" class="form-control" id="form.tr_zll" required></td>
+            <td><label></label></td>
+            <th><input type="text" class="form-control" id="form.ti_zll" readonly style="width: 200px;"></th>
           </tr>
       </table>
 
         <div class="container-lg" id="identificador">
-          <label>Ventas Neta</label>
+          <label>Ingresos en Caja</label>
         </div>
 
         <div class="form-group row my-3" style="text-align: end;">
-          <label for="ti" class="col-sm-4 col-form-label" id="etiqueta">Total venta neta ($):</label>
+          <label for="fi" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial ($):</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" style="width: 180px;" id="form.fi" required>
+            </div>
+
+          <label for="vn_bs" class="col-sm-2 col-form-label" id="etiqueta">Total ingresos / (Bs):</label>
           <div class="col-sm-1">
-              <input type="text" class="form-control" id="form.ti" readonly>
+              <input type="text" class="form-control" style="width: 180px;" id="form.vn_bs" readonly>
           </div>
         
-          <label for="ti" class="col-sm-3 col-form-label" id="etiqueta" >Total venta neta (Bs):</label>
+          <label for="ti" class="col-sm-2 col-form-label" id="etiqueta" >/ Usd ($):</label>
           <div class="col-sm-1">
-            <input type="text" class="form-control" id="form.ti" readonly>
+            <input type="text" class="form-control" style="width: 180px;" id="form.vn_usd" readonly>
           </div>
         </div>
 
@@ -143,50 +157,42 @@
 
         <div class="container-lg">
           <div class="form-group row my-3" style="text-align:end;"> 
-            <label for="ti" class="col-sm-2 col-form-label" id="etiqueta">Fondo inicial:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.ti" required>
-            </div>
-
-            <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos:</label>
+            <label for="sg" class="col-sm-2 col-form-label" id="etiqueta">Gastos ($):</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" id="form.sg" required>
             </div>
 
-            <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución:</label>
+            <label for="dv" class="col-sm-2 col-form-label" id="etiqueta">Devolución ($):</label>
             <div class="col-sm-2">
                 <input type="text" class="form-control" id="form.dv" required>
+            </div>
+
+            <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos ($):</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="form.dt" required>
             </div>
           </div>
 
           <div class="form-group row my-3" style="text-align:end;">
-            <label for="dt" class="col-sm-2 col-form-label" id="etiqueta">Descuentos:</label>
+            <label for="nota" class="col-sm-1 col-form-label" id="etiqueta">Nota:</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" id="form.dt" required>
-            </div>
-            <label for="nota" class="col-sm-2 col-form-label" id="etiqueta">Nota:</label>
-            <div class="col-sm-2">
-                <input type="text" style="width: 330%;" class="form-control" id="form.nota">
+                <input type="text" style="width: 580%;" class="form-control" id="form.nota">
             </div>
           </div>
         </div>
 
         <div class="container-lg" id="identificador">
-          <label>Resultados del cierre</label>
+          <label>Resultados de la conciliación</label>
         </div>
 
         <div class="form-group row my-3" style="text-align: end;">
-          <label for="ft" class="col-sm-2 col-form-label" id="etiqueta">Faltante:</label>
+
+          <label for="df" class="col-sm-4 col-form-label" id="etiqueta">Diferencia ($):</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control" id="form.ft" readonly>
+            <input type="text" class="form-control" id="form.df" readonly>
           </div>
 
-          <label for="st" class="col-sm-2 col-form-label" id="etiqueta">Sobrante:</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control" id="form.st" readonly>
-          </div>
-
-          <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre contable:</label>
+          <label for="cierre" class="col-sm-2 col-form-label" id="etiqueta">Total cierre ($):</label>
           <div class="col-sm-2">
             <input type="text" class="form-control" id="form.cierre" readonly>
           </div>

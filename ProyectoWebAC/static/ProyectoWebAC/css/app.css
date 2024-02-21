@@ -14,12 +14,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95em;
     font-weight: bold;
-    color: rgb(244, 247, 249);
-}
-
-#tabla{
-    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
-    border:2px rgb(248, 244, 244) solid;
+    color: rgb(242, 242, 242);
 }
 
 .navbar{
@@ -41,6 +36,13 @@ body{
     color: black;
 }
 
+.dropdown-item{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: rgb(242, 242, 242);
+}
+
 #identificador{
     background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -51,19 +53,36 @@ body{
     color: rgb(242, 242, 242);
 }
 
+.table{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: rgb(242, 242, 242);
+} 
+
+.table th{
+    background: linear-gradient(rgba(27, 147, 216, 0.65), rgba(27, 147, 216, 0.65));
+}
+
+#table td{
+    background: linear-gradient(rgba(66, 141, 173, 0.404), rgba(66, 108, 128, 0.404));
+}
+
+#queryset th{
+    background: linear-gradient(rgba(4, 167, 236, 0.404), rgba(4, 167, 236, 0.404));
+}
+
+#reportes td{
+    background: linear-gradient(rgba(66, 141, 173, 0.404), rgba(66, 108, 128, 0.404));
+    font-size: 0.85em;
+}
+
 #etiqueta{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 0.98em;
     font-weight: bold;
     color: rgb(242, 242, 242);
-}
-
-#texto{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.9em;
 }
 
 #aviso{
@@ -72,8 +91,16 @@ body{
     text-align: center;
     font-weight: bold;
     color: rgb(0, 0, 0);
-    width: 1600px;
+    width: 1250px;
     align-items: center;
+}
+
+#texto{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9em;
 }
 
 #pie{
@@ -87,50 +114,11 @@ body{
 
 
 
-#busqueda{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.9em;
-    font-weight: bold;
-    color: rgb(247, 242, 242);
-}
-
-.table{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.9em;
-    color: rgb(247, 242, 242);
-} 
-
-
-
-.table th span{
-    padding-right: 10px;
-}
-
-.table th input{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    font-weight: bold;
-    width: 150px;
-    height: 30px;
-}
-
-.table td{
-    color: rgb(247, 242, 242);
-}
-
 .form-control{
     text-align: center;
     width: 120px;
     height: 30px;
 }
-
-.label{
-    color: rgb(242, 242, 242);
-}
-
-
 
 
 #contactoFormulario{
@@ -138,14 +126,6 @@ body{
     border:1px rgb(242, 242, 242) solid;
     width: 530px;
     height: 420px;
-}
-
-
-.btn:hover{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    color: rgb(0, 9, 13);
-    cursor: pointer;
 }
 
 

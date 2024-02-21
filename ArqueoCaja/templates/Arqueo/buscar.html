@@ -18,40 +18,49 @@
           </li>
   
           <li class="nav-item">
-            <a class="nav-link active" href="#">Busqueda (#)</a>
+            <a class="nav-link active" href="#">Buscar (#)</a>
           </li>
         </ul>
       </div>
 
-      <div class="container-lg my-2">
-        <table class="table table-borderless">
+      <div class="container-lg my-3">
+        <table class="table table-borderless table-responsive" id="queryset">
           <thead>
             <tr>
-              <th style="text-align:start;">
+              <th>
                 <form action="buscar_fecha" method="get" autocomplete="off">
-                  {% csrf_token %}
-                  <label>Fecha de cierre:</label>&nbsp;
-                  <input type="date" name="registro" required>&nbsp;
-                  <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Buscar</button>
+                {% csrf_token %}
+                <div class="form-group row my-2" style="text-align:end;">
+                  <label class="col-lg-4 col-form-label" id="etiqueta">Fecha de cierre:</label>
+                  <div class="col-lg-4" style="text-align:start;">
+                    <input type="date" name="registro" class="form-control" style="width: 200px; height: 33px;" autofocus required>
+                  </div>
+                  <div class="col-lg-1" style="text-align:start;">
+                    <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Buscar</button>
+                  </div>
+                </div>
                 </form>
               </th>
-       
-              <th style="text-align:center;">
-                <form action="buscar_codigo" method="get" autocomplete="off">
+           
+              <th>
+                <form action="buscar_caja" method="get" autocomplete="off">
                   {% csrf_token %}
-                  <label>N° Arqueo:</label>&nbsp;
-                  <input type="text" name="registro" placeholder="N° arqueo" style="width: 150px;" required>&nbsp;
-                  <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Buscar</button>
-              </form>
-              </th>
+                  <div class="form-group row my-2" style="text-align:end;">
+                    <label class="col-lg-3 col-form-label" id="etiqueta">Caja n°:</label>
+                    <div class="col-lg-4" style="text-align:start;">
 
-              <th style="text-align:end;">
-                <form action="buscar_codigo" method="get" autocomplete="off">
-                  {% csrf_token %}
-                  <label>N° Caja:</label>&nbsp;
-                  <input type="text" name="registro" placeholder="N° caja" style="width: 150px;" required>&nbsp;
-                  <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Buscar</button>
-              </form>
+                      <select name="registro" class="form-control" size="250px" style="width: 180px;" required>
+                        {% for c in cajaset %}  
+                        <option value="{{c.id}}">{{c.codigo_caja}}</option>
+                        {% endfor %}
+                      </select>
+                     
+                    </div>
+                    <div class="col-lg-1" style="text-align:start;">
+                      <button type="submit" class="btn btn-outline-info" style="padding-left: 20px;">Buscar</button>
+                    </div>
+                  </div>
+                  </form>
               </th>
             </tr>
           </thead>
@@ -59,37 +68,43 @@
       </div>
 
       <div class="container">
-        <ul class="nav nav-tabs my-3">
+        <ul class="nav nav-tabs my-4">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Registros:</a>
+            <a class="nav-link" href="#">Indice de registros</a>
           </li>
         </ul>
       </div>
 
-      <div class="container-lg my-3">
-        <table class="table table-bordered table-responsive">
-          <thead>
-            <tr id="identificador">
-              <th width="10%">Fecha</th>
-              <th width="10%">N° Arqueo</th>
-              <th width="10%">N° Caja</th>
-              <th width="15%">Tasa ($)</th>
-              <th width="15%">Tasa (E)</th>
-              <th width="20%">Total cierre contable ($)</th>
-            </tr>
-          </thead>
-          <!-- Recorremos los registros de la tabla arqueo -->
-          {% for arqueo in object_list %}  
+      <div class="container-lg">
+          <table class="table table-bordered table-responsive my-4" id="table">
+            <thead>
               <tr>
-                <th width="10%">{{arqueo.created}}</th>
-                <td width="10%"><a href="detalle/{{arqueo.id}}" title="Detalle">{{arqueo.id}}</a></td>
-                <td  width="10%">{{arqueo.caja}}</td>
-                <td  width="15%">{{arqueo.tasaDolar}}</td>
-                <td  width="15%">{{arqueo.tasaEuro}}</td>
-                <td  width="20%">{{arqueo.cierre}}</td>
+                <th width="10%">Fecha</th>
+                <th width="10%">Caja</th>
+                <th width="15%">T.Ingresos ($)</th>
+                <th width="15%">F. Inicial ($)</th>
+                <th width="15%">Diferencia ($)</th>
+                <th width="15%">Total cierre ($)</th>
+                <th width="20%">Opciones</th>
               </tr>
-          {% endfor %}
-        </table>
+            </thead>
+            
+            <!-- Recorremos los registros de la tabla arqueo -->
+            {% for q in query %}   
+            <tr>
+              <td>{{q.created}}</td>
+              <td>{{q.caja}}</td>
+              <td>{{q.vn_usd}}</td>
+              <td>{{q.fi}}</td>
+              <td>{{q.df}}</td>
+              <td>{{q.cierre}}</td>
+              <td>
+                <a href="detalle/{{q.id}}" title="Detalle" type="button" class="btn btn-outline-warning">Ver </a>&nbsp;
+                <a href="editar/{{q.id}}" title="Editar" type="button" class="btn  btn-outline-info">Editar </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
       </div>
   </header>
 </section>

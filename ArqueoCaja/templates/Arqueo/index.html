@@ -14,50 +14,51 @@
       <div class="container">
         <ul class="nav nav-tabs my-3">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'Cierres' %}">Arqueo de caja (+)</a>
+            <a class="nav-link" href="{% url 'Cierres' %}">Arqueo de caja (+)</a>{{Arqueo.created}}
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Busqueda (#)</a>
+            <a  class="nav-link" href="{% url 'Buscar' %}">Buscar (#)</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="#">Resultados:</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="container">
-        <ul class="nav nav-tabs my-3">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Indice:</a>
+            <a class="nav-link active" href="#">Indice (*)</a>
           </li>
         </ul>
       </div>
 
       <div class="container-lg">
-          <table class="table table-responsive my-3">
-            <thead>
-              <tr id="identificador">
-                <th width="20%">Fecha de cierre</th>
-                <th width="15%">N° Arqueo</th>
-                <th width="15%">N° Caja</th>
-                <th width="20%">Total cierre contable ($)</th>
-                <th width="20%">Opciones</th>
+        <ul class="nav nav-tabs my-4">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Resultados de la busqueda</a>
+          </li>
+        </ul>
 
+          <table class="table table-bordered table-responsive my-4" id="table">
+            <thead>
+              <tr>
+                <th width="10%">Fecha</th>
+                <th width="10%">Caja</th>
+                <th width="15%">T.Ingresos ($)</th>
+                <th width="15%">F. Inicial ($)</th>
+                <th width="15%">Diferencia ($)</th>
+                <th width="15%">Total cierre ($)</th>
+                <th width="20%">Opciones</th>
               </tr>
             </thead>
             
             <!-- Recorremos los registros de la tabla arqueo -->
-            {% for Arqueo in Arqueos %}   
+            {% for q in query %}   
             <tr>
-              <td>{{Arqueo.created}}</td>
-              <td>{{Arqueo.id}}</td>
-              <td>{{Arqueo.caja}}</td>
-              <td>{{Arqueo.cierre}}</td>
+              <td>{{q.created}}</td>
+              <td>{{q.caja}}</td>
+              <td>{{q.vn_usd}}</td>
+              <td>{{q.fi}}</td>
+              <td>{{q.df}}</td>
+              <td>{{q.cierre}}</td>
               <td>
-                <a href="detalle/{{Arqueo.id}}" title="Detalle" type="button" class="btn btn-outline-info">Ver </a>
-                <a href="#" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                <a href="detalle/{{q.id}}" title="Detalle" type="button" class="btn btn-outline-warning">Ver </a>&nbsp;
+                <a href="editar/{{q.id}}" title="Editar" type="button" class="btn  btn-outline-info">Editar </a>
               </td>
             </tr>
         {% endfor %}

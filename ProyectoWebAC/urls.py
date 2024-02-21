@@ -6,13 +6,10 @@ from django.conf.urls.static import static
 
 from .import views
 from .views import logear, cerrar_sesion
-#from ProyectoWebAC import views
-
 
 urlpatterns = [
 
     path('',logear, name="Logear"),
     path('cerrar_sesion', cerrar_sesion, name="Cerrar_sesion"),
-    path('baseII', views.baseII, name="BaseII"),
-    path('home', views.home, name="Home"),
+    path('home', views.homeView, name="Home"),
 ]
